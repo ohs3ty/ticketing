@@ -5,6 +5,42 @@ document.getElementById("end_date").addEventListener("focus", function() {
 
 })
 
+function getVenues(venues) {
+    
+    if (lookup == '') {
+        document.getElementById('venue_lookup').innerHTML = "";
+    }
+
+    var output = '';
+    var lookup = '';
+    lookup = document.getElementById("venue").value;
+    for (var i = 0; i < venues.length; i++) {
+        if (lookup != "") {
+            if (venues[i].toUpperCase().search(lookup.toUpperCase()) != -1) {
+                output = output + `<span class="autofill" onclick="Autofill('${venues[i]}')" >${venues[i]}</span><br>`
+            }
+        }
+    }
+    document.getElementById('venue_lookup').innerHTML = output;
+}
+
+function Autofill(text) {
+    document.getElementById("venue").value = text;
+    document.getElementById('venue_lookup').innerHTML = "";
+}
+
+
+
+document.getElementById("new_venue").addEventListener("click", function() {
+    if (document.getElementById("new_venue").checked == true) {
+        document.getElementById("add_venue").hidden = false;
+    } else if (document.getElementById("new_venue").checked == false) {
+        document.getElementById("add_venue").hidden = true;
+    }
+})
+
+
+
 // no need currently
 // document.getElementsByName('user_organizer')[1].addEventListener("click", function() {
 //     document.getElementById('not_user').hidden = false;

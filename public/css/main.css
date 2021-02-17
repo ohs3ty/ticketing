@@ -8,6 +8,15 @@ body {
     padding-right: 16px;
 }
 
+.autofill {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.autofill:hover {
+    transition: .5s;
+    background-color: lightgrey;
+}
 
 /* BYU dropdown */
 .dropdown {

@@ -32,13 +32,13 @@
     <byu-header>
         <span slot="site-title">Event Ticketing</span>
         <byu-menu slot="nav" active-selector=".is-active">
-            <a href="{{ url('home') }}">Home</a>
+            <a href="{{ url('home') }}" @yield('home-header')>Home</a>
             <div class="dropdown">
                 <button class="dropdown-btn">Events</button>
-                <div class="dropdown-child">
+                <div class="dropdown-child @yield('event-header')">
                     <a href="{{ url('events') }}">View All Events</a>
                     @if(Auth::check())
-                        <a href="{{ route('addevent', ['id' => 1]) }}">Add New Event</a>
+                        <a href="{{ route('addevent', ['id' => Auth::user()->id]) }}">Add New Event</a>
                     @endif
                 </div>
             </div>

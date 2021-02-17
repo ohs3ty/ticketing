@@ -29,5 +29,6 @@ Route::get('/admin', [AdminController::class, 'index']);
 
 // events
 Route::get('/addevent', [EventController::class, 'addview'])->name('addevent');
+Route::post('/addeventaction', [EventController::class, 'addeventaction']);
 
 

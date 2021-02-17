@@ -1,20 +1,22 @@
 @extends('layouts.app')
 {{-- only those logged in will view this page --}}
+@section('event-header')
+    active
+@endsection
 @section('content')
 
     @if($user_id != Auth::user()->id)
         <h3>Something went wrong. Please try again.</h3>
     @else
-        {{-- if admin or creator --}}
+        
         @if ((Auth::user()->role == 'admin') || (Auth::user()->role == 'organizer'))
             <div class="container">
                 {{-- {{Auth::user()->id}} --}}
                 {{ Form::open(array('url' => '/addeventaction', 'method' => 'POST')) }}
 
                 <h3>Event Information</h3>
-                <br>
                 @error('event_name')
-                    <div class="error"> {{ $message }} </div>
+                    <div class="error text-danger"> {{ $message }} </div>
                 @enderror
                 <div class="form-group">
                     {{ Form::label('event_name', 'Event Name')}}<br>
@@ -46,38 +48,44 @@
                     {{ Form::label('event_description', 'Event Description')}}<br>
                     {{ Form::textarea('event_description'), array('placeholder' => 'Write a brief description') }}
                 </div>
+                <div class="form-group">
+                    <label for="venue">Venue</label><br>
+                    <input type="text" name="venue" id="venue" onkeyup="getVenues({{$venues}})">
+                    <div style="padding-top: 10px; padding-bottom: 10px;" id='venue_lookup'></div>
+                    {{-- add new venue  --}}
+                    {{ Form::checkbox('new_venue', 1, null, array('id' => 'new_venue')) }}
+                    {{ Form::label('new_venue', 'Check if adding a new venue') }}
+                </div>
+                <div class="form-group" id="add_venue" hidden>
+                    {{ Form::label('venue_addr', 'Venue Address') }}<br>
+                    {{ Form::text('venue_addr') }}<br>
+                    {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
+                    {{ Form::text('venue_zipcode') }}
+                </div>
                 
                 {{-- organization information --}}
                 <h3>Organization Information</h3>
-                <br>
-                <div class='form-group'>
-                    {{ Form::label('organization_name', 'Organization Name') }}<br>
-                    {{ Form::text('organization_name') }}
-                {{-- quasi search function, if not in then it will add the new organization to the database --}}
+                Choose the organization in charge.<br><br>
+
+                <div class="form-group">
+                    {{ Form::label('organization_name', 'Organization Name')}}<br>
+                    {{ Form::select('organization_name', $organization_names)}}
                 </div>
-                <div class='form-group'>   
-                    {{ Form::label('cashnet_code', 'Cashnet Code') }}<br>
-                    {{ Form::text('cashnet_code') }}
-                </div>
-                <div class='form-group'>
-                    {{ Form::label('organization_website', 'Organization Email') }}<br>
-                    {{ Form::email('organization_website') }}
-                </div>
+
                 {{-- organizer information --}}
-                <br>
                 <h3>Organizer Information</h3>
                 Please change your contact information (as the organization contact) as needed:
                 <br><br>
                 <div class='form-group'>
                     {{ Form::label('organizer_phone', 'Organizer Phone Number') }}<br>
-                    {{ Form::text('organizer_phone') }}
+                    {{ Form::text('organizer_phone', $organizer->organizer_phone) }}
                 </div>    
                 <div class='form-group'>
                     {{ Form::label('organizer_email', 'Organizer Email') }}<br>
-                    {{ Form::email('organizer_email') }}
+                    {{ Form::email('organizer_email', $organizer->organizer_email) }}
                 </div>
                 <br>
-
+                {{Form::hidden('user_id', $user_id)}}
                 <a class="btn btn-danger" href="{{ url('events') }}">Cancel</a>
                 {{ Form::submit('Add Event', array('class' => 'btn btn-secondary')) }}
                 {{ Form::close() }}
@@ -93,6 +101,6 @@
         </div>
     @endif    
     @endif
-
+        
         <script src="/js/script.js"></script>
 @endsection

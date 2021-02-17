@@ -1,6 +1,8 @@
 {{-- packages used: laravelcollective/html, laravel/ui for bootstrap --}}
 @extends('layouts.app')
-
+@section('home-header')
+class='active'
+@endsection
 @section('content')
 <div class="container">
     <h4>Home</h4>
