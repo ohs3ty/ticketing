@@ -28,7 +28,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin', [AdminController::class, 'index']);
 
 // events
+Route::get('/events', [EventController::class, 'index']);
 Route::get('/addevent', [EventController::class, 'addview'])->name('addevent');
 Route::post('/addeventaction', [EventController::class, 'addeventaction']);
+Route::get('/myevents', [EventController::class, 'view_user_events'])->name('myevents');
 
 

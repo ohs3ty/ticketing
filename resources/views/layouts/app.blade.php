@@ -39,6 +39,7 @@
                     <a href="{{ url('events') }}">View All Events</a>
                     @if(Auth::check())
                         <a href="{{ route('addevent', ['id' => Auth::user()->id]) }}">Add New Event</a>
+                        <a href="{{ route('myevents', ['id' => Auth::user()->id])}}">My Events</a>
                     @endif
                 </div>
             </div>

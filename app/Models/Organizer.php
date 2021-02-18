@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Organizer extends Model
 {
+    // Note to self: organizer.id should be the same as user.id to make things less complicated
     use HasFactory;
 
     protected $fillable = [

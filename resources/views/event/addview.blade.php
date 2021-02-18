@@ -8,9 +8,14 @@
     @if($user_id != Auth::user()->id)
         <h3>Something went wrong. Please try again.</h3>
     @else
-        
         @if ((Auth::user()->role == 'admin') || (Auth::user()->role == 'organizer'))
             <div class="container">
+
+                @if($errors->any())
+                <div class="error text-danger"> Please correct the errors below </div>
+                @endif
+
+                
                 {{-- {{Auth::user()->id}} --}}
                 {{ Form::open(array('url' => '/addeventaction', 'method' => 'POST')) }}
 
@@ -24,11 +29,11 @@
                 </div>
 
                 @error('end_date')
-                    <div class="error"> {{ $message }} </div>
+                    <div class="error text-danger"> {{ $message }} </div>
                 @enderror
 
                 @error('end_date')
-                    <div class="error"> {{ $message }} </div>
+                    <div class="error text-danger"> {{ $message }} </div>
                 @enderror
                 <div class="form-group">
                     {{ Form::label('start_date', 'Event Start Date')}}<br>
@@ -48,9 +53,14 @@
                     {{ Form::label('event_description', 'Event Description')}}<br>
                     {{ Form::textarea('event_description'), array('placeholder' => 'Write a brief description') }}
                 </div>
+
+                @error('venue_error')
+                    <div class="error text-danger"> {{ $message }} </div>
+                @enderror
+
                 <div class="form-group">
                     <label for="venue">Venue</label><br>
-                    <input type="text" name="venue" id="venue" onkeyup="getVenues({{$venues}})">
+                    <input type="text" name="venue" id="venue" autocomplete="off" onkeyup="getVenues({{$venues}})">
                     <div style="padding-top: 10px; padding-bottom: 10px;" id='venue_lookup'></div>
                     {{-- add new venue  --}}
                     {{ Form::checkbox('new_venue', 1, null, array('id' => 'new_venue')) }}

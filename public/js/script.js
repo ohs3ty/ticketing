@@ -17,7 +17,7 @@ function getVenues(venues) {
     for (var i = 0; i < venues.length; i++) {
         if (lookup != "") {
             if (venues[i].toUpperCase().search(lookup.toUpperCase()) != -1) {
-                output = output + `<span class="autofill" onclick="Autofill('${venues[i]}')" >${venues[i]}</span><br>`
+                output = output + `<div class="autofill" onclick="Autofill('${venues[i]}')" >${venues[i]}</div>`
             }
         }
     }

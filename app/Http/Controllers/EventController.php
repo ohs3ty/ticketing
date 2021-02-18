@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use JavaScript;
 
 use App\Models\EventType;
@@ -17,8 +19,39 @@ class EventController extends Controller
 {
     //
     public function index() {
-        
+
+        $events = Event::where('start_date', '>=', Carbon::now())->get();
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        return view('event.event_index', [
+            'events' => $events,
+            'months' => $months,
+        ]);
     }
+
+    
+    public function view_user_events(Request $request) {
+        $user_id = intval($request->id);
+        // I want all events created by the user's organization (regardless if it was created by the organizer)
+        // I have to find the user's organizations (because one user could possibly be in more than one organization)
+        // then get those events by organization
+
+        $events = DB::table('events')
+                ->whereIn('organization_id', function($query) {
+                    $query->select('organizations.id')
+                            ->from('organizations')
+                            ->join('organization_organizer', 'organization_organizer.organization_id', '=', 'organizations.id')
+                            ->join('organizers', 'organizers.id', '=', 'organization_organizer.organizer_id');
+                            
+                })->get();
+
+        return view('event.user_events', [
+            'user_id' => $user_id,
+            'events' => $events,
+        ]);
+    }
+
+
     public function addview(Request $request) {
         // javascript
         // JavaScript::put([
@@ -48,10 +81,15 @@ class EventController extends Controller
     ]);
     }
 
+
     public function addeventaction(Request $request) {
         // validation
         $validated = $request->validate([
-            'event_name' => ['bail', 'required'],
+            'event_name' => 'bail|required',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'venue' => 'required',
+            'organizer_phone' => 'required',
+            'organizer_email' => 'required',
         ]);
         $user_id = $request->input('user_id');
 
@@ -80,8 +118,20 @@ class EventController extends Controller
             $new_venue->save();
         }
 
-        $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
-        
+        try {
+            $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
+            
+        } catch (\Exception $e) {
+
+            $msg = "Please check the box if adding a new venue or choose an existing location listed under the input box.";
+
+            return Redirect::back()->withErrors(['venue_error' => $msg]);
+        }
+
+
+
+        // $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
+
         $new_event = new Event;
         $new_event->event_name = $event_name;
         $new_event->event_description = $event_description;
@@ -94,7 +144,7 @@ class EventController extends Controller
         $new_event->save();
             
 
-        return ("success");
+        return redirect('/events');
         // get the organizer and organization info
 
         
