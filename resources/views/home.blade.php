@@ -3,6 +3,11 @@
 @section('home-header')
 class='active'
 @endsection
+
+@section('title')
+Home
+@endsection
+
 @section('content')
 <div class="container">
     <h4>Home</h4>

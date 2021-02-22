@@ -1,5 +1,10 @@
 @extends('layouts.app')
 {{-- only those logged in will view this page --}}
+
+@section('title')
+Add Event
+@endsection
+
 @section('event-header')
     active
 @endsection
@@ -76,10 +81,11 @@
                 {{-- organization information --}}
                 <h3>Organization Information</h3>
                 Choose the organization in charge.<br><br>
-
+                
                 <div class="form-group">
                     {{ Form::label('organization_name', 'Organization Name')}}<br>
                     {{ Form::select('organization_name', $organization_names)}}
+                    {{-- {{ Form::select('size', array('L' => 'Large'), 'S') }} --}}
                 </div>
 
                 {{-- organizer information --}}

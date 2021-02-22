@@ -20,7 +20,7 @@ class EventController extends Controller
     //
     public function index() {
 
-        $events = Event::where('start_date', '>=', Carbon::now())->get();
+        $events = Event::all()->sortBy('start_date');
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('event.event_index', [
@@ -37,13 +37,14 @@ class EventController extends Controller
         // then get those events by organization
 
         $events = DB::table('events')
-                ->whereIn('organization_id', function($query) {
+                ->whereIn('organization_id', function($query) use ($user_id) {
                     $query->select('organizations.id')
                             ->from('organizations')
                             ->join('organization_organizer', 'organization_organizer.organization_id', '=', 'organizations.id')
-                            ->join('organizers', 'organizers.id', '=', 'organization_organizer.organizer_id');
+                            ->join('organizers', 'organizers.id', '=', 'organization_organizer.organizer_id')
+                            ->where('organizers.id', $user_id);
                             
-                })->get();
+                })->orderBy('start_date')->get();
 
         return view('event.user_events', [
             'user_id' => $user_id,
@@ -62,13 +63,13 @@ class EventController extends Controller
         $event_types = EventType::pluck('type_name')->sort();
         $organizer = Organizer::where('user_id', $user_id)
                         ->first();
-        $organizations = DB::table('organizers')->select('organization_name')
+        $organizations = DB::table('organizers')->select('organizations.id', 'organization_name')
                         ->join('organization_organizer', 'organization_organizer.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organization_organizer.organization_id', '=', 'organizations.id')
                         ->where('organizers.user_id', $user_id)
                         ->get();
 
-        $organization_names = $organizations->pluck('organization_name');
+        $organization_names = $organizations->pluck('organization_name', 'id');
         $venues = Venue::pluck('venue_name');
 
         return view('event.addview', 
@@ -76,6 +77,7 @@ class EventController extends Controller
         'event_types' => $event_types,
         'user_id' => $user_id,
         'organizer' => $organizer,
+        'organizations' => $organizations,
         'organization_names' => $organization_names,
         'venues' => $venues,
     ]);
@@ -143,11 +145,41 @@ class EventController extends Controller
         $new_event->venue_id = $venue_id;
         $new_event->save();
             
-
+        // return ($organization_id);
         return redirect('/events');
         // get the organizer and organization info
 
         
+    }
+
+    public function event_details(Request $request) {
+        $event_id = $request->event_id;
+        $user_id = $request->user_id;
+
+        $event_types = EventType::pluck('type_name')->sort();
+        $organizer = Organizer::where('user_id', $user_id)
+                        ->first();
+        $organizations = DB::table('organizers')->select('organizations.id', 'organization_name')
+                        ->join('organization_organizer', 'organization_organizer.organizer_id', '=', 'organizers.id')
+                        ->join('organizations', 'organization_organizer.organization_id', '=', 'organizations.id')
+                        ->where('organizers.user_id', $user_id)
+                        ->get();
+
+        $organization_names = $organizations->pluck('organization_name', 'id');
+        $venues = Venue::pluck('venue_name');
+
+        $event = Event::where('events.id', $event_id)
+                    ->join('venues', 'venues.id', '=', 'events.venue_id')
+                    ->first();
+        return view('event.event_details', [
+            'event' => $event,
+            'event_types' => $event_types,
+            'organizer' => $organizer,
+            'organizations' => $organizations,
+            'organization_names' => $organization_names,
+            'venues' => $venues,
+            'user_id' => $user_id,
+        ]);
     }
 
 }
