@@ -12,7 +12,7 @@ View All Events
         <section>
         @foreach ($events as $event)
             @if (\Carbon\Carbon::parse($event->start_date)->format('n') == ($i + 1))
-                <div class="card">
+                <div class="card" style="border-color: lightgrey">
                     <div class="row no-gutters">
                         <div class="col-sm-2">
                             <div class="card-body text-right">

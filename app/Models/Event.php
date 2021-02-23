@@ -17,5 +17,6 @@ class Event extends Model
         'venue_id',
         'event_type_id',
         'organizer_id',
+        'organization_id'
     ];
 }

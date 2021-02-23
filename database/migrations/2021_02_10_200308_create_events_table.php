@@ -23,9 +23,11 @@ class CreateEventsTable extends Migration
             $table->integer('venue_id')->unsigned();
             $table->integer('event_type_id')->unsigned();
             $table->integer('organizer_id')->unsigned();
+            $table->integer('organization_id')->unsigned();
             $table->foreign('venue_id')->references('id')->on('venues');
             $table->foreign('event_type_id')->references('id')->on('event_types');
             $table->foreign('organizer_id')->references('id')->on('organizers');
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 

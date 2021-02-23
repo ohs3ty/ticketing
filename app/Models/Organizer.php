@@ -13,6 +13,5 @@ class Organizer extends Model
         'organizer_phone',
         'organizer_email',
         'user_id',
-        'organization_id',
     ];
 }

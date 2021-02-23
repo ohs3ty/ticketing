@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
 use JavaScript;
 
@@ -44,7 +45,9 @@ class EventController extends Controller
                             ->join('organizers', 'organizers.id', '=', 'organization_organizer.organizer_id')
                             ->where('organizers.id', $user_id);
                             
-                })->orderBy('start_date')->get();
+                })->orderBy('start_date')->paginate(12);
+                
+        $events->withPath("/myevents?id=$user_id");
 
         return view('event.user_events', [
             'user_id' => $user_id,
@@ -106,7 +109,7 @@ class EventController extends Controller
         $event_type = ($request->input('event_type') + 1);
         $event_description = $request->input('event_description');
         $organizer_id = Organizer::where('user_id', $user_id)->get()->first()->id;
-        $organization_id = ($request->input('organization_name') + 1);
+        $organization_id = ($request->input('organization_name'));
         $venue = $request->input('venue');
 
         // see if the venue needs to be added to database or simply added as an id to the event
@@ -179,7 +182,61 @@ class EventController extends Controller
             'organization_names' => $organization_names,
             'venues' => $venues,
             'user_id' => $user_id,
+            'event_id' => $event_id,
         ]);
     }
 
+    public function update_event(Request $request) {
+        $event_id = $request->event_id;
+        $user_id = $request->user_id;
+
+        $start_date = date("Y-m-d H:i:s", strtotime("{$request->input('start_date')} {$request->input('start_time')}"));
+        $end_date = date("Y-m-d H:i:s", strtotime("{$request->input('end_date')} {$request->input('end_time')}"));
+        $venue = $request->venue;
+        $add_venue_bool = $request->input('new_venue');
+
+        if ($add_venue_bool == 1) {
+            $new_venue = new Venue;
+            $new_venue->venue_name = $venue;
+            $new_venue->venue_addr = $request->input('venue_addr');
+            $new_venue->venue_zipcode = $request->input('venue_zipcode');
+            $new_venue->save();
+        }
+
+        try {
+            $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
+            
+        } catch (\Exception $e) {
+
+            $msg = "Please check the box if adding a new venue or choose an existing location listed under the input box.";
+
+            return Redirect::back()->withErrors(['venue_error' => $msg]);
+        }
+
+
+        $event = Event::find($event_id);
+        $event->event_name = $request->event_name;
+        $event->start_date = $start_date;
+        $event->end_date = $end_date;
+        $event->event_type_id = ($request->event_type + 1);
+        $event->event_description = $request->event_description;
+        $event->venue_id = $venue_id;
+        $event->organization_id = $request->organization_name;
+
+        $organizer_phone = $request->organizer_phone;
+        $organizer_email = $request->organizer_email;
+        Organizer::where('user_id', $user_id)
+            ->update(['organizer_phone' => $organizer_phone, 'organizer_email' => $organizer_email]);
+
+        $event->save();
+        
+        return redirect()->route('myevents', ['id' => $user_id]);
+    }
+
+    public function delete_event(Request $request) {
+        $event = Event::find($request->event_id);
+        $event->delete();
+
+        return redirect()->route("myevents", ['id' => $request->user_id]);
+    }
 }

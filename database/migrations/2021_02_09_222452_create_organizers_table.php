@@ -19,9 +19,7 @@ class CreateOrganizersTable extends Migration
             $table->string('organizer_email')->nullable();
             $table->string('organizer_phone');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('organization_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 

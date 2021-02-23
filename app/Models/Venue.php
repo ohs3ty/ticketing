@@ -12,5 +12,6 @@ class Venue extends Model
     protected $fillable = [
         'venue_name', 
         'venue_addr',
+        'venue_zipcode',
     ];
 }

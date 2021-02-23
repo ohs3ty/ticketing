@@ -18,9 +18,9 @@ Event Details
 
         
         {{-- {{Auth::user()->id}} --}}
-        {{ Form::open(array('url' => '/addeventaction', 'method' => 'POST')) }}
+        {{ Form::open(array('url' => '/updateevent', 'method' => 'POST')) }}
 
-        <h3>Event Information</h3>
+        <h3>Edit Event Details</h3>
         @error('event_name')
             <div class="error text-danger"> {{ $message }} </div>
         @enderror
@@ -96,9 +96,17 @@ Event Details
             {{ Form::email('organizer_email', $organizer->organizer_email) }}
         </div>
         <br>
-        {{Form::hidden('user_id', $user_id)}}
+        {{ Form::hidden('user_id', $user_id) }}
+        {{ Form::hidden('event_id', $event_id) }}
         <a class="btn btn-danger" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
-        {{ Form::submit('Add Event', array('class' => 'btn btn-secondary')) }}
+        {{ Form::submit('Update Event', array('class' => 'btn btn-secondary')) }}
+        {{ Form::close() }}
+        <br>
+        {{ Form::open(array('url' => 'delete', 'method' => 'post')) }}
+        {{ Form::hidden('event_id', $event_id) }}
+        {{ Form::hidden('user_id', $user_id) }}
+
+        {{ Form::submit('Delete Event', array('class' => 'btn btn-danger')) }}
         {{ Form::close() }}
         <br><br>
     </div>

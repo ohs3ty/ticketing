@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Event;
+use DateInterval;
+use DateTime;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $date = date_add(now(), date_interval_create_from_date_string("7 days"));
+        $events = Event::where('start_date', '>=', now())
+                    ->where('start_date', '<=', $date)
+                    ->orderBy('start_date')
+                    ->get();
+
+
+        return view('home', [
+            'events' => $events,
+        ]);
     }
 }
