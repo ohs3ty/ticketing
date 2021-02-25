@@ -45,3 +45,4 @@ Route::post('/delete', [EventController::class, 'delete_event']);
 Route::get('/ticket-add', [TicketController::class, 'add_ticket'])->name('ticket-add');
 Route::post('/addticketaction', [TicketController::class, 'addticketaction']);
 Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
+Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');

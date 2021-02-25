@@ -76,6 +76,7 @@ class EventController extends Controller
                         ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                         ->where('organizers.user_id', $user_id)
+                        ->where('organization_name', '!=', 'admin')
                         ->get();
 
         $organization_names = $organizations->pluck('organization_name', 'id');

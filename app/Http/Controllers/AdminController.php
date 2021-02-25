@@ -14,8 +14,8 @@ class AdminController extends Controller
         // show organizers and categorize by the organization
         $organizers = DB::table('organizers')
                         ->join('users','organizers.user_id', '=', 'users.id')
-                        ->join('organization_organizer', 'organizers.id', '=', 'organization_organizer.organizer_id')
-                        ->join('organizations', 'organizations.id', '=', 'organization_organizer.organization_id')
+                        ->join('organization_organizers', 'organizers.id', '=', 'organization_organizers.organizer_id')
+                        ->join('organizations', 'organizations.id', '=', 'organization_organizers.organization_id')
                         ->select('first_name', 'last_name', 'email', 'organizer_email', 'organizer_phone', 'organization_name')
                         ->orderBy('organization_name')
                         ->get();
