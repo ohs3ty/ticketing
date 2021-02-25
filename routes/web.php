@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TicketController;
+
 
 
 /*
@@ -18,7 +20,7 @@ use App\Http\Controllers\AdminController;
 
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/events');
 });
 
 Auth::routes();
@@ -39,4 +41,7 @@ Route::get('/eventdetails', [EventController::class, 'event_details'])->name('ev
 Route::post('/updateevent', [EventController::class, 'update_event']);
 Route::post('/delete', [EventController::class, 'delete_event']);
 
-
+// ticketing
+Route::get('/ticket-add', [TicketController::class, 'add_ticket'])->name('ticket-add');
+Route::post('/addticketaction', [TicketController::class, 'addticketaction']);
+Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');

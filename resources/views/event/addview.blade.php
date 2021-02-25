@@ -32,7 +32,6 @@ Add Event
                     {{ Form::label('event_name', 'Event Name')}}<br>
                     {{ Form::text('event_name')}}
                 </div>
-
                 @error('end_date')
                     <div class="error text-danger"> {{ $message }} </div>
                 @enderror

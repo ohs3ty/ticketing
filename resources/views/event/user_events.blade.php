@@ -15,18 +15,25 @@ My Events
                 <div class="card h-100" style="border-color: rgb(202, 202, 202)">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->event_name}}</h5>
+                        <h6 class="card-subtitle text-muted mb-2">{{ $event->organization_name }}</h6>
                         <h6 class="card-subtitle mb-2 text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y')}} 
                             at {{ \Carbon\Carbon::parse($event->start_date)->format('g:i a') }}</h6>
                         <p class="card-text">{{ $event->event_description }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('eventdetails', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-secondary btn-small">View/Edit Details</a>
+                        <div class="row text-center no-gutters">
+                            <a href="{{ route('eventdetails', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-small col-5" style="border-color: lightgrey">View/Edit</a>
+                            <span class="col-sm-1"></span>
+                            <a href="{{ route('viewtickets', ['event_id' => $event->id]) }}" class="btn btn-small col-5" style="border-color: lightgrey">Tickets</a>
+                        </div>
                     </div>
                 </div>
                 <br>
             </div>
         @endforeach
+        <div class="text-center">
         {{ $events->links() }}
+        </div>
     </div>
 @endif
 

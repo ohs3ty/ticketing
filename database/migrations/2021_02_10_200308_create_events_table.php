@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('event_name');
-            $table->text('event_description');
+            $table->text('event_description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->integer('venue_id')->unsigned();

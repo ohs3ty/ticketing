@@ -21,7 +21,10 @@ class EventController extends Controller
     //
     public function index() {
 
-        $events = Event::all()->sortBy('start_date');
+        $events = Event::select('*')
+                    ->orderBy('start_date')
+                    ->get();
+
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('event.event_index', [
@@ -38,14 +41,17 @@ class EventController extends Controller
         // then get those events by organization
 
         $events = DB::table('events')
+                ->select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
                 ->whereIn('organization_id', function($query) use ($user_id) {
                     $query->select('organizations.id')
                             ->from('organizations')
-                            ->join('organization_organizer', 'organization_organizer.organization_id', '=', 'organizations.id')
-                            ->join('organizers', 'organizers.id', '=', 'organization_organizer.organizer_id')
+                            ->join('organization_organizers', 'organization_organizers.organization_id', '=', 'organizations.id')
+                            ->join('organizers', 'organizers.id', '=', 'organization_organizers.organizer_id')
                             ->where('organizers.id', $user_id);
                             
-                })->orderBy('start_date')->paginate(12);
+                })
+                ->join('organizations', 'organizations.id', '=', 'events.organization_id')    
+                ->orderBy('start_date')->paginate(8);
                 
         $events->withPath("/myevents?id=$user_id");
 
@@ -67,8 +73,8 @@ class EventController extends Controller
         $organizer = Organizer::where('user_id', $user_id)
                         ->first();
         $organizations = DB::table('organizers')->select('organizations.id', 'organization_name')
-                        ->join('organization_organizer', 'organization_organizer.organizer_id', '=', 'organizers.id')
-                        ->join('organizations', 'organization_organizer.organization_id', '=', 'organizations.id')
+                        ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
+                        ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                         ->where('organizers.user_id', $user_id)
                         ->get();
 
@@ -147,8 +153,9 @@ class EventController extends Controller
         $new_event->organization_id = $organization_id;
         $new_event->venue_id = $venue_id;
         $new_event->save();
+
             
-        // return ($organization_id);
+        // return ($new_event->id);
         return redirect('/events');
         // get the organizer and organization info
 
@@ -163,8 +170,8 @@ class EventController extends Controller
         $organizer = Organizer::where('user_id', $user_id)
                         ->first();
         $organizations = DB::table('organizers')->select('organizations.id', 'organization_name')
-                        ->join('organization_organizer', 'organization_organizer.organizer_id', '=', 'organizers.id')
-                        ->join('organizations', 'organization_organizer.organization_id', '=', 'organizations.id')
+                        ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
+                        ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                         ->where('organizers.user_id', $user_id)
                         ->get();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventTimes;
 use DateInterval;
 use DateTime;
 
@@ -32,7 +33,6 @@ class HomeController extends Controller
                     ->where('start_date', '<=', $date)
                     ->orderBy('start_date')
                     ->get();
-
 
         return view('home', [
             'events' => $events,
