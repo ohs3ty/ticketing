@@ -10,7 +10,9 @@ My Events
     <h3>Something went wrong. Please try again.</h3>
 @else
     <div class="row">
+
         @foreach ($events as $event)
+
             <div class="col-sm-3" style="padding-bottom: 1.5rem;">
                 <div class="card h-100" style="border-color: rgb(202, 202, 202)">
                     <div class="card-body">

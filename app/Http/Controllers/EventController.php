@@ -15,6 +15,7 @@ use App\Models\Event;
 use App\Models\Organizer;
 use App\Models\Venue;
 use App\Models\Organization;
+use App\Models\TicketType;
 
 class EventController extends Controller
 {
@@ -39,6 +40,8 @@ class EventController extends Controller
         // I want all events created by the user's organization (regardless if it was created by the organizer)
         // I have to find the user's organizations (because one user could possibly be in more than one organization)
         // then get those events by organization
+
+        // also if the event has already passed, it should go somewhere else
 
         $events = DB::table('events')
                 ->select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
@@ -94,7 +97,7 @@ class EventController extends Controller
     }
 
 
-    public function addeventaction(Request $request) {
+    public function add_event_action(Request $request) {
         // validation
         $validated = $request->validate([
             'event_name' => 'bail|required',
@@ -151,7 +154,8 @@ class EventController extends Controller
         $new_event->end_date = $end_date;
         $new_event->event_type_id = $event_type;
         $new_event->organizer_id = $organizer_id;
-        $new_event->organization_id = $organization_id;
+        // Adding one because the first organization is the admin
+        $new_event->organization_id = ($organization_id + 1);
         $new_event->venue_id = $venue_id;
         $new_event->save();
 
@@ -174,6 +178,7 @@ class EventController extends Controller
                         ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                         ->where('organizers.user_id', $user_id)
+                        ->where('organization_name', '!=', 'admin')
                         ->get();
 
         $organization_names = $organizations->pluck('organization_name', 'id');
@@ -194,7 +199,15 @@ class EventController extends Controller
         ]);
     }
 
-    public function update_event(Request $request) {
+    public function edit_event_action(Request $request) {
+        $validated = $request->validate([
+            'event_name' => 'bail|required',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'venue' => 'required',
+            'organizer_phone' => 'required',
+            'organizer_email' => 'required',
+        ]);
+        
         $event_id = $request->event_id;
         $user_id = $request->user_id;
 
@@ -229,7 +242,8 @@ class EventController extends Controller
         $event->event_type_id = ($request->event_type + 1);
         $event->event_description = $request->event_description;
         $event->venue_id = $venue_id;
-        $event->organization_id = $request->organization_name;
+        // the first organization is admin, so add one to the id
+        $event->organization_id = ($request->organization_name + 1);
 
         $organizer_phone = $request->organizer_phone;
         $organizer_email = $request->organizer_email;
@@ -242,7 +256,12 @@ class EventController extends Controller
     }
 
     public function delete_event(Request $request) {
+        // first drop ticket type because it is foreign keyed into event
+        // if ticket types already have customers who bought them, then we have to know which customers bought 
+        // so we can refund them
+        // Should NOT be able to delete an event 24 hours (or even more) before
         $event = Event::find($request->event_id);
+        TicketType::where('event_id', $request->event_id)->delete();
         $event->delete();
 
         return redirect()->route("myevents", ['id' => $request->user_id]);

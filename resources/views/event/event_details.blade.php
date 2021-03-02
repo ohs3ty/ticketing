@@ -98,8 +98,8 @@ Event Details
         <br>
         {{ Form::hidden('user_id', $user_id) }}
         {{ Form::hidden('event_id', $event_id) }}
-        <a class="btn btn-danger" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
-        {{ Form::submit('Update Event', array('class' => 'btn btn-secondary')) }}
+        <a class="btn btn-secondary" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
+        {{ Form::submit('Update Event', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
         <br>
         {{ Form::open(array('url' => 'delete', 'method' => 'post')) }}

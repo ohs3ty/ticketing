@@ -18,12 +18,13 @@ class TicketController extends Controller
         ]);
     }
 
-    public function addticketaction(Request $request) {
+    public function add_ticket_action(Request $request) {
 
         // Validation
         $validated = $request->validate([
             'ticket_name' => 'bail|required',
             'ticket_close_date' => 'required|date|after:ticket_open_date',
+            'ticket_cost' => 'required',
         ]);
         
         $event_id = $request->event_id;
@@ -70,8 +71,10 @@ class TicketController extends Controller
     public function view_tickets(Request $request) {
         $event_id = $request->event_id;
 
-        $ticket_types = TicketType::where('event_id', $event_id)
+        $ticket_types = TicketType::select('ticket_types.id', 'ticket_name', 'ticket_cost', 'ticket_description', 'profile_name',
+                                            'ticket_open_date', 'ticket_close_date')
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
+                            ->join('events', 'events.id', '=', 'ticket_types.event_id')
                             ->get();
 
         return view('ticket.view_ticket', [
@@ -84,14 +87,49 @@ class TicketController extends Controller
 
         $ticket_type_id = $request->ticket_type_id;
 
-        $ticket_type = TicketType::select('ticket_types.id', 'ticket_name', 'ticket_cost', 'ticket_limit', 'ticket_description', 
-                                            'event_id', 'patron_profile_id', 'ticket_open_date', 'ticket_close_date',
-                                            'event_name')
+        $ticket_type = TicketType::select('event_name', 'ticket_types.id', 'event_id', 'ticket_name', 'ticket_description',
+                                            'ticket_limit', 'patron_profile_id', 'ticket_open_date', 'ticket_close_date', 'ticket_cost',
+                                            'start_date')
                                     ->join('events', 'events.id', '=', 'ticket_types.event_id')
+                                    ->where('ticket_types.id', $ticket_type_id)
                                     ->first();
         
+                                    // return ($ticket_type);
         return view('ticket.edit_ticket', [
             'ticket_type' => $ticket_type
         ]);
+
+    }
+    public function edit_ticket_action(Request $request) {
+        $ticket_type_id = $request->ticket_type_id;
+        $ticket_type = TicketType::find($ticket_type_id);
+
+        $ticket_type->ticket_name = $request->ticket_name;
+        // if ticket cost is empty 
+        if (is_null($request->ticket_cost)) {
+            $ticket_cost = 0.0;
+        } else {
+            $ticket_cost = $request->ticket_cost;
+        }
+        $ticket_type->ticket_cost = $ticket_cost;
+        $ticket_type->ticket_description = $request->ticket_description;
+        $ticket_type->patron_profile_id = $request->patron_profile;
+        $ticket_type->ticket_open_date = $request->ticket_open_date;
+        $ticket_type->ticket_close_date = $request->ticket_close_date;
+
+        if ($request->unlimited == 0) {
+            $ticket_limit = $request->ticket_limit;
+        
+            // if ticket limit is empty but is not checked, redirect 
+            if (empty($ticket_limit)) {
+                return back()
+                    ->withInput()
+                    ->withErrors(['ticket_limit' => 'Required']);
+            }
+        }
+        $ticket_type->ticket_limit = $request->ticket_limit;
+        $ticket_type->save();
+
+        return redirect()->route('viewtickets', ['event_id' => $ticket_type->event_id]);
     }
 }

@@ -28,21 +28,25 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/addorganization', [AdminController::class, 'add_organization']);
+Route::post('/admin/addorgaction', [AdminController::class, 'add_organization_action']);
+Route::get('/admin/organization', [AdminController::class, 'organization_detail'])->name('/admin/organization');
 
 // events
 Route::get('/events', [EventController::class, 'index']);
 // add
 Route::get('/addevent', [EventController::class, 'addview'])->name('addevent');
-Route::post('/addeventaction', [EventController::class, 'addeventaction']);
+Route::post('/addeventaction', [EventController::class, 'add_event_action']);
 // view user events
 Route::get('/myevents', [EventController::class, 'view_user_events'])->name('myevents');
 // details page
 Route::get('/eventdetails', [EventController::class, 'event_details'])->name('eventdetails');
-Route::post('/updateevent', [EventController::class, 'update_event']);
+Route::post('/updateevent', [EventController::class, 'edit_event_action']);
 Route::post('/delete', [EventController::class, 'delete_event']);
 
 // ticketing
 Route::get('/ticket-add', [TicketController::class, 'add_ticket'])->name('ticket-add');
-Route::post('/addticketaction', [TicketController::class, 'addticketaction']);
+Route::post('/addticketaction', [TicketController::class, 'add_ticket_action']);
 Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
 Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');
+Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']);

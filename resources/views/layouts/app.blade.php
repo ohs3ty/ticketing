@@ -23,6 +23,9 @@
     <link href="{{ asset("bootstrap/css/bootstrap.css") }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
 
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
     <!-- BYU components https://webcomponents.byu.edu -->
     <script async src="https://cdn.byu.edu/byu-theme-components/2.x.x/byu-theme-components.min.js"></script>
     <link rel="stylesheet" href="https://cdn.byu.edu/byu-theme-components/2.x.x/byu-theme-components.min.css" media="all">
@@ -39,7 +42,9 @@
                     <a href="{{ url('events') }}">View All Events</a>
                     @if(Auth::check())
                         <a href="{{ route('addevent', ['id' => Auth::user()->id]) }}">Add New Event</a>
-                        <a href="{{ route('myevents', ['id' => Auth::user()->id])}}">My Events</a>
+                        @if((Auth::user()->role == 'organizer') or (Auth::user()->role == 'admin'))
+                            <a href="{{ route('myevents', ['id' => Auth::user()->id])}}">My Events</a>
+                        @endif
                     @endif
                 </div>
             </div>

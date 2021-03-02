@@ -13,7 +13,7 @@ Add Event
     @if($user_id != Auth::user()->id)
         <h3>Something went wrong. Please try again.</h3>
     @else
-        @if ((Auth::user()->role == 'admin') || (Auth::user()->role == 'organizer'))
+        @if ((Auth::user()->role == 'admin') or (Auth::user()->role == 'organizer'))
             <div class="container">
 
                 @if($errors->any())
@@ -22,7 +22,7 @@ Add Event
 
                 
                 {{-- {{Auth::user()->id}} --}}
-                {{ Form::open(array('url' => '/addeventaction', 'method' => 'POST')) }}
+                {{ Form::open(array('url' => '/addeventaction', 'method' => 'post')) }}
 
                 <h3>Event Information</h3>
                 @error('event_name')

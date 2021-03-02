@@ -71,8 +71,12 @@ Add Ticket Type
                     </div>
                     <br><br>
                     <div class="row no-guttters">
-                        <div class="card-text col-11 text-center">
-                            {{ Form::submit('Add Ticket Group', ['class' => 'btn btn-secondary']) }}
+                        <div class="card-text col-2"></div>
+                        <div class="card-text col-2 text-center">
+                            <a class="btn btn-secondary" href="{{ route('viewtickets', ['event_id' => $event->id]) }}">Cancel</a>
+                        </div>
+                        <div class="card-text col-3 text-center">
+                            {{ Form::submit('Add Ticket Group', ['class' => 'btn btn-primary']) }}
                         </div>
                     </div>
                 </div>
@@ -83,4 +87,12 @@ Add Ticket Type
 {{Form::hidden('event_id', $event->id)}}
 {{Form::close()}}
 <script src="/js/script.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+
+            if (document.getElementById("unlimited").checked == true) {
+                document.getElementById("ticket_limit").disabled = true;
+            }
+        })
+</script>
 @endsection
