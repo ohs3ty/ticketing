@@ -27,10 +27,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/addorganization', [AdminController::class, 'add_organization']);
 Route::post('/admin/addorgaction', [AdminController::class, 'add_organization_action']);
 Route::get('/admin/organization', [AdminController::class, 'organization_detail'])->name('/admin/organization');
+Route::post('/admin/deleteorganizer', [AdminController::class, 'delete_organizer']);
+Route::post('/admin/addorganizer', [AdminController::class, 'add_organizer_action']);
 
 // events
 Route::get('/events', [EventController::class, 'index']);

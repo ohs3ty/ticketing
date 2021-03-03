@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organizer;
 use App\Models\Organization;
+use App\Models\OrganizationOrganizer;
+use App\Models\User;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,5 +63,74 @@ class AdminController extends Controller
             'organization' => $organization,
             'organizers' => $organizers,
         ]); 
+    }
+
+    public function add_organizer_action(Request $request) {
+        $validated = $request->validate([
+            'first_name' => 'bail|required',
+            'last_name' => 'required',
+            'organizer_phone' => 'required|regex:/[0-9]{10}/',
+        ]);
+
+        
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+        $organization_id = intval($request->organization_id);
+
+        $user = User::where('first_name', $first_name)
+        ->where('last_name', $last_name)
+        ->first();
+
+        if ($user) {
+            if (($user->role == "admin") or ($user->role == 'organizer')) {
+                //nothing should happen
+                
+            } else {
+                $user->role = 'organizer';
+                // $user->save();
+                $new_organizer = new Organizer;
+                $new_organizer->user_id = $user->id;
+
+                //if no email recorded
+                if (empty($request->organizer_email)) {
+                    $new_organizer->organizer_email = $user->email;
+                } else {
+                    $new_organizer->organizer_email = $request->organizer_email;
+                }
+                $new_organizer->organizer_phone = $request->organizer_phone;
+                $new_organizer->save();
+
+            }
+                $organizer_id = Organizer::select('id')
+                    ->where('user_id', $user->id)
+                    ->first();
+
+                $organization_organizer = new OrganizationOrganizer;
+                $organization_organizer->organizer_id = $organizer_id->id;
+                $organization_organizer->organization_id = $organization_id;
+                $organization_organizer->save();
+
+                print($organization_organizer);
+                print($user);
+            print("\n");
+        }
+
+        $organization_name = Organization::select('organization_name')
+                                ->where('id', $organization_id)
+                                ->first();
+
+                                // it's not redirecting
+        return back();
+    }
+
+    public function delete_organizer(Request $request) {
+        $organizer_id = $request->organizer_id;
+        $organization_id = $request->organization_id;
+        OrganizationOrganizer::where('organization_id', $organization_id)
+            ->where('organizer_id', $organizer_id)
+            ->delete();
+
+        return back();
+
     }
 }

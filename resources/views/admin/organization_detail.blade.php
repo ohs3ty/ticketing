@@ -28,6 +28,7 @@
 <br><br>
 <h3>Organizers</h3>
 
+
 @if (count($organizers) == 0) 
     <div class="container">
         No organizers assigned
@@ -47,7 +48,9 @@
         <tbody>
             @foreach ($organizers as $organizer)
                 <tr>
-                    <th><a href=""><i class="bi-trash-fill text-danger" style="font-size: 1rem;"></i></a></th>
+                    <th><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOrganizer{{ $organizer->id }}"><i class="bi-trash-fill"></i></button></th>
+                    @include("admin.modal.delete_confirm")
+
                     <th>{{ $organizer->last_name }}, {{ $organizer->first_name }}</th>
                     <th>{{ $organizer->organizer_email }}</th>
                     <th>{{ $organizer->organizer_phone }}</th>
@@ -57,14 +60,19 @@
             @endforeach
         </tbody>
     </table>
-    
     @endif
-    
+
+    {{-- errors --}}
+    @error('organizer_phone')
+        <div class="text-white text-center bg-danger"> {{ $message }} </div>
+    @enderror
+
+
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn" style="border-color: lightgrey;" data-toggle="modal" data-target="#addOrganizer">Add Organizer</button>
 
     @include("admin.modal.add_organizer")
-
+        
 
   </div>
 </div>
