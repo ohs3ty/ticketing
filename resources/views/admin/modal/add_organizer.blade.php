@@ -21,15 +21,21 @@
             {{ Form::label('last_name', 'Last Name') }}<br>
             {{ Form::text('last_name', null, ['required']) }}
           </div>
-
-          <div class="form-group">
-              {{ Form::label('organizer_email', 'Organizer Email (if different from personal email)') }}<br>
-              {{ Form::text('organizer_email') }}
+          {{-- adding phone and email if want to --}}
+          <div class="form-check">
+            {{ Form::checkbox("phone_email", null, null, ['class' => 'form-check-input', 'onclick' => 'addPhoneEmail()', 'id' => 'phone_email']) }}
+            {{ Form::label('phone_email', 'Add Phone and/or Email') }}
           </div>
-          
-          <div class="form-group">
-              {{ Form::label('organizer_phone', 'Organizer Phone (no hyphens or parantheses)') }}<br>
-              {{ Form::text('organizer_phone', null, ['required', 'maxlength' => 10]) }}
+          <div hidden id="phone_email_section">
+            <div class="form-group">
+                {{ Form::label('organizer_email', 'Organizer Email (if different from personal email)') }}<br>
+                {{ Form::text('organizer_email') }}
+            </div>
+            
+            <div class="form-group">
+                {{ Form::label('organizer_phone', 'Organizer Phone (no hyphens or parantheses)') }}<br>
+                {{ Form::text('organizer_phone', null, ['maxlength' => 10]) }}
+            </div>
           </div>
         </div>
         <div class="modal-footer text-left">
@@ -42,3 +48,22 @@
     </div>
     </div>
 </div>
+
+<script>
+  function addPhoneEmail() {
+    var check = document.getElementById("phone_email");
+    if (check.checked == true) {
+      document.getElementById("phone_email_section").hidden = false;
+    } else {
+      document.getElementById("phone_email_section").hidden = true;
+      
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+    if (document.getElementById("phone_email").checked == true) {
+        document.getElementById("phone_email_section").hidden = false;
+    }
+  })
+</script>

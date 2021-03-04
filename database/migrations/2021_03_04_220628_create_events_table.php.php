@@ -20,13 +20,13 @@ class CreateEventsTable extends Migration
             $table->text('event_description')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->integer('created_by');
+            $table->integer('updated_by');
             $table->integer('venue_id')->unsigned();
             $table->integer('event_type_id')->unsigned();
-            $table->integer('organizer_id')->unsigned();
             $table->integer('organization_id')->unsigned();
             $table->foreign('venue_id')->references('id')->on('venues');
             $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->foreign('organizer_id')->references('id')->on('organizers');
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }

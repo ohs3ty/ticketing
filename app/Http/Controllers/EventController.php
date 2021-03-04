@@ -43,6 +43,8 @@ class EventController extends Controller
 
         // also if the event has already passed, it should go somewhere else
 
+
+        // NOT WORKING FOR SPECIFIC INDIVIDUALS WHY?????
         $events = DB::table('events')
                 ->select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
                 ->whereIn('organization_id', function($query) use ($user_id) {
@@ -51,11 +53,11 @@ class EventController extends Controller
                             ->join('organization_organizers', 'organization_organizers.organization_id', '=', 'organizations.id')
                             ->join('organizers', 'organizers.id', '=', 'organization_organizers.organizer_id')
                             ->where('organizers.id', $user_id);
-                            
+                    
                 })
                 ->join('organizations', 'organizations.id', '=', 'events.organization_id')    
                 ->orderBy('start_date')->paginate(8);
-                
+        
         $events->withPath("/myevents?id=$user_id");
 
         return view('event.user_events', [
@@ -153,13 +155,13 @@ class EventController extends Controller
         $new_event->start_date = $start_date;
         $new_event->end_date = $end_date;
         $new_event->event_type_id = $event_type;
-        $new_event->organizer_id = $organizer_id;
+        $new_event->created_by = $organizer_id;
+        $new_event->updated_by = $organizer_id;
         // Adding one because the first organization is the admin
-        $new_event->organization_id = ($organization_id + 1);
+        $new_event->organization_id = ($organization_id);
         $new_event->venue_id = $venue_id;
         $new_event->save();
 
-            
         // return ($new_event->id);
         return redirect('/events');
         // get the organizer and organization info
@@ -211,6 +213,8 @@ class EventController extends Controller
         $event_id = $request->event_id;
         $user_id = $request->user_id;
 
+        $organizer = Organizer::where('user_id', $user_id)->first();
+
         $start_date = date("Y-m-d H:i:s", strtotime("{$request->input('start_date')} {$request->input('start_time')}"));
         $end_date = date("Y-m-d H:i:s", strtotime("{$request->input('end_date')} {$request->input('end_time')}"));
         $venue = $request->venue;
@@ -242,8 +246,9 @@ class EventController extends Controller
         $event->event_type_id = ($request->event_type + 1);
         $event->event_description = $request->event_description;
         $event->venue_id = $venue_id;
-        // the first organization is admin, so add one to the id
-        $event->organization_id = ($request->organization_name + 1);
+        $event->updated_by = $organizer->id;
+        $event->organization_id = ($request->organization_name);
+
 
         $organizer_phone = $request->organizer_phone;
         $organizer_email = $request->organizer_email;

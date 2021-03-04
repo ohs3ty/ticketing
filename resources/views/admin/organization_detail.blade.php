@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-<h2> {{ $organization->organization_name }} </h2>
+<h2> {{ $organization->organization_name }} 
+<button type="button" class="btn" data-toggle="modal" data-target="#editOrganization"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button>
+</h2>
 <br>
 
 <div class="row" style="font-size: medium;">
@@ -28,6 +30,16 @@
 <br><br>
 <h3>Organizers</h3>
 
+    {{-- errors --}}
+    @if ($errors->any())
+        <div class="text-center alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 @if (count($organizers) == 0) 
     <div class="container">
@@ -55,23 +67,20 @@
                     <th>{{ $organizer->organizer_email }}</th>
                     <th>{{ $organizer->organizer_phone }}</th>
                     <th>{{ $organizer->email }}</th>
-                    <th><a onclick=""><i class="bi-pencil-fill" style="font-size: 1rem;"></i></a></th>
+                    <th><button type="button" class="btn" data-toggle="modal" data-target="#editOrganizer{{$organizer->id}}"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button></th>
+
+                    @include("admin.modal.edit_organizer")
                 </tr>
             @endforeach
         </tbody>
     </table>
     @endif
 
-    {{-- errors --}}
-    @error('organizer_phone')
-        <div class="text-white text-center bg-danger"> {{ $message }} </div>
-    @enderror
-
-
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn" style="border-color: lightgrey;" data-toggle="modal" data-target="#addOrganizer">Add Organizer</button>
 
     @include("admin.modal.add_organizer")
+    @include("admin.modal.edit_organization")
         
 
   </div>

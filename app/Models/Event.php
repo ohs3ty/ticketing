@@ -15,8 +15,9 @@ class Event extends Model
         'start_date',
         'end_date',
         'venue_id',
+        'created_by',
+        'updated_by',
         'event_type_id',
-        'organizer_id',
         'organization_id'
     ];
 }

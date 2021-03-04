@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Organizer;
 use App\Models\Organization;
 use App\Models\OrganizationOrganizer;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,6 +46,22 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    public function edit_organization_action(Request $request) {
+        $organization_id = $request->organization_id;
+
+        $validated = $request->validate([
+            'organization_name' => 'bail|required',
+        ]);
+
+        $edit_organization = Organization::find($organization_id);
+        $edit_organization->organization_name = $request->organization_name;
+        $edit_organization->cashnet_code = $request->cashnet_code;
+        $edit_organization->organization_website = $request->organization_website;
+        $edit_organization->save();
+
+        return back();
+    }
+
     public function organization_detail(Request $request) {
         $organization_name = $request->name;
         
@@ -69,25 +85,30 @@ class AdminController extends Controller
         $validated = $request->validate([
             'first_name' => 'bail|required',
             'last_name' => 'required',
-            'organizer_phone' => 'required|regex:/[0-9]{10}/',
+            // 'organizer_phone' => 'regex:/[0-9]{10}/',
         ]);
 
         
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
+        
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
         ->first();
 
+
         if ($user) {
             if (($user->role == "admin") or ($user->role == 'organizer')) {
-                //nothing should happen
-                
+                // pass
             } else {
+                $validated = $request->validate([
+                    'organizer_phone' => 'required|regex:/[0-9]{10}/',
+                ]);
+
                 $user->role = 'organizer';
-                // $user->save();
+                $user->save();
                 $new_organizer = new Organizer;
                 $new_organizer->user_id = $user->id;
 
@@ -104,22 +125,46 @@ class AdminController extends Controller
                 $organizer_id = Organizer::select('id')
                     ->where('user_id', $user->id)
                     ->first();
+                
+                // look to see if they are already an organizer in this organization
+                $find_organizer = OrganizationOrganizer::where('organizer_id', $organizer_id->id)
+                                    ->where('organization_id', $organization_id)
+                                    ->get();
 
-                $organization_organizer = new OrganizationOrganizer;
-                $organization_organizer->organizer_id = $organizer_id->id;
-                $organization_organizer->organization_id = $organization_id;
-                $organization_organizer->save();
+                if (count($find_organizer) > 0) {
+                    $msg = 'The user you\'re trying to add is already an organizer for this organization.';
+                    return Redirect::back()->withErrors(['general' => $msg]);
 
-                print($organization_organizer);
-                print($user);
-            print("\n");
+                } else {
+                    $organization_organizer = new OrganizationOrganizer;
+                    $organization_organizer->organizer_id = $organizer_id->id;
+                    $organization_organizer->organization_id = $organization_id;
+                    $organization_organizer->save();
+                }
+                
+        } else {
+            // if user does not exist return error 
+            $msg = 'This user does not exist. Check for mispellings or make sure he or she is BYU affiliated.';
+            return Redirect::back()->withErrors(['general' => $msg]);
         }
 
-        $organization_name = Organization::select('organization_name')
-                                ->where('id', $organization_id)
-                                ->first();
 
-                                // it's not redirecting
+        return back();
+    }
+
+    public function edit_organizer_action(Request $request) {
+        $validated = $request->validate([
+            'organizer_phone' => 'required|regex:/[0-9]{10}/',
+            'organizer_email' => 'required|email',
+        ]);
+        
+        $organizer_id = $request->organizer_id;
+
+        $edit_organizer = Organizer::find($organizer_id);
+        $edit_organizer->organizer_phone = $request->organizer_phone;
+        $edit_organizer->organizer_email = $request->organizer_email;
+        $edit_organizer->save();
+        
         return back();
     }
 

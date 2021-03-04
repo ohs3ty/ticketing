@@ -29,10 +29,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/addorganization', [AdminController::class, 'add_organization']);
-Route::post('/admin/addorgaction', [AdminController::class, 'add_organization_action']);
+Route::post('/admin/addorganizationaction', [AdminController::class, 'add_organization_action']);
+Route::post('/admin/editorganization', [AdminController::class, 'edit_organization_action']);
 Route::get('/admin/organization', [AdminController::class, 'organization_detail'])->name('/admin/organization');
 Route::post('/admin/deleteorganizer', [AdminController::class, 'delete_organizer']);
 Route::post('/admin/addorganizer', [AdminController::class, 'add_organizer_action']);
+Route::post('/admin/editorganizer', [AdminController::class, 'edit_organizer_action']);
 
 // events
 Route::get('/events', [EventController::class, 'index']);
