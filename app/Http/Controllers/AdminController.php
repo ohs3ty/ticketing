@@ -102,6 +102,9 @@ class AdminController extends Controller
         if ($user) {
             if (($user->role == "admin")) {
                 // pass
+                $organizer_bool = Organizer::where('user_id', '$user->id')
+                                    ->get();
+                print(count($organizer_bool));
 
             } else if ($user->role == "general") {
                 $validated = $request->validate([
