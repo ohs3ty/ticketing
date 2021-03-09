@@ -10,6 +10,8 @@ Add Ticket Type
 <br>
     @if($errors->any())
         <div class="error text-danger"> Please correct the errors below </div>
+
+        {{ $errors }}
     @endif
 {{Form::open(['url' => '/addticketaction', 'action' => 'post'])}}
 <div id="card1" class="card" style="border-color: grey;">

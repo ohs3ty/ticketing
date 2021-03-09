@@ -24,7 +24,7 @@ class TicketController extends Controller
         $validated = $request->validate([
             'ticket_name' => 'bail|required',
             'ticket_close_date' => 'required|date|after:ticket_open_date',
-            'ticket_cost' => 'required',
+            'ticket_price' => 'required',
         ]);
         
         $event_id = $request->event_id;

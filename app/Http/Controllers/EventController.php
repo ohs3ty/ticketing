@@ -44,19 +44,18 @@ class EventController extends Controller
         // also if the event has already passed, it should go somewhere else
 
 
-        // NOT WORKING FOR SPECIFIC INDIVIDUALS WHY?????
-        $events = DB::table('events')
-                ->select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
+        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
                 ->whereIn('organization_id', function($query) use ($user_id) {
                     $query->select('organizations.id')
                             ->from('organizations')
                             ->join('organization_organizers', 'organization_organizers.organization_id', '=', 'organizations.id')
                             ->join('organizers', 'organizers.id', '=', 'organization_organizers.organizer_id')
-                            ->where('organizers.id', $user_id);
+                            ->where('organizers.user_id', $user_id);
                     
                 })
                 ->join('organizations', 'organizations.id', '=', 'events.organization_id')    
                 ->orderBy('start_date')->paginate(8);
+
         
         $events->withPath("/myevents?id=$user_id");
 
@@ -68,10 +67,6 @@ class EventController extends Controller
 
 
     public function addview(Request $request) {
-        // javascript
-        // JavaScript::put([
-        //     'organizations' => Organization::pluck('organization_name')->sort(),
-        // ]);
 
         $user_id = intval($request->id);
         $event_types = EventType::pluck('type_name')->sort();

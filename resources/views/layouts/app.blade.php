@@ -59,7 +59,7 @@
                 @if(Route::has('login'))
                     <a slot='login' href="{{ route('login') }}">Sign In</a>
                     {{-- what it should be --}}
-                    {{-- <a slot='login' href="/cas-login">Sign In</a> --}}
+                    {{-- <a slot='login' href="/cas-login"> Actual Sign In</a> --}}
                 @endif
 
                 @if (Route::has('register'))
