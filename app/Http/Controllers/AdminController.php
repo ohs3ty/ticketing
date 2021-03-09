@@ -113,8 +113,11 @@ class AdminController extends Controller
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
                 ]);
 
-                $user->role = 'organizer';
-                $user->save();
+                if ($user->role == "general") {
+                    $user->role = 'organizer';
+                    $user->save();
+                }
+
                 $new_organizer = new Organizer;
                 $new_organizer->user_id = $user->id;
 
