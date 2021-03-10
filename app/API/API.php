@@ -1,5 +1,14 @@
 <?php
 
+// What Shayna currently understands about this API call
+// -api_tokens in database that has user, expiration, and token (what token?)
+// -user is most likely the sltevent
+// When requesting the token (most likely the one above) we need the cred. The TOKEN_CRED, I'm assuming
+// Questions: How do I get the token? How does anybody get the TOKEN_CRED? How do I call the API from my code?
+// when do I use the production keys? Do I need to use the production and sandbox keys?
+
+
+
 namespace App\API;
 
 use Illuminate\Support\Facades\Log;

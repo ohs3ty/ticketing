@@ -26,11 +26,12 @@ Route::get('/', function () {
 Auth::routes();
 
 // Authentication
-// Route::get('cas-login', function() {
-//     return back();
-// })->middleware('cas')
-//     ->name('cas');
+Route::get('cas-login', function() {
+    return back();
+})->middleware('cas')
+    ->name('cas');
 
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
