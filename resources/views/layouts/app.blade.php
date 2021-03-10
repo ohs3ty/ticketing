@@ -48,8 +48,8 @@
                     @endif
                 </div>
             </div>
-            @if (Auth::check()) 
-                @if((Auth::user()->role == 'admin')) 
+            @if (Auth::check())
+                @if((Auth::user()->role == 'admin'))
                     <a href="{{ url('admin') }}">Admin</a>
                 @endif
             @endif
@@ -57,9 +57,9 @@
         <byu-user-info slot="user">
             @guest
                 @if(Route::has('login'))
-                    <a slot='login' href="{{ route('login') }}">Sign In</a>
+                    {{-- <a slot='login' href="{{ route('login') }}">Sign In</a> --}}
                     {{-- what it should be --}}
-                    {{-- <a slot='login' href="/cas-login"> Actual Sign In</a> --}}
+                    <a slot='login' href="/cas-login"> Actual Sign In</a>
                 @endif
 
                 @if (Route::has('register'))
@@ -85,6 +85,6 @@
             </main>
     </div>
     </div>
-    
+
 </body>
 </html>
