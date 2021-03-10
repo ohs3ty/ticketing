@@ -2,10 +2,13 @@
 
 @section('title')
     Admin
-@endsection 
+@endsection
 
 @section('content')
-
+<h3>Event Types</h3>
+<div class="container">
+    Edit event types
+</div>
 <h3>Organizations</h3>
 <div class="container">
     <a class="btn" href="{{ url('/admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>
@@ -13,7 +16,7 @@
 <br>
 <div class="container">
     <div class="row">
-        @foreach($organizations as $organization)
+          @foreach($organizations as $organization)
         <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
             <div class="card">
               <div class="card-body">
