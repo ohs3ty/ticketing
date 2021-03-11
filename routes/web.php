@@ -26,10 +26,10 @@ Route::get('/', function () {
 Auth::routes();
 
 // Authentication
-// Route::get('cas-login', function() {
-//     return back();
-// })->middleware('cas')
-//     ->name('cas');
+Route::get('cas-login', function() {
+    return back();
+})->middleware('cas')
+    ->name('cas');
 
 
 // home
