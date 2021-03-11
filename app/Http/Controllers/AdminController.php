@@ -190,7 +190,7 @@ class AdminController extends Controller
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
-        dd($organizer_id);
+
 
         $organization = Organization::where('id', $organization_id)->first();
 
@@ -203,6 +203,8 @@ class AdminController extends Controller
         $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
                     ->where('organizers.id', $organizer_id)
                     ->first();
+
+                    dd($user);
             if (count($num_org) == 0) {
                 $user->role = 'general';
                 $user->save();
