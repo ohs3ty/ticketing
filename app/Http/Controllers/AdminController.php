@@ -192,19 +192,26 @@ class AdminController extends Controller
         $organization_id = $request->organization_id;
 
         $organization = Organization::where('id', $organization_id)->first();
-        if ($organization->organization_name == 'admin') {
-            $num_org = OrganizationOrganizer::where('organizer_id', $organizer_id)
+
+        //if user has other organizations, they stay organizer, otherwise, back to general
+        $num_org = OrganizationOrganizer::where('organizer_id', $organizer_id)
                                 ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                                 ->where('organization_name', '!=', 'admin')
                                 ->get();
-            if (count($num_org) > 0) {
-                $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
-                            ->where('organizers.id', $organizer_id)
-                            ->first();
 
-                dd($user);
+        $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
+                    ->where('organizers.id', $organizer_id)
+                    ->first();
+            if (count($num_org) == 0) {
+                $user->role = 'general';
+                $user->save();
+            } else {
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'organizer';
+                    $user->save();
+                }
             }
-        }
+
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
             ->delete();
