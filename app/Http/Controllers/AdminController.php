@@ -190,6 +190,11 @@ class AdminController extends Controller
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
+
+        $organization = Organization::where('id', $organization_id)->first();
+        if ($organization->organization_name == 'admin') {
+            dd("admin no longer");
+        }
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
             ->delete();
