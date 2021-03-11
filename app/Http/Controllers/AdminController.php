@@ -63,6 +63,7 @@ class AdminController extends Controller
 
     public function organization_detail(Request $request) {
         $organization_name = $request->name;
+        print($organization_name);
 
         $organization = Organization::where('organization_name', '=', $organization_name)
                             ->first();
@@ -92,7 +93,6 @@ class AdminController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
-            print($organization_id);
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
