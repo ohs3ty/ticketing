@@ -81,6 +81,7 @@ class AdminController extends Controller
     }
 
     public function add_organizer_action(Request $request) {
+
         $validated = $request->validate([
             'first_name' => 'bail|required',
             'last_name' => 'required',
@@ -91,7 +92,7 @@ class AdminController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
-
+            print($organization_id);
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
