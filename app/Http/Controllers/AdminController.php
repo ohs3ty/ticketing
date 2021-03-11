@@ -63,7 +63,6 @@ class AdminController extends Controller
 
     public function organization_detail(Request $request) {
         $organization_name = $request->name;
-        print($organization_name);
 
         $organization = Organization::where('organization_name', '=', $organization_name)
                             ->first();
@@ -93,6 +92,13 @@ class AdminController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
+
+        // if admin, change user to admin role to give them admin privileges
+        $organization_name = Organization::select('organization_name')
+                                ->where('id', 'organization_id')
+                                ->first();
+
+        print($organization_name);
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
