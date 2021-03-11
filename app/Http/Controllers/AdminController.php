@@ -191,7 +191,7 @@ class AdminController extends Controller
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
 
-
+        dd($organizer_id);
         $organization = Organization::where('id', $organization_id)->first();
 
         //if user has other organizations, they stay organizer, otherwise, back to general
@@ -210,7 +210,7 @@ class AdminController extends Controller
             } else {
                 if ($organization->organization_name == 'admin') {
                     $user->role = 'organizer';
-                    dd($user);
+
                     $user->save();
                 }
             }
