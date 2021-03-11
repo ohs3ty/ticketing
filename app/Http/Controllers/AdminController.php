@@ -98,7 +98,9 @@ class AdminController extends Controller
                                 ->where('id', $organization_id)
                                 ->first();
 
-        dd($organization_name);
+        if ($organization_name == 'admin') {
+            dd("treu");
+        }
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
