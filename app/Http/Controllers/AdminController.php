@@ -94,11 +94,11 @@ class AdminController extends Controller
         $organization_id = intval($request->organization_id);
 
         // if admin, change user to admin role to give them admin privileges
-        $organization_name = Organization::select('organization_name')
+        $organization = Organization::select('organization_name')
                                 ->where('id', $organization_id)
                                 ->first();
 
-        if ($organization_name == 'admin') {
+        if ($organization->organization_name == 'admin') {
             dd("treu");
         }
 
