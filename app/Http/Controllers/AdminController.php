@@ -204,13 +204,13 @@ class AdminController extends Controller
                     ->where('organizers.id', $organizer_id)
                     ->first();
 
-                    dd($user);
             if (count($num_org) == 0) {
                 $user->role = 'general';
                 $user->save();
             } else {
                 if ($organization->organization_name == 'admin') {
                     $user->role = 'organizer';
+                    dd($user);
                     $user->save();
                 }
             }
