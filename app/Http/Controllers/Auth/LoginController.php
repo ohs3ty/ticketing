@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use phpCAS;
 
 class LoginController extends Controller
 {
@@ -38,23 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-        /**CAS logout
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    // public function logout(Request $request)
-    // {
-    //     $this->guard()->logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    //     phpCAS::client(CAS_VERSION_2_0, 'cas.byu.edu', 443, 'cas');
-    //     phpCAS::setNoCasServerValidation();
-    //     if (phpCAS::isSessionAuthenticated())
-    //         phpCAS::logout();
-    //     return redirect('/');
-    // }
 }
