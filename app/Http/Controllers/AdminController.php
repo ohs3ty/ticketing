@@ -193,7 +193,8 @@ class AdminController extends Controller
 
         $organization = Organization::where('id', $organization_id)->first();
         if ($organization->organization_name == 'admin') {
-            dd("admin no longer");
+            $num_org = OrganizationOrganizer::where('organizer_id', $organizer_id)->get();
+            dd(count($num_org));
         }
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
