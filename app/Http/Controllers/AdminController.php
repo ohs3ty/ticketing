@@ -95,7 +95,7 @@ class AdminController extends Controller
 
         // if admin, change user to admin role to give them admin privileges
         $organization_name = Organization::select('organization_name')
-                                ->where('id', 'organization_id')
+                                ->where('id', $organization_id)
                                 ->first();
 
         dd($organization_id);
