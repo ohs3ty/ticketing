@@ -202,7 +202,6 @@ class AdminController extends Controller
         $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
                     ->where('organizers.id', $organizer_id)
                     ->first();
-        dd($user);
             if (count($num_org) == 0) {
                 $user->role = 'general';
                 $user->save();
