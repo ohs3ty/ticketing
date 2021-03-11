@@ -93,14 +93,11 @@ class AdminController extends Controller
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
 
-        // if admin, change user to admin role to give them admin privileges
         $organization = Organization::select('organization_name')
                                 ->where('id', $organization_id)
                                 ->first();
 
-        if ($organization->organization_name == 'admin') {
-            dd("treu");
-        }
+
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
@@ -140,6 +137,13 @@ class AdminController extends Controller
                 $organizer_id = Organizer::select('id')
                     ->where('user_id', $user->id)
                     ->first();
+
+            // if admin, change user to admin role to give them admin privileges
+
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'admin';
+                    $user->save();
+                }
 
                 // look to see if they are already an organizer in this organization
                 $find_organizer = OrganizationOrganizer::where('organizer_id', $organizer_id->id)
