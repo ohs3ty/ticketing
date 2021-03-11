@@ -197,7 +197,13 @@ class AdminController extends Controller
                                 ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
                                 ->where('organization_name', '!=', 'admin')
                                 ->get();
-            dd(count($num_org));
+            if (count($num_org) > 0) {
+                $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
+                            ->where('organizers.id', $organizer_id)
+                            ->first();
+
+                dd($user);
+            }
         }
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
