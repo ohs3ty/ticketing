@@ -106,12 +106,14 @@ class AdminController extends Controller
 
         if ($user) {
 
-            if (($user->role == "admin") or ($user->role == 'organizer')) {
+            if (($user->role == "admin")) {
                 // pass
+                $organizer_bool = Organizer::where('user_id', '$user->id')
+                                    ->get();
 
             }
 
-            if (($user->role == "general")) {
+            if (($user->role == "general") or (count($organizer_bool) == 0)) {
                 $validated = $request->validate([
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
                 ]);
