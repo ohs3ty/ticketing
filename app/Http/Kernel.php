@@ -43,8 +43,6 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-        'cas.auth' => 'Subfission\Cas\Middleware\CASAuth',
-        'cas.guest' => 'Subfission\Cas\Middleware\RedirectCASAuthenticated',
     ];
 
     /**
