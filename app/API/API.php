@@ -10,23 +10,21 @@ use Illuminate\Support\Facades\Cache;
 /**
  * API is a class that pulls data
  * using BYU's provided apis
- *
+ * 
  * example:
  *      $person = (new \App\API\API())->getPersonByNetID('mynetid');
  *      $byuID = $person['byu_id']
  *      $items = (new \App\API\Persons())->getDataByItem('age', $byuID)
  *      $age = $items['age']
- *
+ * 
  * Note:
- *      This is used in \App\Person, so you don't have to do that stuff.
+ *      This is used in \App\Person, so you don't have to do that stuff. 
  */
 class API
 {
     const seconds_in_day = 60 * 60 * 24;
-    const TOKEN_USER = "sltevent";
-    //what do I even put here?
-    const TOKEN_CRED = "";
-
+    const TOKEN_USER = "isports";
+    const TOKEN_CRED = "Z21NQTNTMHdMb2h0cFlIQkpRN0ZsQmxIcG80YTpHU2R0UUdCR3hmQVRzUlc2dkZSX2hOWmdtQ0Vh";
 
     protected $url = "";
 
