@@ -31,7 +31,6 @@ Route::get('cas-login', function() {
 })->middleware('cas')
     ->name('cas');
 
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

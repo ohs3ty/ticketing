@@ -81,6 +81,7 @@ class AdminController extends Controller
     }
 
     public function add_organizer_action(Request $request) {
+
         $validated = $request->validate([
             'first_name' => 'bail|required',
             'last_name' => 'required',
@@ -91,6 +92,11 @@ class AdminController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
+
+        $organization = Organization::select('organization_name')
+                                ->where('id', $organization_id)
+                                ->first();
+
 
 
         $user = User::where('first_name', $first_name)
@@ -131,6 +137,13 @@ class AdminController extends Controller
                 $organizer_id = Organizer::select('id')
                     ->where('user_id', $user->id)
                     ->first();
+
+            // if admin, change user to admin role to give them admin privileges
+
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'admin';
+                    $user->save();
+                }
 
                 // look to see if they are already an organizer in this organization
                 $find_organizer = OrganizationOrganizer::where('organizer_id', $organizer_id->id)
@@ -177,6 +190,29 @@ class AdminController extends Controller
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
+
+        $organization = Organization::where('id', $organization_id)->first();
+
+        //if user has other organizations, they stay organizer, otherwise, back to general
+        $num_org = OrganizationOrganizer::where('organizer_id', $organizer_id)
+                                ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
+                                ->where('organization_name', '!=', 'admin')
+                                ->get();
+
+        $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
+                    ->where('organizers.id', $organizer_id)
+                    ->first();
+            if (count($num_org) == 0) {
+                $user->role = 'general';
+                $user->save();
+            } else {
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'organizer';
+
+                    $user->save();
+                }
+            }
+
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
             ->delete();

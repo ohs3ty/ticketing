@@ -46,7 +46,5 @@ class Kernel extends ConsoleKernel
         'can'=>\Illuminate\Auth\Middleware\Authorize::class,
         'guest'=>\App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'=>\Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'cas.auth'=>'Subfission\Cas\Middleware\CASAuth',
-        'cas.guest'=>'Subfission\Cas\Middleware\RedirectCASAuthenticated',
       ];
 }
