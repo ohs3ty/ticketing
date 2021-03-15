@@ -25,8 +25,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Authentication
+Route::get('cas-login', function() {
+    return back();
+})->middleware('cas')
+    ->name('cas');
+
+
+// home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/addorganization', [AdminController::class, 'add_organization']);
 Route::post('/admin/addorganizationaction', [AdminController::class, 'add_organization_action']);

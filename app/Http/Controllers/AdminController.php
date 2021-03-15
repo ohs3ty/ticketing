@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    // 
+    //
     public function index() {
         // show organizers and categorize by the organization
         $organizations = Organization::select('organization_name', 'id')
@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     public function organization_detail(Request $request) {
         $organization_name = $request->name;
-        
+
         $organization = Organization::where('organization_name', '=', $organization_name)
                             ->first();
         $organizers = Organizer::select('organizer_email', 'organizers.id', 'organizer_phone', 'first_name', 'last_name', 'email')
@@ -78,21 +78,27 @@ class AdminController extends Controller
         return view('admin.organization_detail', [
             'organization' => $organization,
             'organizers' => $organizers,
-        ]); 
+        ]);
     }
 
     public function add_organizer_action(Request $request) {
+
         $validated = $request->validate([
             'first_name' => 'bail|required',
             'last_name' => 'required',
             // 'organizer_phone' => 'regex:/[0-9]{10}/',
         ]);
 
-        
+
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $organization_id = intval($request->organization_id);
-        
+
+        $organization = Organization::select('organization_name')
+                                ->where('id', $organization_id)
+                                ->first();
+
+
 
         $user = User::where('first_name', $first_name)
         ->where('last_name', $last_name)
@@ -100,15 +106,24 @@ class AdminController extends Controller
 
 
         if ($user) {
-            if (($user->role == "admin") or ($user->role == 'organizer')) {
+
+            if (($user->role == "admin")) {
                 // pass
-            } else {
+                $organizer_bool = Organizer::where('user_id', '$user->id')
+                                    ->get();
+
+            }
+
+            if (($user->role == "general") or (count($organizer_bool) == 0)) {
                 $validated = $request->validate([
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
                 ]);
 
-                $user->role = 'organizer';
-                $user->save();
+                if ($user->role == "general") {
+                    $user->role = 'organizer';
+                    $user->save();
+                }
+
                 $new_organizer = new Organizer;
                 $new_organizer->user_id = $user->id;
 
@@ -125,7 +140,14 @@ class AdminController extends Controller
                 $organizer_id = Organizer::select('id')
                     ->where('user_id', $user->id)
                     ->first();
-                
+
+            // if admin, change user to admin role to give them admin privileges
+
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'admin';
+                    $user->save();
+                }
+
                 // look to see if they are already an organizer in this organization
                 $find_organizer = OrganizationOrganizer::where('organizer_id', $organizer_id->id)
                                     ->where('organization_id', $organization_id)
@@ -141,9 +163,9 @@ class AdminController extends Controller
                     $organization_organizer->organization_id = $organization_id;
                     $organization_organizer->save();
                 }
-                
+
         } else {
-            // if user does not exist return error 
+            // if user does not exist return error
             $msg = 'This user does not exist. Check for mispellings or make sure he or she is BYU affiliated.';
             return Redirect::back()->withErrors(['general' => $msg]);
         }
@@ -157,20 +179,43 @@ class AdminController extends Controller
             'organizer_phone' => 'required|regex:/[0-9]{10}/',
             'organizer_email' => 'required|email',
         ]);
-        
+
         $organizer_id = $request->organizer_id;
 
         $edit_organizer = Organizer::find($organizer_id);
         $edit_organizer->organizer_phone = $request->organizer_phone;
         $edit_organizer->organizer_email = $request->organizer_email;
         $edit_organizer->save();
-        
+
         return back();
     }
 
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
+
+        $organization = Organization::where('id', $organization_id)->first();
+
+        //if user has other organizations, they stay organizer, otherwise, back to general
+        $num_org = OrganizationOrganizer::where('organizer_id', $organizer_id)
+                                ->join('organizations', 'organization_organizers.organization_id', '=', 'organizations.id')
+                                ->where('organization_name', '!=', 'admin')
+                                ->get();
+
+        $user = User::join('organizers', 'users.id', '=', 'organizers.user_id')
+                    ->where('organizers.id', $organizer_id)
+                    ->first();
+            if (count($num_org) == 0) {
+                $user->role = 'general';
+                $user->save();
+            } else {
+                if ($organization->organization_name == 'admin') {
+                    $user->role = 'organizer';
+
+                    $user->save();
+                }
+            }
+
         OrganizationOrganizer::where('organization_id', $organization_id)
             ->where('organizer_id', $organizer_id)
             ->delete();
