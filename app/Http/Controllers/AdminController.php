@@ -17,6 +17,7 @@ class AdminController extends Controller
     public function index() {
         // show organizers and categorize by the organization
         $organizations = Organization::select('organization_name', 'id')
+                            ->where('organization_name', '!=', 'admin')
                             ->orderBy('organization_name')
                             ->get();
 
