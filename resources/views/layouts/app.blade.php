@@ -57,9 +57,13 @@
         <byu-user-info slot="user">
             @guest
                 @if(Route::has('login'))
-                    <a slot='login' href="{{ route('login') }}">Sign In</a>
+                    {{-- <a slot='login' href="{{ route('login') }}">Sign In</a> --}}
                     {{-- what it should be --}}
+<<<<<<< HEAD
                     {{-- <a slot='login' href="/cas-login"> //// Actual Sign In ////</a> --}}
+=======
+                    <a slot='login' href="/cas-login"> Actual Sign In</a>
+>>>>>>> parent of 8b1ac7c... testing did not work, going back
                 @endif
 
                 @if (Route::has('register'))
