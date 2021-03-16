@@ -71,12 +71,12 @@
                 <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                  Sign Out
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+                <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+                </a>
             @endguest
-            {{-- <a slot='logout' href="#">Sign Out</a>
-            <span slot="user-name">UserFirstName</span> --}}
+
         </byu-user-info>
     </byu-header>
     <div id="app">
