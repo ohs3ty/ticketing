@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 use phpCAS;
 
@@ -25,7 +26,7 @@ class CheckCASAuthentication
         phpCAS::setNoCasServerValidation();
         phpCAS::forceAuthentication();
         dd($_SESSION['phpCAS']);
-        // Auth::login(\App\User::findUser($_SESSION['phpCAS']));
+        Auth::login(User::findUser($_SESSION['phpCAS']));
 
         return $this->catch_cas($next($request));
     }
