@@ -77,7 +77,7 @@
         <div class="container">
             <main class="py-4">
                 Test
-                {{ auth()->user() }}
+                {{ $_SESSION['phpCAS'] }}
                 @yield('content')
             </main>
     </div>
