@@ -47,7 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function findUser($phpCAS) {
-        print(count($phpCAS));
+    public static function findUser($phpCAS)
+    {
+        if (is_null($phpCAS))
+            return null;
+
+        $net_id = $phpCAS['user'];
+
+        print($net_id);
     }
 }
