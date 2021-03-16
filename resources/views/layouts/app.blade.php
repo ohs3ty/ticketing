@@ -75,7 +75,7 @@
         <div class="container">
             <main class="py-4">
                 Test
-                {{Auth::user()->user_id}}
+                {{Auth::user()->netid}}
                 End Test
                 @yield('content')
             </main>
