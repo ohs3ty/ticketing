@@ -32,7 +32,7 @@ Route::get('cas-login', function() {
 })->middleware('cas')
     ->name('cas');
 
-Route::post('logout', [LoginController::class, 'logout']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // home
