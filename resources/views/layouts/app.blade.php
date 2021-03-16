@@ -58,15 +58,17 @@
             @guest <!--only guest-->
                 <a slot='login' href="/cas-login">Sign In</a>
                 <a slot="logout" href="{{ route('logout') }}"></a>
+                Still not logged in
             @else <!-- Logged in -->
                 <span slot='user-name'> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
-                <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
+                {{-- <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                  Sign Out
                 </a>
                 <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
-                </a>
+                </a> --}}
             @endguest
 
         </byu-user-info>
@@ -84,7 +86,9 @@
 </body>
 </html>
 
-<!-- Concusssions: show Jared's name over and over again
+<!--
+    isports issues
+    Concusssions: show Jared's name over and over again
     search by byuId and netid rather than name
     Round Robin: start date
     brackets: too big, need to be smaller (retain their name, keep the loser position number)
