@@ -74,9 +74,6 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
-                Test
-                {{Auth::user()->netid}}
-                End Test
                 @yield('content')
             </main>
     </div>
