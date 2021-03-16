@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public static function get_existing_user($net_id)
+    {
+        // return !is_null($net_id) ? User::where('net_id', $net_id)->first() : null;
+    }
+
+    //Login
+
     public static function findUser($phpCAS)
     {
         if (is_null($phpCAS))
@@ -54,6 +63,6 @@ class User extends Authenticatable
 
         $net_id = $phpCAS['user'];
 
-        print($net_id);
+        $user = User::get_existing_user($net_id);
     }
 }
