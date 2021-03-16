@@ -59,7 +59,6 @@
                 <a slot='login' href="/cas-login">Sign In</a>
                 <a slot="logout" href="{{ route('logout') }}"></a>
             @else <!-- Logged in -->
-                {{ Auth::user()->id }}
                 <span slot='user-name'> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                 <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                  Sign Out
@@ -75,6 +74,7 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
+                {{Auth::user()->id}}
                 @yield('content')
             </main>
     </div>
