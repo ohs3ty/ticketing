@@ -48,6 +48,6 @@ class User extends Authenticatable
     ];
 
     public static function findUser($phpCAS) {
-        print($phpCAS);
+        print($phpCAS).length();
     }
 }
