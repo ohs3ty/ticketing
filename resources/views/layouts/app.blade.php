@@ -77,7 +77,7 @@
         <div class="container">
             <main class="py-4">
                 Test
-                {{ $_SESSION['phpCAS'] }}
+                {{-- {{ $_SESSION['phpCAS'] }} --}}
                 @yield('content')
             </main>
     </div>
