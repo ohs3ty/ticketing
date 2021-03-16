@@ -39,4 +39,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        phpCAS::client(CAS_VERSION_2_0, 'cas.byu.edu', 443, 'cas');
+        phpCAS::setNoCasServerValidation();
+        if (phpCAS::isSessionAuthenticated())
+            phpCAS::logout();
+        return redirect('/');
+    }
 }
