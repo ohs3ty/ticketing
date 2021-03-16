@@ -75,7 +75,7 @@
         <div class="container">
             <main class="py-4">
                 Test
-                {{ auth()->user()->name }}
+                {{ auth()->user() }}
                 @yield('content')
             </main>
     </div>
@@ -83,3 +83,9 @@
 
 </body>
 </html>
+
+<!-- Concusssions: show Jared's name over and over again
+    search by byuId and netid rather than name
+    Round Robin: start date
+    brackets: too big, need to be smaller (retain their name, keep the loser position number)
+ -->
