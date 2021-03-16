@@ -74,6 +74,8 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
+                Test
+                {{ auth()->user()->name }}
                 @yield('content')
             </main>
     </div>
