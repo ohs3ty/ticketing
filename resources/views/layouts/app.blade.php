@@ -55,18 +55,11 @@
             @endif
         </byu-menu>
         <byu-user-info slot="user">
-            @guest
-                @if(Route::has('login'))
-                    {{-- <a slot='login' href="{{ route('login') }}">Sign In</a> --}}
-
-                    <a slot='login' href="/cas-login">Sign In</a>
-                    <a slot="logout" href="{{ route('logout') }}"></a>
-                @endif
-
-                @if (Route::has('register'))
-                        <a slot='register' href="{{ route('register') }}">Register</a>
-                @endif
-            @else
+            @guest <!--only guest-->
+                <a slot='login' href="/cas-login">Sign In</a>
+                <a slot="logout" href="{{ route('logout') }}"></a>
+            @else <!-- Logged in -->
+                {{ Auth::user()->id }}
                 <span slot='user-name'> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                 <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                  Sign Out
