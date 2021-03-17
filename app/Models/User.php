@@ -69,6 +69,6 @@ class User extends Authenticatable
 
         $user = new User(['net_id' => $net_id]);
 
-        print("test1");
+        print($user);
      }
 }
