@@ -57,7 +57,7 @@ class User extends Authenticatable
         return !is_null($net_id) ? User::where('net_id', $net_id)->first() : null;
     }
 
-    /**************************
+    /**************************v
      * Logging in
      **************************/
 
@@ -67,6 +67,6 @@ class User extends Authenticatable
         }
         $net_id = $phpCAS['user'];
 
-        print("test1");
+        print($net_id);
      }
 }
