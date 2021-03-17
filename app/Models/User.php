@@ -61,29 +61,7 @@ class User extends Authenticatable
      * Logging in
      **************************/
 
-    public static function findUser($phpCAS)
-    {
-        if (is_null($phpCAS))
-        return null;
-
-        $net_id = $phpCAS['user'];
-
-        //copied and pasted from isports (gotta do step by step debugging and coding)
-        //also if there are problems, we know approximately where and why
-        $user = User::get_existing_user($net_id);
-        if (!$user)
-            $user = new User(['net_id' => $net_id]);
-
-        $attributes = $phpCAS['attributes'] ?? ['memberOf' => User::ROLES['programmer']];
-        if (isset($attributes['memberOf']))
-            $user->memberOf = $attributes['memberOf'];
-        else
-            $user->memberOf = User::ROLES['programmer']; //Cheating
-        $user->attribute($attributes, 'name', 'name', 'preferred_name')
-            ->attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
-            ->attribute($attributes, 'phone', 'phone', 'phone')
-            ->attribute($attributes, 'byu_id', 'byuId', 'byu_id')
-            ->save();
-        return $user;
-    }
+     public static function findUser($net_id) {
+        print($net_id);
+     }
 }
