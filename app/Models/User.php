@@ -61,7 +61,11 @@ class User extends Authenticatable
      * Logging in
      **************************/
 
-     public static function findUser($net_id) {
+     public static function findUser($phpCAS) {
+        if (is_null($phpCAS)) {
+            return null;
+        }
+
         print("worked");
      }
 }
