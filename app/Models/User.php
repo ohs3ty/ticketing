@@ -62,6 +62,6 @@ class User extends Authenticatable
      **************************/
 
      public static function findUser($net_id) {
-        print($net_id);
+        print("worked");
      }
 }
