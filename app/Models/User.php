@@ -67,6 +67,8 @@ class User extends Authenticatable
         }
         $net_id = $phpCAS['user'];
 
-        print($net_id);
+        $user = new User(['net_id' => $net_id]);
+
+        print("test1");
      }
 }
