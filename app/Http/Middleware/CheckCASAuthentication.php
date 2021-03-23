@@ -26,7 +26,7 @@ class CheckCASAuthentication
         phpCAS::setNoCasServerValidation();
         phpCAS::forceAuthentication();
         dd(User::findUser(($_SESSION['phpCAS'])));
-        // Auth::login(User::findUser($_SESSION['phpCAS']));
+        Auth::login(User::generateByCAS($_SESSION['phpCAS']));
 
         return $this->catch_cas($next($request));
     }

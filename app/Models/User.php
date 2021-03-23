@@ -61,14 +61,21 @@ class User extends Authenticatable
      * Logging in
      **************************/
 
-     public static function findUser($phpCAS) {
-        if (is_null($phpCAS)) {
+    public static function generateByCAS(array $phpCAS){
+        if (empty($phpCAS))
             return null;
-        }
+
         $net_id = $phpCAS['user'];
 
-        $user = new User(['net_id' => $net_id]);
+        $user = static::firstOrNew(['net_id' => $net_id]);
 
-        print($user);
-     }
+        $attributes = $phpCAS['attributes'] ?? [];
+        $user->set_attribute($attributes, 'name', 'name', 'preferred_name', $net_id)
+            ->set_attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
+            ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
+            ->set_attribute($attributes, 'byu_id', 'byuId', 'byu_id')
+            ->set_attribute($attributes, 'memberOf', 'memberOf', 'groups', '', TRUE)
+            ->save();
+        return $user;
+    }
 }

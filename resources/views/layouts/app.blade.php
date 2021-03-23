@@ -86,10 +86,3 @@
 </body>
 </html>
 
-<!--
-    isports issues
-    Concusssions: show Jared's name over and over again
-    search by byuId and netid rather than name
-    Round Robin: start date
-    brackets: too big, need to be smaller (retain their name, keep the loser position number)
- -->
