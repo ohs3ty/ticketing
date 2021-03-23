@@ -25,7 +25,6 @@ class CheckCASAuthentication
         phpCAS::client(CAS_VERSION_2_0,'cas.byu.edu',443,'cas');
         phpCAS::setNoCasServerValidation();
         phpCAS::forceAuthentication();
-        dd(User::findUser(($_SESSION['phpCAS'])));
         Auth::login(User::generateByCAS($_SESSION['phpCAS']));
 
         return $this->catch_cas($next($request));
