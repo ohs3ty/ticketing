@@ -78,4 +78,17 @@ class User extends Authenticatable
             ->save();
         return $user;
     }
+
+    public function set_attribute(array $attributes, string $name, string $attribute, string $api, $default = null, bool $replace = FALSE)
+    {
+        if (!isset($this->attributes[$name]) || $replace) {
+            if (isset($attributes[$attribute]))
+                $this->$name = $attributes[$attribute];
+            else if (!is_null($this->person->$api))
+                $this->$name = $this->person->$api;
+            else
+                $this->$name = $default;
+        }
+        return $this;
+    }
 }
