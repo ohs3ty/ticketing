@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
 
-        logout();
+        $this->logout();
         dd("works");
         $request->session()->invalidate();
         $request->session()->regenerateToken();
