@@ -33,6 +33,6 @@ class LogoutController extends Controller
         phpCAS::setNoCasServerValidation();
         if (phpCAS::isSessionAuthenticated())
             phpCAS::logout();
-        return redirect('/');
+        return redirect('/events');
     }
 }
