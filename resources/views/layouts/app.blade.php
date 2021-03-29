@@ -62,9 +62,6 @@
             @else <!-- Logged in -->
                 <span slot='user-name'> {{ Auth::user()->name }} </span>
 
-                <a slot='logout' href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                 Sign Out
-                </a>
                 <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
