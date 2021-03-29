@@ -56,7 +56,7 @@
         </byu-menu>
         <byu-user-info slot="user">
             @guest <!--only guest-->
-                <a slot='login' href="/cas-login">Not Signed In</a>
+                <a slot='login' href="/cas-login">Sign In</a>
                 <a slot="logout" href="{{ route('logout') }}"></a>
 
             @else <!-- Logged in -->
