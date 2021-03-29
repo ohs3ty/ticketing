@@ -74,8 +74,8 @@ class User extends Authenticatable
             ->set_attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
             // ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
             ->set_attribute($attributes, 'byu_id', 'byuId', 'byu_id')
-            ->set_attribute($attributes, 'memberOf', 'memberOf', 'groups', '', TRUE);
-            // ->save();
+            ->set_attribute($attributes, 'memberOf', 'memberOf', 'groups', '', TRUE)
+            ->save();
             print("success");
         // return $user;
         return ("success");
