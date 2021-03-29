@@ -31,9 +31,9 @@ class LogoutController extends Controller
         $request->session()->regenerateToken();
         phpCAS::client(CAS_VERSION_2_0, 'cas.byu.edu', 443, 'cas');
         phpCAS::setNoCasServerValidation();
+        dd("hello");
         if (phpCAS::isSessionAuthenticated())
             phpCAS::logout();
-        dd("hello");
         return redirect('/');
     }
 }
