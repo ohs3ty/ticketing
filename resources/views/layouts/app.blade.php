@@ -60,12 +60,14 @@
                 <a slot="logout" href="{{ route('logout') }}"></a>
 
             @else <!-- Logged in -->
-                <span slot='user-name'> {{ Auth::user()->name }} </span>
-
-                <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
+            <a href="{{ route('users.show') }}" slot="user-name">{{ auth()->user()->name }}</a>
+            <a slot="login" href="/cas-login">Sign In</a>
+            <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
-                </a>
+            </a>
+            {{ Form::open(['url'=>route('logout'), 'method'=>'post', 'style'=>'display: none', 'id'=>'logout-form']) }}
+            {{ Form::close() }}
             @endguest
 
         </byu-user-info>
