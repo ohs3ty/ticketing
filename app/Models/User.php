@@ -76,9 +76,8 @@ class User extends Authenticatable
             ->set_attribute($attributes, 'byu_id', 'byuId', 'byu_id')
             ->set_attribute($attributes, 'memberOf', 'memberOf', 'groups', '', TRUE)
             ->save();
-            dd("success");
-        // return $user;
-        return ("success");
+            dd($user);
+        return $user;
     }
 
     public function set_attribute(array $attributes, string $name, string $attribute, string $api, $default = null, bool $replace = FALSE)
