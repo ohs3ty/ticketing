@@ -61,7 +61,6 @@
 
             @else <!-- Logged in -->
             <a href="" slot="user-name">{{ auth()->user()->name }}</a>
-            <a slot="login" href="/cas-login">Sign In</a>
             <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
