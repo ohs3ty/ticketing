@@ -42,8 +42,9 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+
+        logout();
         dd("works");
-        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         phpCAS::client(CAS_VERSION_2_0, 'cas.byu.edu', 443, 'cas');
