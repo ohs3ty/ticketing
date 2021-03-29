@@ -60,7 +60,7 @@
                 <a slot="logout" href="{{ route('logout') }}"></a>
 
             @else <!-- Logged in -->
-            <a href="{{ route('users.show') }}" slot="user-name">{{ auth()->user()->name }}</a>
+            <a href="" slot="user-name">{{ auth()->user()->name }}</a>
             <a slot="login" href="/cas-login">Sign In</a>
             <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
