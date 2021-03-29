@@ -68,11 +68,11 @@ class User extends Authenticatable
         $net_id = $phpCAS['user'];
 
         $user = static::firstOrNew(['net_id' => $net_id]);
-
+        dd($user);
         $attributes = $phpCAS['attributes'] ?? [];
         $user->set_attribute($attributes, 'name', 'name', 'preferred_name', $net_id)
             ->set_attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
-            // ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
+            ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
             ->set_attribute($attributes, 'byu_id', 'byuId', 'byu_id')
             ->set_attribute($attributes, 'memberOf', 'memberOf', 'groups', '', TRUE)
             ->save();
