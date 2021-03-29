@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 
 
 
@@ -32,7 +32,7 @@ Route::get('cas-login', function() {
 })->middleware('cas')
     ->name('cas');
 
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 // home
