@@ -10,7 +10,7 @@
     <a class="btn btn-primary">Add Event Type</a>
     <div>
         @foreach($event_types as $type)
-        <span class="btn"> $type->type_name }}</span>
+        <span class="btn">{{ $type->type_name }}</span>
         @endforeach
     </div>
 </div>
