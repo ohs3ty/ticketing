@@ -67,7 +67,7 @@ class AdminController extends Controller
 
         $organization = Organization::where('organization_name', '=', $organization_name)
                             ->first();
-        $organizers = Organizer::select('organizer_email', 'organizers.id', 'organizer_phone', 'first_name', 'last_name', 'email')
+        $organizers = Organizer::select('organizer_email', 'organizers.id', 'organizer_phone', 'name', 'email')
                         ->where('organization_name', '=', $organization_name)
                         ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organizations.id','=', 'organization_organizers.organization_id')
