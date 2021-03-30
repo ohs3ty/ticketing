@@ -1,12 +1,13 @@
 
-document.getElementById("end_date").addEventListener("focus", function() {
+document.getElementById("start_date").addEventListener("change", function() {
+    alert("works");
     document.getElementsByName("end_date")[0].value = document.getElementsByName("start_date")[0].value;
     document.getElementsByName("end_time")[0].value = document.getElementsByName("start_time")[0].value;
 
 })
 
 function getVenues(venues) {
-    
+
     if (lookup == '') {
         document.getElementById('venue_lookup').innerHTML = "";
     }
