@@ -7,10 +7,10 @@
 @section('content')
 <h3>Event Types</h3>
 <div class="container">
-    <a class="btn">Add Event Type</a>
+    <a class="btn btn-primary">Add Event Type</a>
     <div>
         @foreach($event_types as $type)
-        {{ $type->type_name }}
+        <span class="btn"> $type->type_name }}</span>
         @endforeach
     </div>
 </div>
