@@ -115,9 +115,9 @@ class AdminController extends Controller
             }
 
             if (($user->role == "general") or (count($organizer_bool) == 0)) {
-                // $validated = $request->validate([
-                //     'organizer_phone' => 'required|regex:/[0-9]{10}/',
-                // ]);
+                $validated = $request->validate([
+                    'organizer_phone' => 'required|regex:/[0-9]{10}/',
+                ]);
 
                 if ($user->role == "general") {
                     $user->role = 'organizer';
