@@ -7,11 +7,14 @@
 @section('content')
 <h3>Event Types</h3>
 <div class="container">
-    Edit event types
+    <a class="btn">Add Event Type</a>
+    @foreach($event_types as $type)
+        {{ $type }}
+    @endforeach
 </div>
 <h3>Organizations</h3>
 <div class="container">
-    <a class="btn" href="{{ url('/admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>
+    <a class="btn btn-primary" href="{{ url('/admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>
 </div>
 <br>
 <div class="container">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Models\Organizer;
 use App\Models\Organization;
@@ -20,9 +21,12 @@ class AdminController extends Controller
                             ->where('organization_name', '!=', 'admin')
                             ->orderBy('organization_name')
                             ->get();
-
+        $event_types = EventType::select('type_name', 'id')
+                        ->orderBy('type')
+                        ->get();
         return view('admin.admin', [
             'organizations' => $organizations,
+            'event_types' => $event_types,
             ]);
     }
 
