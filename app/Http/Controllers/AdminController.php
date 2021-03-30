@@ -104,8 +104,6 @@ class AdminController extends Controller
         $user = User::where('name', $name)
         ->first();
 
-        dd($user);
-
 
         if ($user) {
 
