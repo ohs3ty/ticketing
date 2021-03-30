@@ -22,7 +22,7 @@ class AdminController extends Controller
                             ->orderBy('organization_name')
                             ->get();
         $event_types = EventType::select('type_name', 'id')
-                        ->orderBy('type')
+                        ->orderBy('type_name')
                         ->get();
         return view('admin.admin', [
             'organizations' => $organizations,

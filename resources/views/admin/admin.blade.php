@@ -9,7 +9,7 @@
 <div class="container">
     <a class="btn">Add Event Type</a>
     @foreach($event_types as $type)
-        {{ $type }}
+        {{ $type->type_name }}
     @endforeach
 </div>
 <h3>Organizations</h3>
