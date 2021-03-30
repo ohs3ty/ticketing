@@ -72,7 +72,7 @@ class AdminController extends Controller
                         ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organizations.id','=', 'organization_organizers.organization_id')
                         ->join('users', 'users.id', '=', 'organizers.user_id')
-                        ->orderBy('last_name')
+                        ->orderBy('name')
                         ->get();
 
         return view('admin.organization_detail', [
