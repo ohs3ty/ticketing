@@ -91,9 +91,9 @@ class AdminController extends Controller
 
 
         $first_name = $request->first_name;
+        $last_name = $request->last_name;
         dd($first_name);
 
-        $last_name = $request->last_name;
         $name = $first_name + " " + $last_name;
         $organization_id = intval($request->organization_id);
 
