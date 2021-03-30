@@ -21,7 +21,7 @@
 
 <div class="row" style="font-size: medium;">
     <div class="col-2" style="font-weight: bold;">
-        Organization Website:
+        Website:
     </div>
     <div class="col-2">
         {{ $organization->organization_website }}
