@@ -5,14 +5,14 @@
 @endsection
 
 @section('content')
-<h2> {{ $organization->organization_name }} 
+<h2> {{ $organization->organization_name }}
 <button type="button" class="btn" data-toggle="modal" data-target="#editOrganization"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button>
 </h2>
 <br>
 
 <div class="row" style="font-size: medium;">
     <div class="col-2" style="font-weight: bold;">
-        Cashnet Code: 
+        Cashnet Code:
     </div>
     <div class="col-2">
         {{ $organization->cashnet_code }}
@@ -21,7 +21,7 @@
 
 <div class="row" style="font-size: medium;">
     <div class="col-2" style="font-weight: bold;">
-        Organization Website: 
+        Organization Website:
     </div>
     <div class="col-2">
         {{ $organization->organization_website }}
@@ -41,7 +41,7 @@
         </div>
     @endif
 
-@if (count($organizers) == 0) 
+@if (count($organizers) == 0)
     <div class="container">
         No organizers assigned
     </div>
@@ -63,7 +63,7 @@
                     <th><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOrganizer{{ $organizer->id }}"><i class="bi-trash-fill"></i></button></th>
                     @include("admin.modal.delete_confirm")
 
-                    <th>{{ $organizer->last_name }}, {{ $organizer->first_name }}</th>
+                    <th>{{ $organizer->name }}</th>
                     <th>{{ $organizer->organizer_email }}</th>
                     <th>{{ $organizer->organizer_phone }}</th>
                     <th>{{ $organizer->email }}</th>
@@ -81,7 +81,7 @@
 
     @include("admin.modal.add_organizer")
     @include("admin.modal.edit_organization")
-        
+
 
   </div>
 </div>
