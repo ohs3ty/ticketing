@@ -1,6 +1,10 @@
 
 document.getElementById("start_date").addEventListener("change", function() {
     document.getElementsByName("end_date")[0].value = document.getElementsByName("start_date")[0].value;
+
+})
+
+document.getElementById("start_time").addEventListener("change", function() {
     document.getElementsByName("end_time")[0].value = document.getElementsByName("start_time")[0].value;
 
 })
