@@ -91,9 +91,10 @@ class AdminController extends Controller
 
 
         $first_name = $request->first_name;
+        dd($first_name);
+
         $last_name = $request->last_name;
         $name = $first_name + " " + $last_name;
-        dd($name);
         $organization_id = intval($request->organization_id);
 
         $organization = Organization::select('organization_name')
