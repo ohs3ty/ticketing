@@ -5,17 +5,6 @@
 @endsection
 
 @section('content')
-<h3>Event Types</h3>
-<div class="container">
-    <a class="btn btn-primary">Add Event Type</a>
-    <div>
-        @foreach($event_types as $type)
-        <div class="bg-primary">
-            {{ $type->type_name }}
-        </div>
-        @endforeach
-    </div>
-</div>
 <h3>Organizations</h3>
 <div class="container">
     <a class="btn btn-primary" href="{{ url('/admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>
