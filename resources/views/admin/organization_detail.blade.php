@@ -65,7 +65,7 @@
 
                     <th>{{ $organizer->name }}</th>
                     <th>{{ $organizer->organizer_email }}</th>
-                    <th>{{ $organizer->organizer_phone }}</th>
+                    <th>{{ $organizer->formatPhone() }}</th>
                     <th>{{ $organizer->email }}</th>
                     <th><button type="button" class="btn" data-toggle="modal" data-target="#editOrganizer{{$organizer->id}}"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button></th>
 

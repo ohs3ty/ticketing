@@ -14,4 +14,8 @@ class Organizer extends Model
         'organizer_email',
         'user_id',
     ];
+
+    public function formatPhone() {
+       return substr($this->organizer_phone, 0, 3);
+    }
 }
