@@ -9,7 +9,7 @@ View Ticket
 <h2>Ticket Types</h2>
 <a class="btn" style="border-color: lightgrey;" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Back</a>
 <br><br>
-@if( $ticket_types->isEmpty()) 
+@if( $ticket_types->isEmpty())
     No ticket groups made yet.
 @endif
 {{-- display the ticket types --}}
@@ -41,13 +41,13 @@ View Ticket
 
         <div class="row no-gutters">
             <span class="col-4">${{ number_format($ticket_type->ticket_cost, 2) }}</span>
-            <span class="col-4">
+            {{-- <span class="col-4">
                 @if (empty($ticket_type->ticket_limit))
                 Unlimited
                 @else
                 {{ $ticket_type->ticket_limit }}
                 @endif
-            </span>
+            </span> --}}
             <span class="col-4">{{ $ticket_type->profile_name }}</span>
         </div>
         <br>
@@ -55,7 +55,7 @@ View Ticket
             <span class="col-4 text-muted">Ticket Open Date</span>
             <span class="col-4 text-muted">Ticket Close Date</span>
         </div>
-        
+
         <div class="row no-gutters">
             <span class="col-4">{{ \Carbon\Carbon::parse($ticket_type->ticket_open_date)->format('F j, Y')}}</span>
             <span class="col-4">{{ \Carbon\Carbon::parse($ticket_type->ticket_close_date)->format('F j, Y')}}</span>
