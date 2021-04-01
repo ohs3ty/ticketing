@@ -20,7 +20,7 @@ View All Events
                                 <h2 style="margin: none">{{ \Carbon\Carbon::parse($event->start_date)->format('j') }}</h2>
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $event->event_name }}</h3>
                                 <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
@@ -28,8 +28,8 @@ View All Events
                                 <p style="margin-top: 10px;" class="card-text">{{ $event->event_description }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            Hello
+                        <div class="col-sm-2">
+                            See more
                         </div>
                     </div>
                 </div>
