@@ -16,7 +16,7 @@ class Organizer extends Model
     ];
 
     public function formatPhone() {
-        $phone = substr($this->organizer_phone, 0, 3);
+        $phone = "(" . substr($this->organizer_phone, 0, 3) . ") " . substr($this->organizer_phone, 3, 3);
        return $phone;
     }
 }
