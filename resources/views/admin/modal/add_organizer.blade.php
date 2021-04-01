@@ -19,7 +19,7 @@
 
           <div class="form-group">
             {{ Form::label('last_name', 'Last Name') }}<br>
-            {{ Form::text('last_name', null, ['required']) }}
+            {{ Form::text('last_name', null, ['required', 'class' => 'form-control']) }}
           </div>
           {{-- adding phone and email if want to --}}
           <div class="form-check">
@@ -29,7 +29,7 @@
           <div hidden id="phone_email_section">
             <div class="form-group">
                 {{ Form::label('organizer_email', 'Organizer Email (if different from personal email)') }}<br>
-                {{ Form::text('organizer_email') }}
+                {{ Form::text('organizer_email', null, ['class' => 'form-control']) }}
             </div>
 
             <div class="form-group">
