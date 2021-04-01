@@ -35,7 +35,7 @@ Add Ticket Type
                         @if (is_null($ticket_type->ticket_limit))
                             {{ Form::checkbox('unlimited', 1, null, ['checked' => 'checked', 'class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}}
                         @else
-                            {{-- {{ Form::checkbox('unlimited', 1, $ticket_type->$ticket_limit, ['class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}} --}}
+                            {{ Form::checkbox('unlimited', 1, null, ['class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}}
                         @endif
                         {{ Form::label('unlimited', 'Unlimited tickets', ['class' => 'form-check-label']) }}
                     </div>
