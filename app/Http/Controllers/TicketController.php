@@ -75,6 +75,7 @@ class TicketController extends Controller
                                             'ticket_open_date', 'ticket_close_date')
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
                             ->join('events', 'events.id', '=', 'ticket_types.event_id')
+                            ->where('ticket_types.event_id', '=', $event_id)
                             ->get();
 
         return view('ticket.view_ticket', [
