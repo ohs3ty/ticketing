@@ -34,7 +34,7 @@ class EventController extends Controller
         ]);
     }
 
-    
+
     public function view_user_events(Request $request) {
         $user_id = intval($request->id);
         // I want all events created by the user's organization (regardless if it was created by the organizer)
@@ -51,12 +51,12 @@ class EventController extends Controller
                             ->join('organization_organizers', 'organization_organizers.organization_id', '=', 'organizations.id')
                             ->join('organizers', 'organizers.id', '=', 'organization_organizers.organizer_id')
                             ->where('organizers.user_id', $user_id);
-                    
+
                 })
-                ->join('organizations', 'organizations.id', '=', 'events.organization_id')    
+                ->join('organizations', 'organizations.id', '=', 'events.organization_id')
                 ->orderBy('start_date')->paginate(8);
 
-        
+
         $events->withPath("/myevents?id=$user_id");
 
         return view('event.user_events', [
@@ -82,7 +82,7 @@ class EventController extends Controller
         $organization_names = $organizations->pluck('organization_name', 'id');
         $venues = Venue::pluck('venue_name');
 
-        return view('event.addview', 
+        return view('event.addview',
     [
         'event_types' => $event_types,
         'user_id' => $user_id,
@@ -109,7 +109,7 @@ class EventController extends Controller
             ->update(['organizer_phone' => $request->input('organizer_phone')]);
         Organizer::where('user_id', $user_id)
             ->update(['organizer_email' => $request->input('organizer_email')]);
-            
+
         $event_name = $request->input('event_name');
         $start_date = date("Y-m-d H:i:s", strtotime("{$request->input('start_date')} {$request->input('start_time')}"));
         $end_date = date("Y-m-d H:i:s", strtotime("{$request->input('end_date')} {$request->input('end_time')}"));
@@ -132,7 +132,7 @@ class EventController extends Controller
 
         try {
             $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
-            
+
         } catch (\Exception $e) {
 
             $msg = "Please check the box if adding a new venue or choose an existing location listed under the input box.";
@@ -161,10 +161,10 @@ class EventController extends Controller
         return redirect('/events');
         // get the organizer and organization info
 
-        
+
     }
 
-    public function event_details(Request $request) {
+    public function edit_event(Request $request) {
         $event_id = $request->event_id;
         $user_id = $request->user_id;
 
@@ -184,7 +184,7 @@ class EventController extends Controller
         $event = Event::where('events.id', $event_id)
                     ->join('venues', 'venues.id', '=', 'events.venue_id')
                     ->first();
-        return view('event.event_details', [
+        return view('event.edit_event', [
             'event' => $event,
             'event_types' => $event_types,
             'organizer' => $organizer,
@@ -204,7 +204,7 @@ class EventController extends Controller
             'organizer_phone' => 'required',
             'organizer_email' => 'required',
         ]);
-        
+
         $event_id = $request->event_id;
         $user_id = $request->user_id;
 
@@ -225,7 +225,7 @@ class EventController extends Controller
 
         try {
             $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
-            
+
         } catch (\Exception $e) {
 
             $msg = "Please check the box if adding a new venue or choose an existing location listed under the input box.";
@@ -251,13 +251,13 @@ class EventController extends Controller
             ->update(['organizer_phone' => $organizer_phone, 'organizer_email' => $organizer_email]);
 
         $event->save();
-        
+
         return redirect()->route('myevents', ['id' => $user_id]);
     }
 
     public function delete_event(Request $request) {
         // first drop ticket type because it is foreign keyed into event
-        // if ticket types already have customers who bought them, then we have to know which customers bought 
+        // if ticket types already have customers who bought them, then we have to know which customers bought
         // so we can refund them
         // Should NOT be able to delete an event 24 hours (or even more) before
         $event = Event::find($request->event_id);

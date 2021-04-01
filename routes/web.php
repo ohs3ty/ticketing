@@ -56,7 +56,7 @@ Route::post('/addeventaction', [EventController::class, 'add_event_action']);
 // view user events
 Route::get('/myevents', [EventController::class, 'view_user_events'])->name('myevents');
 // details page
-Route::get('/eventdetails', [EventController::class, 'event_details'])->name('eventdetails');
+Route::get('/editevent', [EventController::class, 'edit_event'])->name('editevent');
 Route::post('/updateevent', [EventController::class, 'edit_event_action']);
 Route::post('/delete', [EventController::class, 'delete_event']);
 
