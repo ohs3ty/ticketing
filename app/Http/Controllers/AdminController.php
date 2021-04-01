@@ -90,7 +90,6 @@ class AdminController extends Controller
         $validated = $request->validate([
             'first_name' => 'bail|required',
             'last_name' => 'required',
-            // 'organizer_phone' => 'regex:/[0-9]{10}/',
         ]);
 
 
@@ -117,7 +116,7 @@ class AdminController extends Controller
                                     ->get();
 
             }
-
+            dd($organizer_bool);
             if (($user->role == "general") or (count($organizer_bool) == 0)) {
                 $validated = $request->validate([
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
