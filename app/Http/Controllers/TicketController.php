@@ -26,7 +26,7 @@ class TicketController extends Controller
             'ticket_close_date' => 'required|date|after:ticket_open_date',
             'ticket_price' => 'required',
         ]);
-        
+
         $event_id = $request->event_id;
         $ticket_name = $request->ticket_name;
         $unlimited_bool = $request->unlimited;
@@ -49,11 +49,11 @@ class TicketController extends Controller
         $new_ticket->ticket_close_date = $ticket_close_date;
 
 
-        
+
         if ($unlimited_bool == 0) {
             $ticket_limit = $request->ticket_limit;
-        
-            // if ticket limit is empty but is not checked, redirect 
+
+            // if ticket limit is empty but is not checked, redirect
             if (empty($ticket_limit)) {
                 return back()
                     ->withInput()
@@ -61,7 +61,7 @@ class TicketController extends Controller
             }
 
             $new_ticket->ticket_limit = $ticket_limit;
-        } 
+        }
 
         $new_ticket->save();
 
@@ -76,6 +76,8 @@ class TicketController extends Controller
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
                             ->join('events', 'events.id', '=', 'ticket_types.event_id')
                             ->get();
+
+        dd($ticket_types);
 
         return view('ticket.view_ticket', [
             'event_id' => $event_id,
@@ -93,7 +95,7 @@ class TicketController extends Controller
                                     ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                     ->where('ticket_types.id', $ticket_type_id)
                                     ->first();
-        
+
                                     // return ($ticket_type);
         return view('ticket.edit_ticket', [
             'ticket_type' => $ticket_type
@@ -105,7 +107,7 @@ class TicketController extends Controller
         $ticket_type = TicketType::find($ticket_type_id);
 
         $ticket_type->ticket_name = $request->ticket_name;
-        // if ticket cost is empty 
+        // if ticket cost is empty
         if (is_null($request->ticket_cost)) {
             $ticket_cost = 0.0;
         } else {
@@ -119,8 +121,8 @@ class TicketController extends Controller
 
         if ($request->unlimited == 0) {
             $ticket_limit = $request->ticket_limit;
-        
-            // if ticket limit is empty but is not checked, redirect 
+
+            // if ticket limit is empty but is not checked, redirect
             if (empty($ticket_limit)) {
                 return back()
                     ->withInput()
