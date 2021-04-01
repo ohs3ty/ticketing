@@ -41,6 +41,7 @@ document.getElementById("new_venue").addEventListener("click", function() {
 // grey out Quantity box if checkbox is checked
 function greyQuantity() {
     if (document.getElementById("unlimited").checked == true) {
+        document.getElementById("ticket_limit").value = "";
         document.getElementById("ticket_limit").disabled = true;
     } else if (document.getElementById("unlimited").checked == false) {
         document.getElementById("ticket_limit").disabled = false;
