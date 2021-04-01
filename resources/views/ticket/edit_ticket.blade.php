@@ -99,8 +99,8 @@ Add Ticket Type
     document.addEventListener("DOMContentLoaded", function(event) {
 
         if (document.getElementById("unlimited").checked == true) {
+            document.getElementById("ticket_limit").value = 0;
             document.getElementById("ticket_limit").disabled = true;
-            document.getElementById("ticket_limit").innerHTML = 0;
         }
     })
 </script>
