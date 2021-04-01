@@ -35,7 +35,7 @@ Add Ticket Type
                         @if (is_null($ticket_type->ticket_limit))
                             {{ Form::checkbox('unlimited', 1, null, ['checked' => 'checked', 'class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}}
                         @else
-                            {{ Form::checkbox('unlimited', 1, $ticket_type->$ticket_limit, ['class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}}
+                            {{-- {{ Form::checkbox('unlimited', 1, $ticket_type->$ticket_limit, ['class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}} --}}
                         @endif
                         {{ Form::label('unlimited', 'Unlimited tickets', ['class' => 'form-check-label']) }}
                     </div>
@@ -61,9 +61,9 @@ Add Ticket Type
                     <br>
                     <div class="row no-gutters">
                         <div class="card-text col-sm-6">
-                            
+
                             {{ Form::label('ticket_open_date') }}<br>
-                            {{ Form::date('ticket_open_date', \Carbon\Carbon::parse($ticket_type->ticket_open_date), 
+                            {{ Form::date('ticket_open_date', \Carbon\Carbon::parse($ticket_type->ticket_open_date),
                                 ['required' => 'required',  'class' => 'w-75'])}}
                         </div>
                             @error('ticket_close_date')
@@ -71,7 +71,7 @@ Add Ticket Type
                             @enderror
                         <div class="card-text col-sm-6">
                             {{ Form::label('ticket_close_date') }}<br>
-                            {{ Form::date('ticket_close_date', \Carbon\Carbon::parse($ticket_type->ticket_close_date), 
+                            {{ Form::date('ticket_close_date', \Carbon\Carbon::parse($ticket_type->ticket_close_date),
                                 ['required' => 'required', 'class' => 'w-75'])}}
                         </div>
                     </div>
@@ -88,7 +88,7 @@ Add Ticket Type
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </div>
 {{Form::hidden('event_id', $ticket_type->event_id)}}

@@ -41,13 +41,13 @@ View Ticket
 
         <div class="row no-gutters">
             <span class="col-4">${{ number_format($ticket_type->ticket_cost, 2) }}</span>
-            {{-- <span class="col-4">
+            <span class="col-4">
                 @if (empty($ticket_type->ticket_limit))
                 Unlimited
                 @else
                 {{ $ticket_type->ticket_limit }}
                 @endif
-            </span> --}}
+            </span>
             <span class="col-4">{{ $ticket_type->profile_name }}</span>
         </div>
         <br>
