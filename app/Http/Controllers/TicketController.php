@@ -70,7 +70,6 @@ class TicketController extends Controller
 
     public function view_tickets(Request $request) {
         $event_id = $request->event_id;
-        dd($event_id);
         $ticket_types = TicketType::select('ticket_types.id', 'ticket_name', 'ticket_cost', 'ticket_description', 'profile_name',
                                             'ticket_open_date', 'ticket_close_date')
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
