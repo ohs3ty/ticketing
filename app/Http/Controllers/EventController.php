@@ -266,4 +266,9 @@ class EventController extends Controller
 
         return redirect()->route("myevents", ['id' => $request->user_id]);
     }
+
+    public function event_detail(Request $request) {
+
+        return ("success");
+    }
 }
