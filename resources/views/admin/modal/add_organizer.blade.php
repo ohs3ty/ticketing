@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 {{ Form::label('organizer_phone', 'Organizer Phone (no hyphens or parantheses)') }}<br>
-                {{ Form::text('organizer_phone', null, ['maxlength' => 10]) }}
+                {{ Form::text('organizer_phone', null, ['maxlength' => 10, 'class' => 'form-control']) }}
             </div>
           </div>
         </div>
