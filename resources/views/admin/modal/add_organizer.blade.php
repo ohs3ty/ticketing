@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div id="addOrganizer" class="modal fade" role="dialog">
     <div class="modal-dialog">
-    
+
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -13,7 +13,7 @@
       <div class="modal-body">
           {{ Form::open(array('url' => '/admin/addorganizer', 'method' => 'post')) }}
           <div class="form-group">
-            {{ Form::label('first_name', 'First Name') }}<br>
+            {{ Form::label('first_name', 'First Name', ['class' => 'form-label']) }}<br>
             {{ Form::text('first_name', null, ['required']) }}
           </div>
 
@@ -31,7 +31,7 @@
                 {{ Form::label('organizer_email', 'Organizer Email (if different from personal email)') }}<br>
                 {{ Form::text('organizer_email') }}
             </div>
-            
+
             <div class="form-group">
                 {{ Form::label('organizer_phone', 'Organizer Phone (no hyphens or parantheses)') }}<br>
                 {{ Form::text('organizer_phone', null, ['maxlength' => 10]) }}
@@ -56,7 +56,7 @@
       document.getElementById("phone_email_section").hidden = false;
     } else {
       document.getElementById("phone_email_section").hidden = true;
-      
+
     }
   }
 
