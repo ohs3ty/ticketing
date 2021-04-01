@@ -30,7 +30,7 @@ Add Ticket Type
                         <div class="error text-danger"> {{ $message }} </div>
                     @enderror
                     {{ Form::label('ticket_limit', 'Ticket Quantity') }}<br>
-                    {{ Form::number('ticket_limit', null, ['class' => 'w-75']) }}<br>
+                    {{ Form::number('ticket_limit', $ticket_type->ticket_limit, ['class' => 'w-75']) }}<br>
                     <div class="form-check">
                         @if (is_null($ticket_type->ticket_limit))
                             {{ Form::checkbox('unlimited', 1, null, ['checked' => 'checked', 'class' => 'form-check-input', 'id' => 'unlimited', 'onclick' => 'greyQuantity()'])}}
