@@ -10,7 +10,6 @@ Home
 
 @section('content')
 <div class="container">
-    <h4>Home</h4>
     <h3>This Week's Events</h3>
 
     @foreach ($events as $event)
@@ -25,7 +24,7 @@ Home
                 <div class="col-sm-10">
                     <div class="card-body">
                         <h3 class="card-title">{{ $event->event_name }}</h3>
-                        <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }} 
+                        <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
                             at {{ \Carbon\Carbon::parse($event->start_date)->format('g:i a') }}</h5>
                         <p class="card-text">{{ $event->event_description }}</p>
                     </div>
@@ -36,9 +35,9 @@ Home
     @endforeach
     @guest
         Guest only
-    
+
     @else
-    
+
         @if (Auth::user()->role == 'admin')
         {{-- if we want admin powers here --}}
         @else
