@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-Event Details
+Edit Event
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@ Event Details
         <div class="error text-danger"> Please correct the errors below </div>
         @endif
 
-        
+
         {{-- {{Auth::user()->id}} --}}
         {{ Form::open(array('url' => '/updateevent', 'method' => 'POST')) }}
 
@@ -73,7 +73,7 @@ Event Details
             {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
             {{ Form::text('venue_zipcode') }}
         </div>
-        
+
         {{-- organization information --}}
         <h3>Organization Information</h3>
         Choose the organization in charge.<br><br>
@@ -90,7 +90,7 @@ Event Details
         <div class='form-group'>
             {{ Form::label('organizer_phone', 'Organizer Phone Number') }}<br>
             {{ Form::text('organizer_phone', $organizer->organizer_phone) }}
-        </div>    
+        </div>
         <div class='form-group'>
             {{ Form::label('organizer_email', 'Organizer Email') }}<br>
             {{ Form::email('organizer_email', $organizer->organizer_email) }}
