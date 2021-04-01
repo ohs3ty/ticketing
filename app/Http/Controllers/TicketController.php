@@ -93,7 +93,6 @@ class TicketController extends Controller
                                     ->where('ticket_types.id', $ticket_type_id)
                                     ->first();
 
-        dd($ticket_type->ticket_limit);
 
                                     // return ($ticket_type);
         return view('ticket.edit_ticket', [
