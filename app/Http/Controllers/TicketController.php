@@ -76,8 +76,6 @@ class TicketController extends Controller
                             ->join('events', 'events.id', '=', 'ticket_types.event_id')
                             ->get();
 
-        dd($ticket_types);
-
         return view('ticket.view_ticket', [
             'event_id' => $event_id,
             'ticket_types' => $ticket_types,
