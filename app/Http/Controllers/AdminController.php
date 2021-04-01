@@ -112,7 +112,7 @@ class AdminController extends Controller
 
             if (($user->role == "admin")) {
                 // pass
-                $organizer_bool = Organizer::where('user_id', '$user->id')
+                $organizer_bool = Organizer::where('user_id', $user->id)
                                     ->get();
 
             }
