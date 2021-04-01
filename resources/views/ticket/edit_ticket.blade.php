@@ -100,7 +100,7 @@ Add Ticket Type
 
         if (document.getElementById("unlimited").checked == true) {
             document.getElementById("ticket_limit").value = "";
-            document.getElementById("ticket_limit").disabled = true;
+            // document.getElementById("ticket_limit").disabled = true;
         }
     })
 </script>
