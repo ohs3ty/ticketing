@@ -86,13 +86,14 @@ class TicketController extends Controller
     public function edit_tickets(Request $request) {
 
         $ticket_type_id = $request->ticket_type_id;
-
         $ticket_type = TicketType::select('event_name', 'ticket_types.id', 'event_id', 'ticket_name', 'ticket_description',
                                             'ticket_limit', 'patron_profile_id', 'ticket_open_date', 'ticket_close_date', 'ticket_cost',
                                             'start_date')
                                     ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                     ->where('ticket_types.id', $ticket_type_id)
                                     ->first();
+
+        dd($ticket_type);
 
                                     // return ($ticket_type);
         return view('ticket.edit_ticket', [
