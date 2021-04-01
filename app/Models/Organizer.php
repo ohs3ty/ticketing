@@ -17,6 +17,6 @@ class Organizer extends Model
 
     public function formatPhone() {
         $phone = substr($this->organizer_phone, 0, 3);
-       return substr($this->organizer_phone, 0, 3);
+       return $phone;
     }
 }
