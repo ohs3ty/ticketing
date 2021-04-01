@@ -269,6 +269,6 @@ class EventController extends Controller
 
     public function event_detail(Request $request) {
 
-        return ("success");
+        return view('event.event_detail');
     }
 }
