@@ -28,7 +28,7 @@ View All Events
                                 <p style="margin-top: 10px;" class="card-text">{{ $event->event_description }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-2 bg-secondary">
+                        <div style="background-color: rgb(162, 178, 212);" class="col-sm-2">
                             See more
                         </div>
                     </div>
