@@ -13,8 +13,8 @@
       <div class="modal-body">
           {{ Form::open(array('url' => '/admin/addorganizer', 'method' => 'post')) }}
           <div class="form-group">
-            {{ Form::label('first_name', 'First Name', ['class' => 'form-label']) }}<br>
-            {{ Form::text('first_name', null, ['required']) }}
+            {{ Form::label('first_name', 'First Name') }}<br>
+            {{ Form::text('first_name', null, ['required', 'class' => 'form-control']) }}
           </div>
 
           <div class="form-group">
