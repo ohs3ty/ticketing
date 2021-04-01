@@ -60,7 +60,7 @@ Route::get('/editevent', [EventController::class, 'edit_event'])->name('editeven
 Route::post('/updateevent', [EventController::class, 'edit_event_action']);
 Route::post('/delete', [EventController::class, 'delete_event']);
 //event_details (where users can buy tickets)
-Route::get('/eventdetails', [EventController::class, 'event_detail'])->name('eventdetail');
+Route::get('/eventdetail', [EventController::class, 'event_detail'])->name('eventdetail');
 
 // ticketing
 Route::get('/ticket-add', [TicketController::class, 'add_ticket'])->name('ticket-add');
