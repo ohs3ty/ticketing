@@ -23,9 +23,9 @@ View All Events
                         <div class="col-sm-10">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $event->event_name }}</h3>
-                                <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }} 
+                                <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
                                     at {{ \Carbon\Carbon::parse($event->start_date)->format('g:i a') }}</h5>
-                                <p class="card-text">{{ $event->event_description }}</p>
+                                <p style="margin-top: 5px;" class="card-text">{{ $event->event_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -35,5 +35,5 @@ View All Events
         @endforeach
             </section>
     @endfor
-    
+
 @endsection
