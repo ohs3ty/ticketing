@@ -72,13 +72,9 @@ class TicketController extends Controller
         $event_id = $request->event_id;
         $ticket_types = TicketType::select('ticket_types.id', 'ticket_name', 'ticket_cost', 'ticket_description', 'profile_name',
                                             'ticket_open_date', 'ticket_close_date')
-                                            ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
-                                            ->get();
-        // $ticket_types = TicketType::select('ticket_types.id', 'ticket_name', 'ticket_cost', 'ticket_description', 'profile_name',
-        //                                     'ticket_open_date', 'ticket_close_date')
-        //                     ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
-        //                     ->join('events', 'events.id', '=', 'ticket_types.event_id')
-        //                     ->get();
+                            ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
+                            ->join('events', 'events.id', '=', 'ticket_types.event_id')
+                            ->get();
 
         dd($ticket_types);
 
