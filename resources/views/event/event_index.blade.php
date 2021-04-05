@@ -11,6 +11,7 @@ View All Events
     @for($i = 0; $i < 12; $i++)
         <section>
         @foreach ($events as $event)
+            @if (\Carbon\Carbon::parse($event->start_date)->format('n') == ($i + 1))
                 <div class="card" style="border-color: lightgrey">
                     <div class="row no-gutters">
                         <div class="col-sm-2">
@@ -30,6 +31,7 @@ View All Events
                     </div>
                 </div>
                 <br>
+            @endif
         @endforeach
             </section>
     @endfor
