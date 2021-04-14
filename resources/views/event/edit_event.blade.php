@@ -80,7 +80,7 @@ Edit Event
         Choose the organization in charge.<br><br>
         <div class="form-group">
             {{ Form::label('organization_name', 'Organization Name')}}<br>
-            {{ Form::select('organization_name', $organization_names, ($event->organization_id - 1))}}
+            {{ Form::select('organization_name', $organization_names, ($event->organization_id))}}
 
             {{$event->organization_id - 1}}
         </div>
