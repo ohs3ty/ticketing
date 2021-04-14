@@ -14,7 +14,7 @@ View All Events
         <section>
         @foreach ($events as $event)
             @if (\Carbon\Carbon::parse($event->start_date)->format('n') == ($i + 1))
-                <div class="eventDetails card" style="border-color: lightgrey">
+                <div class="card" style="border-color: lightgrey">
                     <div class="row no-gutters">
                         <div class="col-sm-2">
                             <div class="card-body text-right">
@@ -31,7 +31,7 @@ View All Events
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button class="btn btn-info">View Details</button>
+                            <button class="btn" data-toggle="modal" data-target="#{{$event->event_name}}{{$event->event_id}}">View Details</button>
                         </div>
                     </div>
                 </div>
