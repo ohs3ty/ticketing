@@ -24,6 +24,7 @@ class EventController extends Controller
 
         $events = Event::select('*')
                     ->orderBy('start_date')
+                    ->join('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->get();
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
