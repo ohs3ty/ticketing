@@ -183,7 +183,9 @@ class EventController extends Controller
 
         $event = Event::where('events.id', $event_id)
                     ->join('venues', 'venues.id', '=', 'events.venue_id')
+                    ->join('organizations', 'organizations.id', '=', 'events.organization_id')
                     ->first();
+
         return view('event.edit_event', [
             'event' => $event,
             'event_types' => $event_types,
