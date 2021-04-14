@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseTicketType extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'transaction_id',
+        'ticket_type_id',
+        'quantity',
+    ];
 }
