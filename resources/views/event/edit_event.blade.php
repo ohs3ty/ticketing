@@ -49,6 +49,8 @@ Edit Event
         <div class="form-group">
             {{ Form::label('event_type', 'Event Type')}}<br>
             {{ Form::select('event_type', $event_types, ($event->event_type_id))}}
+
+            {{$event->event_type_id}}
         </div>
         <div class="form-group">
             {{ Form::label('event_description', 'Event Description')}}<br>
