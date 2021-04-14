@@ -31,7 +31,7 @@ View All Events
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <button>View Details</button>
+                            <button class="btn btn-info">View Details</button>
                         </div>
                     </div>
                 </div>
