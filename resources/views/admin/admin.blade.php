@@ -26,8 +26,6 @@
     </div>
 @endif
 
-{{Auth::user()->role}}
-
 
 
 @endsection
