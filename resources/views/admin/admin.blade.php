@@ -23,7 +23,7 @@
     </div>
 </div>
 
-{{Auth::user()}}
+{{Auth::user()->role}}
 
 
 
