@@ -83,7 +83,7 @@
     @include("admin.modal.edit_organization")
 
     <br><br>
-    <a>Back</a>
+    <a href="{{ url('admin')}}">Back to the Admin Page</a>
 
   </div>
 </div>
