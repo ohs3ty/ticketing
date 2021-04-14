@@ -48,9 +48,8 @@ Edit Event
         </div>
         <div class="form-group">
             {{ Form::label('event_type', 'Event Type')}}<br>
-            {{ Form::select('event_type', $event_types, ($event->event_type_id))}}
+            {{ Form::select('event_type', $event_types, ($event->event_type_id - 1))}}
 
-            {{$event->event_type_id}}
         </div>
         <div class="form-group">
             {{ Form::label('event_description', 'Event Description')}}<br>
@@ -81,11 +80,10 @@ Edit Event
         Choose the organization in charge.<br><br>
         <div class="form-group">
             {{ Form::label('organization_name', 'Organization Name')}}<br>
-            {{ Form::select('organization_name', $organization_names)}}
+            {{ Form::select('organization_name', $organization_names, ($event->organization_id - 1))}}
 
         </div>
 
-        {{ $event }}
         {{-- organizer information --}}
         <h3>Organizer Information</h3>
         Please change your contact information (as the organization contact) as needed:
