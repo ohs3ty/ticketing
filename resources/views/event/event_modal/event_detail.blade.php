@@ -7,7 +7,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Event name: {{ $event->event_name }}
+            Event name: {{ $event->event_name }} <br>
             Start Date:
 
         </div>
