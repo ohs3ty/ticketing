@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-Edit Event
+Event Details
 @endsection
 
 @section('content')

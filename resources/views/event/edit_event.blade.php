@@ -82,7 +82,6 @@ Edit Event
             {{ Form::label('organization_name', 'Organization Name')}}<br>
             {{ Form::select('organization_name', $organization_names, ($event->organization_id))}}
 
-            {{$event->organization_id - 1}}
         </div>
 
         {{-- organizer information --}}
