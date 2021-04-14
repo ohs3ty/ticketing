@@ -25,7 +25,9 @@
         </div>
     </div>
 @else
-    <h2>You do not have permission to view this page</h2>
+    <div class="text-center">
+        <h2>You do not have permission to view this page</h2>
+    </div>
 @endif
 
 
