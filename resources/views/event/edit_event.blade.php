@@ -83,7 +83,7 @@ Edit Event
 
         </div>
 
-        {{ $event }}
+        {{ $event->organization_name }}
         {{-- organizer information --}}
         <h3>Organizer Information</h3>
         Please change your contact information (as the organization contact) as needed:
