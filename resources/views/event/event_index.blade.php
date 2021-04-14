@@ -8,6 +8,8 @@ View All Events
     <h3>This Year's Events</h3>
     <br>
     {{-- Loops through each month and all events in that month --}}
+    {{-- if we want to add a header month for each month or something --}}
+
     @for($i = 0; $i < 12; $i++)
         <section>
         @foreach ($events as $event)

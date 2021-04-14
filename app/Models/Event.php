@@ -20,4 +20,5 @@ class Event extends Model
         'event_type_id',
         'organization_id'
     ];
+
 }

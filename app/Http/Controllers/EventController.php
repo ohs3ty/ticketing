@@ -196,6 +196,7 @@ class EventController extends Controller
         ]);
     }
 
+
     public function edit_event_action(Request $request) {
         $validated = $request->validate([
             'event_name' => 'bail|required',

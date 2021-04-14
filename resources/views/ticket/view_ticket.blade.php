@@ -16,7 +16,7 @@ View Ticket
 <div class="row">
 @foreach ($ticket_types as $ticket_type)
 <div class="card col-5 m-4">
-    <div class="card-header">
+    <div class="bg-white card-header">
         <h4 style="padding-top: 10px">{{$ticket_type->ticket_name}}</h4>
     </div>
     <div class="card-body">
