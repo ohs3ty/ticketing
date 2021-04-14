@@ -4,10 +4,12 @@
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
+            <div class="text-left">
+                Details for {{ $event->event_name }}
+            </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Event name: {{ $event->event_name }} <br>
             Start Date: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
 
         </div>
