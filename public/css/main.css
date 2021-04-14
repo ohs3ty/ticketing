@@ -58,3 +58,7 @@ body {
     display: block;
     background-color: white;
 }
+
+.eventDetails:hover {
+    color: rgb(208, 208, 208);
+}
