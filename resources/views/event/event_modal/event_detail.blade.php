@@ -10,7 +10,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Start Date: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
+            Start Date and Time: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y g:i a') }}
 
         </div>
         <div class="modal-footer">
