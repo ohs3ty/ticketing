@@ -30,6 +30,9 @@ View All Events
                                 <p style="margin-top: 10px;" class="card-text">{{ $event->event_description }}</p>
                             </div>
                         </div>
+                        <div class="col-sm-2">
+                            <button>View Details</button>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -38,7 +41,6 @@ View All Events
             </section>
     @endfor
 
-    <!-- Button trigger modal -->
 <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
@@ -50,7 +52,6 @@ View All Events
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
         <p>Some text in the modal.</p>
