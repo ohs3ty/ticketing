@@ -14,7 +14,7 @@ View All Events
         <section>
         @foreach ($events as $event)
             @if (\Carbon\Carbon::parse($event->start_date)->format('n') == ($i + 1))
-                <div onclick="location.href = '{{url('eventdetail')}}'" class="eventDetails card" style="border-color: lightgrey">
+                <div onclick="location.href = '{{route('eventdetail', ['id' => $event->id])}}'" class="eventDetails card" style="border-color: lightgrey">
                     <div class="row no-gutters">
                         <div class="col-sm-2">
                             <div class="card-body text-right">
