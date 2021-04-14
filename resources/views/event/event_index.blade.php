@@ -31,8 +31,10 @@ View All Events
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            {{-- modal button --}}
-                            <button class="btn" data-toggle="modal" data-target="#event{{$event->event_id}}">View Details</button>
+                            <div class="text-center">
+                                {{-- modal button --}}
+                                <button class="btn" data-toggle="modal" data-target="#event{{$event->event_id}}">View Details</button>
+                            </div>
                         </div>
                         <!-- Modal -->
                             <div id="event{{$event->event_id}}" class="modal fade" role="dialog">
