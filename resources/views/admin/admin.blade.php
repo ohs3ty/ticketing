@@ -3,7 +3,6 @@
 @section('title')
     Admin
 @endsection
-{{Auth::user()}}
 @section('content')
 <h3>Organizations</h3>
 <div class="container">
@@ -24,6 +23,7 @@
     </div>
 </div>
 
+{{Auth::user()}}
 
 
 
