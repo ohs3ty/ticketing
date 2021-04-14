@@ -14,9 +14,8 @@
             End Date and Time: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y g:i a') }}<br>
             Description: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
-
-
             Number of Tickets Left:
+
 
         </div>
         <div class="modal-footer">
