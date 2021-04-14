@@ -60,5 +60,6 @@ body {
 }
 
 .eventDetails:hover {
-    background-color: rgb(208, 208, 208);
+    background-color: rgb(225, 225, 225);
+    transition: 1s;
 }
