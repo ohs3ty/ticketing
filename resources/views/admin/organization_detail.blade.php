@@ -82,6 +82,7 @@
     @include("admin.modal.add_organizer")
     @include("admin.modal.edit_organization")
 
+    <br><br>
     <a>Back</a>
 
   </div>
