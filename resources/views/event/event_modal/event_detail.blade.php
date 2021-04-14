@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             Event name: {{ $event->event_name }} <br>
-            Start Date:
+            Start Date: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y') }}
 
         </div>
         <div class="modal-footer">
