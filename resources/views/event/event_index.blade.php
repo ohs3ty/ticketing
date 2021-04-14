@@ -31,7 +31,7 @@ View All Events
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="text-center" style="padding-top: 50%">
+                            <div class="text-center" style="padding-top: 10%;">
                                 {{-- modal button --}}
                                 <button class="btn" data-toggle="modal" data-target="#event{{$event->event_id}}">View Details</button>
                             </div>
