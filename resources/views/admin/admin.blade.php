@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 
-@if(Auth::user()->role)
+@if(Auth::user())
     <h3>Organizations</h3>
     <div class="container">
         <a class="btn btn-primary" href="{{ url('/admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>
