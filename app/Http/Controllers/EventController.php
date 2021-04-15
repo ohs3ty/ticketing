@@ -26,12 +26,15 @@ class EventController extends Controller
                     ->orderBy('start_date')
                     ->join('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->get();
+        $ticket_types = TicketType::all();
+
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('event.event_index', [
             'events' => $events,
             'months' => $months,
+            'ticket_types' => $ticket_types,
         ]);
     }
 

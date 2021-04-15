@@ -14,6 +14,12 @@
             End: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y g:i a') }}<br>
             Description: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
+            Ticket Groups:<br>
+            @foreach ($ticket_types as $ticket_group)
+                @if($ticket_group->$event_id == $event->id)
+                    {{ $ticket_group->ticket_name }}
+                @endif
+            @endforeach
             Number of Tickets Left:
 
 
