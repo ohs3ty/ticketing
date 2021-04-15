@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Http\Controllers\DB;
 use App\Models\EventTimes;
 use DateInterval;
 use DateTime;
