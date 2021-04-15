@@ -5,8 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\LogoutController;
-
-
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +65,7 @@ Route::post('/addticketaction', [TicketController::class, 'add_ticket_action']);
 Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
 Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');
 Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']);
+
+
+//buy tickets
+Route::get('buy/buy_ticket', [TransactionController::class, 'buy_ticket'])->name('buy_ticket');
