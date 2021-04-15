@@ -31,7 +31,6 @@
     <h3>Organizers</h3>
     <div class="container">
         <div class="row">
-            @foreach($organizers as $organizer)
             <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
                 <table class="table">
                     <thead>
@@ -41,18 +40,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{{ $organizer->name }}</td>
-                            <td>
-                                @foreach ($organization_organizers as $o_o )
-                                    {{ $o_o->organization_name }}
-                                @endforeach
-                            </td>
-                        </tr>
+                        @foreach($organizers as $organizer)
+
+                            <tr>
+                                <td>{{ $organizer->name }}</td>
+                                <td>
+                                    @foreach ($organization_organizers as $o_o )
+                                        {{ $o_o->organization_name }}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
-            @endforeach
         </div>
     </div>
 @else
