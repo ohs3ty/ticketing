@@ -22,7 +22,8 @@ class EventController extends Controller
     //
     public function index() {
 
-        $events = Event::select('*')
+        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
+                                    'event_type_id', 'organization_id')
                     ->orderBy('start_date')
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->get();
@@ -35,6 +36,7 @@ class EventController extends Controller
             'events' => $events,
             'months' => $months,
             'ticket_types' => $ticket_types,
+            'ticket_type_count' => $ticket_type_count,
         ]);
     }
 
