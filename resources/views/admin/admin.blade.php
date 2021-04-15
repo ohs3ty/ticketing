@@ -37,11 +37,17 @@
                     <thead>
                         <tr>
                             <th>Organizer</th>
+                            <th>List of Organizations</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ $organizer->name }}</td>
+                            <td>
+                                @foreach ($organizer_organizations as $o_o )
+                                    {{ $o_o->organizer_id }}
+                                @endforeach
+                            </td>
                         </tr>
                     </tbody>
                 </table>
