@@ -44,7 +44,7 @@
                         <tr>
                             <td>{{ $organizer->name }}</td>
                             <td>
-                                @foreach ($organizer_organizations as $o_o )
+                                @foreach ($organization_organizers as $o_o )
                                     {{ $o_o->organizer_id }}
                                 @endforeach
                             </td>
