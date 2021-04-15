@@ -10,8 +10,8 @@ use DateInterval;
 use DateTime;
 
 class TransactionController extends Controller {
-    public function buy_ticket() {
-
+    public function buy_ticket(Request $request) {
+        dd($request);
         return view('transaction.buy_ticket');
     }
 }
