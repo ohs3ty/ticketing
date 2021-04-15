@@ -27,7 +27,7 @@
         <div class="row">
             @foreach($organizers as $organizer)
             <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Organizer</th>
