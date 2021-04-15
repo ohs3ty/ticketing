@@ -32,7 +32,7 @@ Home
                 <div class="col-sm-2">
                     <div class="text-center" style="padding-top: 25%;">
                         {{-- modal button --}}
-                        <button class="btn" data-toggle="modal" data-target="#event{{$event->event_id}}">View Details</button>
+                        <button class="btn" data-toggle="modal" data-target="#event{{$event->id}}">View Details</button>
                         {{$event}}
                     </div>
                 </div>
