@@ -28,7 +28,9 @@ class AdminController extends Controller
                         ->join('users', 'users.id', '=', 'organizers.user_id')
                         ->orderBy('users.name')
                         ->get();
-        $organization_organizers = OrganizationOrganizer::all();
+        $organization_organizers = OrganizationOrganizer::select()
+                                    ->join('organizations', 'organizations.id', '=', 'organization_organizers.organization_id')
+                                    ->all();
 
         return view('admin.admin', [
             'organizations' => $organizations,

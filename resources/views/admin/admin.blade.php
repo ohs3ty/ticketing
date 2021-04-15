@@ -45,7 +45,7 @@
                             <td>{{ $organizer->name }}</td>
                             <td>
                                 @foreach ($organization_organizers as $o_o )
-                                    {{ $o_o->organizer_id }}
+                                    {{ $o_o->organization_name }}
                                 @endforeach
                             </td>
                         </tr>
