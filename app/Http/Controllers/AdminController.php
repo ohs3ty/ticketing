@@ -30,7 +30,7 @@ class AdminController extends Controller
                         ->get();
         $organization_organizers = OrganizationOrganizer::select()
                                     ->join('organizations', 'organizations.id', '=', 'organization_organizers.organization_id')
-                                    ->all();
+                                    ->get();
 
         return view('admin.admin', [
             'organizations' => $organizations,
