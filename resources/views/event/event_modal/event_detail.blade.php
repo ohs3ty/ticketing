@@ -17,7 +17,7 @@
             Ticket Groups:<br>
             @foreach ($ticket_types as $ticket_type)
                 @if($ticket_type->event_id == $event->id)
-                    {{ $ticket_group->ticket_name }}
+                    {{ $ticket_type->ticket_name }}
                 @endif
             @endforeach
             Number of Tickets Left:
