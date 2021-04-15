@@ -23,7 +23,11 @@
             </div>
             @endforeach
         </div>
+    </div>
 {{-- List of organizers --}}
+
+    <h3>Organizations</h3>
+    <div class="container">
         <div class="row">
             @foreach($organizers as $organizer)
             <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
