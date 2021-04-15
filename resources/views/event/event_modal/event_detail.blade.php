@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <a class="btn btn-default" href="{{ url('buy/buy_ticket') }}">Buy Tickets</a>
+            <a class="btn btn-default" href="{{ route('buy_ticket') }}">Buy Tickets</a>
 
         </div>
     </div>
