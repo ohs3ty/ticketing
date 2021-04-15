@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
-                <table class="table">
+                <table class="table table-lg">
                     <thead>
                         <tr>
                             <th>Organizer</th>
