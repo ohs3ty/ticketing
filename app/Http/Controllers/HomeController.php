@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventTimes;
 use DateInterval;
 use DateTime;
+use App\Models\TicketType;
 
 class HomeController extends Controller
 {
