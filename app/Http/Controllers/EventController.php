@@ -24,7 +24,7 @@ class EventController extends Controller
 
         $events = Event::select('*')
                     ->orderBy('start_date')
-                    ->join('ticket_types', 'ticket_types.event_id', '=', 'events.id')
+                    ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->get();
         $ticket_types = TicketType::all();
 
