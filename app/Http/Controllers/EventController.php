@@ -42,7 +42,7 @@ class EventController extends Controller
         // I have to find the user's organizations (because one user could possibly be in more than one organization)
         // then get those events by organization
 
-        // also if the event has already passed, it should go somewhere else
+        // also if the event has already passed, it should go somewhere else ***** maybe create an archived event table?
 
 
         $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')

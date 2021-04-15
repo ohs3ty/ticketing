@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->timestamps();
             $table->float('transaction_total');
             $table->dateTime('transaction_date');
+            $table->text('status');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers');
         });

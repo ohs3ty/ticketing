@@ -10,8 +10,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Start Date and Time: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y g:i a') }}<br>
-            End Date and Time: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y g:i a') }}<br>
+            Start: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y g:i a') }}<br>
+            End: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y g:i a') }}<br>
             Description: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
             Number of Tickets Left:
