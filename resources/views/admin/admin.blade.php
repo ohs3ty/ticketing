@@ -42,12 +42,12 @@
                     <tbody>
                         @foreach($organizers as $organizer)
 
-                            <tr>
+                            <tr class="text-left">
                                 <td>{{ $organizer->name }}</td>
                                 <td>
                                     @foreach ($organization_organizers as $o_o )
                                         @if($organizer->id == $o_o->organizer_id)
-                                            {{ $o_o->organization_name }}
+                                            {{ $o_o->organization_name }}<br>
                                         @endif
                                     @endforeach
                                 </td>
