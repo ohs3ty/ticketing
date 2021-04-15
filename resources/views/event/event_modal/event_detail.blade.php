@@ -29,9 +29,9 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             {{-- buy tickets button --}}
-            {{ $event->ticket_type_count }}
-            <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Buy Tickets</a>
-
+            @if ($event->ticket_type_count > 0)
+                <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Buy Tickets</a>
+            @endif
         </div>
     </div>
 
