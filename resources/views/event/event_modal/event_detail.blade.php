@@ -15,13 +15,16 @@
             Description: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
             Ticket Groups:<br>
-            @foreach ($ticket_types as $ticket_type)
+            <div class="container">
+                @foreach ($ticket_types as $ticket_type)
                 @if($ticket_type->event_id == $event->id)
-                    {{ $ticket_type->ticket_name }}
+                    {{ $ticket_type->ticket_name }}<br>
+                    <div class="container">
+                        Number of Tickets Left:
+                    </div>
                 @endif
             @endforeach
-            Number of Tickets Left:
-
+            </div>
 
         </div>
         <div class="modal-footer">
