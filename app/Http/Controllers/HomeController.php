@@ -34,8 +34,12 @@ class HomeController extends Controller
                     ->orderBy('start_date')
                     ->get();
 
+        $ticket_types = TicketType::all();
+
+
         return view('home', [
             'events' => $events,
+            'ticket_types' => $ticket_types,
         ]);
     }
 }
