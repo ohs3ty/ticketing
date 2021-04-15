@@ -11,7 +11,7 @@ use DateTime;
 
 class TransactionController extends Controller {
     public function buy_ticket(Request $request) {
-        dd($request);
+        dd($request->event_id);
         return view('transaction.buy_ticket');
     }
 }
