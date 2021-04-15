@@ -28,6 +28,8 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            {{-- buy tickets button --}}
+            {{ count($ticket_types) }}
             <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Buy Tickets</a>
 
         </div>
