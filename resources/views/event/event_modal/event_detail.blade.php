@@ -25,10 +25,11 @@
                 @endif
             @endforeach
             </div>
-            <a type="button">Buy Tickets</a>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a type="button" class="btn btn-default">Buy Tickets</a>
+
         </div>
     </div>
 
