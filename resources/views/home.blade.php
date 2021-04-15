@@ -33,7 +33,6 @@ Home
                     <div class="text-center" style="padding-top: 25%;">
                         {{-- modal button --}}
                         <button class="btn" data-toggle="modal" data-target="#event{{$event->id}}">View Details</button>
-                        {{$event}}
                     </div>
                 </div>
                 <!-- Modal -->
