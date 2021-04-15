@@ -36,7 +36,6 @@ class EventController extends Controller
             'events' => $events,
             'months' => $months,
             'ticket_types' => $ticket_types,
-            'ticket_type_count' => $ticket_type_count,
         ]);
     }
 
