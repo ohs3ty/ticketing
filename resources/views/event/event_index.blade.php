@@ -10,6 +10,8 @@ View All Events
     {{-- Loops through each month and all events in that month --}}
     {{-- if we want to add a header month for each month or something --}}
 
+    {{ $events }}
+
     @for($i = 0; $i < 12; $i++)
         <section>
         @foreach ($events as $event)
