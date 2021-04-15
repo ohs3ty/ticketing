@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
-                <table class="table table-lg">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Organizer</th>
@@ -46,7 +46,9 @@
                                 <td>{{ $organizer->name }}</td>
                                 <td>
                                     @foreach ($organization_organizers as $o_o )
-                                        {{ $o_o->organization_name }}
+                                        @if($organizer->id == $o_o->organizer_id)
+                                            {{ $o_o->organization_name }}
+                                        @endif
                                     @endforeach
                                 </td>
                             </tr>
