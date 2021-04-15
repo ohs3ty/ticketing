@@ -16,7 +16,7 @@
             Ticket Cost: ${{ $event->ticket_cost }}<br>
             Ticket Groups:<br>
             <div class="container">
-                @if($event->ticket_type_count > 0) {
+                @if($event->ticket_type_count > 0)
                     @foreach ($ticket_types as $ticket_type)
                         @if($ticket_type->event_id == $event->id)
                             {{ $ticket_type->ticket_name }}<br>
@@ -25,9 +25,9 @@
                             </div>
                         @endif
                     @endforeach
-                } @else {
+                @else
                     No Tickets Available
-                }
+                @endif
 
             </div>
         </div>
