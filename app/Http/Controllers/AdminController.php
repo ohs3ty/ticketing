@@ -24,7 +24,7 @@ class AdminController extends Controller
         $event_types = EventType::select('type_name', 'id')
                         ->orderBy('type_name')
                         ->get();
-        $organizers = Organizer::select('organizers.id')
+        $organizers = Organizer::select('users.name', 'organizers.id')
                         ->join('users', 'users.id', '=', 'organizers.user_id')
                         ->orderBy('users.name')
                         ->get();
