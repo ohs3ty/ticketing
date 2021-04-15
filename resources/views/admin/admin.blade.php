@@ -23,6 +23,25 @@
             </div>
             @endforeach
         </div>
+{{-- List of organizers --}}
+        <div class="row">
+            @foreach($organizers as $organizer)
+            <div class="col-4 text-center" style="margin-bottom: 15px; border-color: rgb(179, 179, 179);" >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Organizer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $organizer->name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            @endforeach
+        </div>
     </div>
 @else
     <div class="text-center">
