@@ -68,4 +68,4 @@ Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']
 
 
 //buy tickets
-Route::get('buy/buy_ticket', [TransactionController::class, 'buy_ticket'])->name('buy/buy_ticket');
+Route::get('buy/buy_ticket', [TransactionController::class, 'buy_ticket'])->name('buy_ticket');
