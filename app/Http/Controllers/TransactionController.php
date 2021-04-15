@@ -12,8 +12,6 @@ use DateTime;
 
 class TransactionController extends Controller {
     public function buy_ticket(Request $request) {
-        print($request->event_id);
-
         $ticket_types = TicketType::where('event_id', $request->event_id)
                         ->get();
 
