@@ -1,4 +1,4 @@
-<div id="event{{$event->event_id}}" class="modal fade" role="dialog">
+<div id="event{{$event->id}}" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
