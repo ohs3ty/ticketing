@@ -23,9 +23,11 @@ class EventController extends Controller
     public function index() {
 
         $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
-                                    'event_type_id', 'organization_id')
+                                    'event_type_id', 'organization_id', DB::raw('COUNT(ticket_type_name) AS ticket_type_count'))
                     ->orderBy('start_date')
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
+                    ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
+                    'event_type_id', 'organization_id')
                     ->get();
         $ticket_types = TicketType::all();
 
