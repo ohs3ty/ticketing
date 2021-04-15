@@ -25,9 +25,8 @@
                 @endif
             @endforeach
             </div>
-
+            <a type="button">Buy Tickets</a>
         </div>
-        <a type="button">Buy Tickets</a>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
