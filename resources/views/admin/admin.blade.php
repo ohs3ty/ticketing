@@ -26,7 +26,9 @@
     </div>
 {{-- List of organizers --}}
 
-    <h3>Organizations</h3>
+    <br><br>
+
+    <h3>Organizers</h3>
     <div class="container">
         <div class="row">
             @foreach($organizers as $organizer)
