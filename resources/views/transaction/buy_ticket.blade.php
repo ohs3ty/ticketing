@@ -37,8 +37,10 @@
                                 {{ Form::number('quantity', null, ['min' => 1, 'class' => 'form-control']) }}
                             </div>
                         </div>
-                        <div class="text-right">
-                            {{ Form::submit('Buy', ['class' => 'btn btn-primary']) }}
+                        <div class="row">
+                            <div class="text-right">
+                                {{ Form::submit('Buy', ['class' => 'btn btn-primary']) }}
+                            </div>
                         </div>
 
                         @endif
