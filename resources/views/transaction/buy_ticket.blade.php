@@ -28,6 +28,9 @@
                             <div class="text-danger" style="padding: none;">
                                 Sorry, no tickets can be bought at this time
                             </div>
+                        @else
+                            {{ Form::label('quantity', 'Quantity') }}
+                            {{ Form::number('quantity', null, ['max' => 1]) }}
                         @endif
                     </p>
 
