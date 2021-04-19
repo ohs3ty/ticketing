@@ -65,6 +65,9 @@
                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
             </a>
+            <a>
+                @include('layouts.partial.cart')
+            </a>
             {{ Form::open(['url'=>route('logout'), 'method'=>'post', 'style'=>'display: none', 'id'=>'logout-form']) }}
             {{ Form::close() }}
             @endguest
@@ -74,7 +77,6 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
-            @include('layouts.partial.cart')
 
                 {{-- {{ $_SESSION['phpCAS'] }} --}}
                 @yield('content')
