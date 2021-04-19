@@ -105,7 +105,6 @@ class TicketController extends Controller
         $ticket_type = TicketType::find($ticket_type_id);
 
         $ticket_type->ticket_name = $request->ticket_name;
-        dd($request->ticket_cost);
         // if ticket cost is empty
         if (is_null($request->ticket_cost)) {
             $ticket_cost = 0.0;
