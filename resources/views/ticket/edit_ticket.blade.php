@@ -54,8 +54,8 @@ Add Ticket Type
                 <div class="col-6">
                     <div class="row no-gutters">
                         <div class="card-text col-sm-6">
-                            {{ Form::label('ticket_price', 'Ticket Price') }}<br>
-                            {{ Form::number('ticket_price', number_format($ticket_type->ticket_cost, 2), ['step' => 0.01, 'class' => 'w-75']) }}<br>
+                            {{ Form::label('ticket_cost', 'Ticket Price') }}<br>
+                            {{ Form::number('ticket_cost', number_format($ticket_type->ticket_cost, 2), ['step' => 0.01, 'class' => 'w-75']) }}<br>
                         </div>
                     </div>
                     <br>
