@@ -29,8 +29,8 @@
                                 Sorry, no tickets can be bought at this time
                             </div>
                         @else
-                        <div class="row bg-primary">
-                            <div class="col-auto">
+                        <div class="row">
+                            <div class="col-6">
                                 {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
                             </div>
                             <div class="col-5">
