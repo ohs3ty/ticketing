@@ -21,6 +21,11 @@
                         @if($ticket_type->event_id == $event->id)
                             {{ $ticket_type->ticket_name }}<br>
                             <div class="container">
+                                @foreach ($ticket_counts as $ticket_count)
+                                    @if($ticket_count->event_name == $event->event_name)
+                                        hello
+                                    @endif
+                                @endforeach
                                 Number of Tickets Left:
                             </div>
                         @endif
@@ -35,9 +40,7 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             {{-- buy tickets button --}}
             @if ($event->ticket_type_count > 0)
-                @foreach ($ticket_counts as $ticket_count)
-                    hello
-                @endforeach
+
                 <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Buy Tickets</a>
             @endif
         </div>
