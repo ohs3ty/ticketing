@@ -53,9 +53,7 @@
                     <a href="{{ url('admin') }}">Admin</a>
                 @endif
             @endif
-            <a style="cursor: default">
-                @include('layouts.partial.cart')
-            </a>
+
         </byu-menu>
         <byu-user-info slot="user">
             @guest <!--only guest-->
@@ -78,7 +76,7 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
-
+                @include('layouts.partial.cart')
                 {{-- {{ $_SESSION['phpCAS'] }} --}}
                 @yield('content')
             </main>
