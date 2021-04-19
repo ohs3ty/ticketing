@@ -8,7 +8,7 @@
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
-            {{ now() }}
+            {{ now() }} {{ $ticket_type->ticket_close_date }}
             <div class="card mb-3" style="max-width: 18rem;">
                 {{-- <div class="card-header"></div> --}}
                 <div class="card-body">
