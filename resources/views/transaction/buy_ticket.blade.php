@@ -10,7 +10,7 @@
         <div class="col-3">
             @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
             {{-- if the ticket_close date already passed --}}
-            <div class="card mb-3 border-danger" style="max-width: 18rem;>
+            <div class="card mb-3 border-danger" style="max-width: 18rem;">
             @else
             <div class="card mb-3" style="max-width: 18rem;">
             @endif
