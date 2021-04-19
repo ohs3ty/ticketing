@@ -53,6 +53,9 @@
                     <a href="{{ url('admin') }}">Admin</a>
                 @endif
             @endif
+            <a>
+                @include('layouts.partial.cart')
+            </a>
         </byu-menu>
         <byu-user-info slot="user">
             @guest <!--only guest-->
@@ -65,9 +68,7 @@
                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
             </a>
-            <a>
-                @include('layouts.partial.cart')
-            </a>
+
             {{ Form::open(['url'=>route('logout'), 'method'=>'post', 'style'=>'display: none', 'id'=>'logout-form']) }}
             {{ Form::close() }}
             @endguest
