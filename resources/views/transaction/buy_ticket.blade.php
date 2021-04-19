@@ -24,7 +24,9 @@
                                             @endif<br>
                         Ticket Cost: ${{$ticket_type->ticket_cost}}<br>
                         @if (now() > $ticket_type->ticket_close_date)
-                            <span class="text-danger">No tickets can be bought</span>
+                            <div class="text-center text-danger">
+                                No tickets can be bought
+                            </div>
                         @endif
                     </p>
                     {{$ticket_type}}
