@@ -22,7 +22,7 @@
                             {{ $ticket_type->ticket_name }}<br>
                             <div class="container">
                                 @foreach ($ticket_counts as $ticket_count)
-                                    @if($ticket_count->event_name == $event->event_name)
+                                    @if($ticket_count->id == $event->id)
                                         hello
                                     @endif
                                 @endforeach
