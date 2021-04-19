@@ -26,7 +26,7 @@
                     </p>
                         @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
                             <div class="bg-primary text-center text-danger" style="padding: none;">
-                                No tickets can be bought at this time
+                                Sorry, no tickets can be bought at this time
                             </div>
                         @endif
                     {{ $ticket_type }}
