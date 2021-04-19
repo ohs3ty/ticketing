@@ -28,20 +28,6 @@
                             <div class="text-danger" style="padding: none;">
                                 Sorry, no tickets can be bought at this time
                             </div>
-                        @else
-                            <form>
-                                <div class="row">
-                                    <div class="col-6">
-                                        {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
-                                    </div>
-                                    <div class="col-5">
-                                        {{ Form::number('quantity', null, ['min' => 1, 'class' => 'form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    {{ Form::submit('Buy', ['class' => 'btn btn-primary']) }}
-                                </div>
-                            {{ Form::close() }}
                         @endif
                     </p>
 
