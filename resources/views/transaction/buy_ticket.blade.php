@@ -8,7 +8,7 @@
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
-            <div class="card mb-3 bg-success" style="max-width: 18rem;">
+            <div class="card mb-3 text-white bg-success" style="max-width: 18rem;">
                 {{-- <div class="card-header"></div> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $ticket_type->ticket_name }}</h5>
