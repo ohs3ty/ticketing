@@ -24,6 +24,8 @@
                                                 {{$ticket_type->ticket_description}}
                                             @endif<br>
                         Ticket Cost: ${{$ticket_type->ticket_cost}}<br>
+                        {{ Form::label('transaction_quantity', Quantity) }}
+                        {{ Form::number('transaction_quantity', null) }}
                     </p>
                         @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
                             <div class="text-danger" style="padding: none;">
