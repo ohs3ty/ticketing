@@ -30,12 +30,13 @@
                             </div>
                         @else
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
                             </div>
                             <div class="col-5">
                                 {{ Form::number('quantity', null, ['min' => 1, 'class' => 'form-control']) }}
                             </div>
+                            {{ Form::submit('Buy') }}
                         </div>
                         @endif
                     </p>
