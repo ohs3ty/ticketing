@@ -67,6 +67,7 @@
             </a>
             {{ Form::open(['url'=>route('logout'), 'method'=>'post', 'style'=>'display: none', 'id'=>'logout-form']) }}
             {{ Form::close() }}
+            @include('layouts.partial.cart')
             @endguest
 
         </byu-user-info>
