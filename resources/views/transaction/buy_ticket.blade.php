@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
-        <div class="col-3">
+        <div class="col-3 bg-primary">
             <div class="card mb-3" style="max-width: 18rem;">
                 <div class="card-header">{{ $ticket_type->ticket_name }}</div>
                 <div class="card-body">
