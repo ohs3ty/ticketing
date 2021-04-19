@@ -31,6 +31,14 @@ class EventController extends Controller
                     ->get();
         $ticket_types = TicketType::all();
 
+        $ticket_counts = Event::select('events.id', 'event_name', 'ticket_types.ticket_name', 'ticket_types.ticket_limit', 'ticket_count')
+                            ->leftJoin('ticket_types', 'ticket_types.event_id', 'events.id')
+                            ->leftJoin(DB::raw("SELECT ticket_types.id, count(transaction_tickets.id) as ticket_count from ticket_types
+                                                LEFT JOIN transaction_tickets on transaction_tickets.ticket_type_id = ticket_types.id
+                                                GROUP BY ticket_types.id
+                                                AS tc"), 'ticket_types.id', '=', 'tc.id')
+                            ->get();
+
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -38,6 +46,7 @@ class EventController extends Controller
             'events' => $events,
             'months' => $months,
             'ticket_types' => $ticket_types,
+            'ticket_counts' => $ticket_counts,
         ]);
     }
 
