@@ -24,7 +24,7 @@
                                 @foreach ($ticket_counts as $ticket_count)
                                     @if($ticket_count->id == $event->id)
                                     Number of Tickets Left:
-                                        @if ($ticket_count->ticket_limit is null)
+                                        @if ($ticket_count->ticket_limit == null)
                                         Unlimited
                                         @endif
                                     {{ $ticket_count->ticket_limit }}
