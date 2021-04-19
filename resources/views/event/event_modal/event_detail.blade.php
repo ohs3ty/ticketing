@@ -40,5 +40,7 @@
         </div>
     </div>
 
+    {{ $ticket_counts }}
+
     </div>
 </div>
