@@ -30,7 +30,7 @@
                             </div>
                         @else
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                                 {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
                             </div>
                             <div class="col-5">
