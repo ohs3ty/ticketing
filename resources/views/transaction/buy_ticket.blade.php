@@ -9,11 +9,11 @@
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
             @if (now() > $ticket_type->ticket_close_date)
-            <div class="card mb-3 border-danger" style="max-width: 18rem;">
+            {{-- if the ticket_close date already passed --}}
+            <div class="card mb-3 border-danger" style="max-width: 18rem; background-color: rgb(194, 194, 194)">
             @else
             <div class="card mb-3" style="max-width: 18rem;">
             @endif
-                {{-- <div class="card-header"></div> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $ticket_type->ticket_name }}</h5>
                     <p class="card-text">
