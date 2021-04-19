@@ -8,12 +8,12 @@
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
-            <div class="card mb-3" style="max-width: 18rem;">
+            <div class="card mb-3 bg-success" style="max-width: 18rem;">
                 {{-- <div class="card-header"></div> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $ticket_type->ticket_name }}</h5>
                     <p class="card-text">
-                        Ticket Description: @if ($ticket_type->ticket_description == null)
+                        Ticket Description: <br>@if ($ticket_type->ticket_description == null)
                                                 No Description
                                             @else
                                                 {{$ticket_type->ticket_description}}
