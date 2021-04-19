@@ -16,8 +16,6 @@
                 </div>
             </div>
         </div>
-
-        {{ $ticket_type }}
     </div>
 
 
