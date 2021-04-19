@@ -23,10 +23,9 @@
                             <div class="container">
                                 @foreach ($ticket_counts as $ticket_count)
                                     @if($ticket_count->id == $event->id)
-                                        hello
+                                    Number of Tickets Left: {{ $ticket_count->ticket_limit }}
                                     @endif
                                 @endforeach
-                                Number of Tickets Left:
                             </div>
                         @endif
                     @endforeach
