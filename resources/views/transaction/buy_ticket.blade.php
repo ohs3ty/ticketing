@@ -36,8 +36,9 @@
                             <div class="col-5">
                                 {{ Form::number('quantity', null, ['min' => 1, 'class' => 'form-control']) }}
                             </div>
-                            {{ Form::submit('Buy') }}
                         </div>
+                        {{ Form::submit('Buy') }}
+
                         @endif
                     </p>
 
