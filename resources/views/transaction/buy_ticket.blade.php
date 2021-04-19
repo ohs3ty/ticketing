@@ -29,8 +29,14 @@
                                 Sorry, no tickets can be bought at this time
                             </div>
                         @else
-                            {{ Form::label('quantity', 'Quantity') }}
-                            {{ Form::number('quantity', null, ['max' => 1]) }}
+                        <div class="row">
+                            <div class="col-auto">
+                                {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
+                            </div>
+                            <div class="col-auto">
+                                {{ Form::number('quantity', null, ['max' => 1, 'class' => 'form-control']) }}
+                            </div>
+                        </div>
                         @endif
                     </p>
 
