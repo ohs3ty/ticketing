@@ -34,7 +34,7 @@
                                 {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
                             </div>
                             <div class="col-5">
-                                {{ Form::number('quantity', null, ['max' => 1, 'class' => 'form-control']) }}
+                                {{ Form::number('quantity', null, ['min' => 1, 'class' => 'form-control']) }}
                             </div>
                         </div>
                         @endif
