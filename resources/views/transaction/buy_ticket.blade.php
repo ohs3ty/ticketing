@@ -8,7 +8,7 @@
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
-            @if (now() > $ticket_type->ticket_close_date)
+            @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
             {{-- if the ticket_close date already passed --}}
             <div class="card mb-3 border-danger" style="max-width: 18rem;>
             @else
@@ -23,9 +23,9 @@
                                                 {{$ticket_type->ticket_description}}
                                             @endif<br>
                         Ticket Cost: ${{$ticket_type->ticket_cost}}<br>
-                        @if (now() > $ticket_type->ticket_close_date)
+                        @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
                             <div class="text-center text-danger">
-                                No tickets can be bought
+                                No tickets can be bought at this time
                             </div>
                         @endif
                     </p>
