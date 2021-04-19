@@ -25,9 +25,10 @@
                                     @if($ticket_count->id == $event->id)
                                     Number of Tickets Left:
                                         @if ($ticket_count->ticket_limit == null)
-                                        Unlimited
+                                            Unlimited
+                                        @else
+                                            {{ $ticket_count->ticket_limit }}
                                         @endif
-                                    {{ $ticket_count->ticket_limit }}
                                     @endif
                                 @endforeach
                             </div>
@@ -48,8 +49,6 @@
             @endif
         </div>
     </div>
-
-    {{ $ticket_counts }}
 
     </div>
 </div>
