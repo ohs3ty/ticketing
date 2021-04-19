@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<i class="bi bi-cart"></i>
+
     <div class="row">
         @foreach ( $ticket_types as $ticket_type)
         <div class="col-3">
