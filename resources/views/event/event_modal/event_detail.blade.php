@@ -10,8 +10,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Start of Event: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y g:i a') }}<br>
-            End of Event: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y g:i a') }}<br>
+            Start of Event: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}<br>
+            End of Event: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}<br>
             Description: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
             Ticket Groups:<br>
@@ -21,7 +21,8 @@
                         @if($ticket_type->event_id == $event->id)
                             {{ $ticket_type->ticket_name }}<br>
                             <div class="container">
-                                Ticket sales for this event starts {{\Carbon\Carbon::parse($ticket_type->ticket_open_date)->format('F j, Y')}} and closes (ticket close date)<br>
+                                Ticket sales for this group starts on {{\Carbon\Carbon::parse($ticket_type->ticket_open_date)->format('F j, Y')}}
+                                and closes on (ticket close date)<br>
                                 @foreach ($ticket_counts as $ticket_count)
 
                                     @if(($ticket_count->id == $event->id) && ($ticket_count->ticket_name == $ticket_type->ticket_name))
