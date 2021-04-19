@@ -83,7 +83,7 @@ Add Ticket Type
                         </div>
                         <div class="card-text col-3 text-center">
                             {{ Form::hidden('ticket_type_id', $ticket_type->id) }}
-                            {{ Form::submit('Edit Ticket Group', ['class' => 'btn btn-primary']) }}
+                            {{ Form::submit('Make Changes', ['class' => 'btn btn-primary']) }}
                         </div>
                     </div>
                 </div>
