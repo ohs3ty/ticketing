@@ -53,7 +53,9 @@
                     <a href="{{ url('admin') }}">Admin</a>
                 @endif
             @endif
+            <a style="cursor: default">
                 @include('layouts.partial.cart')
+            </a>
         </byu-menu>
         <byu-user-info slot="user">
             @guest <!--only guest-->
