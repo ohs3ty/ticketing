@@ -25,7 +25,7 @@
                         Ticket Cost: ${{$ticket_type->ticket_cost}}<br>
                     </p>
                         @if ((now() > $ticket_type->ticket_close_date) || (now() < $ticket_type->ticket_open_date))
-                            <div class="bg-primary text-danger" style="padding: none;">
+                            <div class="text-danger" style="padding: none;">
                                 Sorry, no tickets can be bought at this time
                             </div>
                         @endif
