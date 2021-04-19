@@ -35,6 +35,9 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             {{-- buy tickets button --}}
             @if ($event->ticket_type_count > 0)
+                @foreach ($ticket_counts as $ticket_count)
+                    hello
+                @endforeach
                 <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Buy Tickets</a>
             @endif
         </div>
