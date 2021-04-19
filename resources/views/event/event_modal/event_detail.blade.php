@@ -23,7 +23,7 @@
                             <div class="container">
                                 @foreach ($ticket_counts as $ticket_count)
 
-                                    @if($ticket_count->id == $event->id)
+                                    @if(($ticket_count->id == $event->id) && ($ticket_count->ticket_name == $ticket_type->ticket_name))
                                     Number of Tickets Left:
 
                                         @if ($ticket_count->ticket_limit == null)
