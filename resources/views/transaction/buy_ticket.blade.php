@@ -13,7 +13,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $ticket_type->ticket_name }}</h5>
                     <p class="card-text">
-                        Ticket Description: {{$ticket_type->ticket_description}} <br>
+                        Ticket Description: @if ($ticket_type->ticket_description == null)
+                                                No Description
+                                            @else
+                                                {{$ticket_type->ticket_description}}
+                                            @endif<br>
                         Ticket Cost: ${{$ticket_type->ticket_cost}}<br>
                     </p>
                     {{$ticket_type}}
