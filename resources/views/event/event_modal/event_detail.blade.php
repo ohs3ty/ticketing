@@ -34,7 +34,6 @@
 
                                     @endif
 
-                                    {{ $ticket_count }}
                                 @endforeach
                             </div>
                         @endif
