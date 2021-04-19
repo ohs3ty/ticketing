@@ -33,7 +33,7 @@
                             <div class="col-auto">
                                 {{ Form::label('quantity', 'Quantity', ['class' => 'col-form-label']) }}
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 {{ Form::number('quantity', null, ['max' => 1, 'class' => 'form-control']) }}
                             </div>
                         </div>
