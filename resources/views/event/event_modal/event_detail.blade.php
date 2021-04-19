@@ -21,7 +21,7 @@
                         @if($ticket_type->event_id == $event->id)
                             {{ $ticket_type->ticket_name }}<br>
                             <div class="container">
-                                Ticket sales for this event starts (ticket open date) and closes (ticket close date)
+                                Ticket sales for this event starts {{$ticket_type->ticket_open_date}} and closes (ticket close date)<br>
                                 @foreach ($ticket_counts as $ticket_count)
 
                                     @if(($ticket_count->id == $event->id) && ($ticket_count->ticket_name == $ticket_type->ticket_name))
