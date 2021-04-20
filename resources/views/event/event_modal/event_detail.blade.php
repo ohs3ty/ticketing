@@ -30,7 +30,10 @@
                             <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                         </div>
                         <div class="col-4 bg-primary">
-                            {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select modal-dropdown']) }}
+                            {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select']) }}
+                            <select class="form-select">
+                                <option>select</option>
+                            </select>
                         </div>
                     </div>
 
