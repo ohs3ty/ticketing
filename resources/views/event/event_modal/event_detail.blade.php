@@ -36,6 +36,7 @@
                                 <h5>{{ $ticket_count->ticket_name }}</h5>
                                 <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                             </div>
+                            {{ Form::open(['route' => 'buy_ticket', 'method' => 'post']) }}
                             <div class="col-4">
                                 <h5>Ticket Quantity</h5>
                                 @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
@@ -61,7 +62,7 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             {{-- buy tickets button --}}
             @if ($event->ticket_type_count > 0)
-                <a class="btn btn-default" href="{{ route('buy_ticket', ['event_id' => $event->id]) }}">Add to Cart</a>
+            {{ Form::submit('Add to Cart', ['class' => 'btn btn-default']) }}
             @endif
         </div>
     </div>

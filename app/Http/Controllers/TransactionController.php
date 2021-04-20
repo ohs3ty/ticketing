@@ -12,7 +12,7 @@ use DateInterval;
 use DateTime;
 
 class TransactionController extends Controller {
-    public function buy_ticket(Request $request) {
+    public function buy_ticket_action(Request $request) {
         $ticket_types = TicketType::select("ticket_types.id", "ticket_name", "ticket_cost", "ticket_limit", "ticket_description", "event_id", "patron_profile_id", "ticket_open_date", "ticket_close_date",
                                         DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
                             ->where('event_id', $request->event_id)
