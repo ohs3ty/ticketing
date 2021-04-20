@@ -40,6 +40,7 @@
 
                                 <div class="col-4">
                                     <h5>Ticket Quantity</h5>
+                                    {{ $ticket_count->ticket_type_id }}
                                     @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
                                         @if ($ticket_count->ticket_left == null)
                                             {{ Form::selectRange('number', 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}

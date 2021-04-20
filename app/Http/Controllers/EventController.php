@@ -34,7 +34,8 @@ class EventController extends Controller
 
         $ticket_counts = Event::select('events.id', 'event_name', 'ticket_types.ticket_name', 'ticket_types.ticket_open_date',
                                     'ticket_types.ticket_close_date', 'ticket_types.ticket_cost', 'ticket_types.ticket_limit',
-                                    DB::raw('(ticket_limit - ticket_count) as ticket_left'))
+                                    DB::raw('(ticket_limit - ticket_count) as ticket_left'),
+                                    DB::raw('ticket_types.id as ticket_type_id'))
                             ->leftJoin('ticket_types', 'ticket_types.event_id', 'events.id')
                             ->leftJoin(DB::raw("(SELECT ticket_types.id, count(transaction_tickets.id) as ticket_count from ticket_types
                                                 LEFT JOIN transaction_tickets on transaction_tickets.ticket_type_id = ticket_types.id
