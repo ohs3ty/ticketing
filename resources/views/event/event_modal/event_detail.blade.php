@@ -5,7 +5,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="text-left">
-                <h4>Details for {{ $event->event_name }}</h4>
+                <h3>{{ $event->event_name }}</h3>
             </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
