@@ -11,8 +11,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            Event Time: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}<br>
-            Description: {{ $event->event_description }}<br>
+            <h6>Event Time:</h6> {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}<br>
+            About This Event: {{ $event->event_description }}<br>
             Ticket Cost: ${{ $event->ticket_cost }}<br>
             Ticket Groups:<br>
             <div class="container">
