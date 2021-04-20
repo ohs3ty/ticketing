@@ -42,9 +42,9 @@
                                     <h5>Ticket Quantity</h5>
                                     @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
                                         @if ($ticket_count->ticket_left == null)
-                                            {{ Form::selectRange("ticket_quantity[]$ticket_count->ticket_name", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                            {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_name]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
                                         @else
-                                            {{ Form::selectRange("ticket_quantity[]$ticket_count->ticket_name", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                            {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_name]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
                                         @endif
                                     @else
                                         <span class="text-danger">Tickets not currently selling for this group</span>
