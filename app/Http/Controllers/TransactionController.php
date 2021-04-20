@@ -14,7 +14,7 @@ use DateTime;
 class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
-        print(($request->ticket_quantity)[0]);
+        print(($request->ticket_quantity));
 
         return ('success');
     }
