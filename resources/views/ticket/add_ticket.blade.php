@@ -59,7 +59,7 @@ Add Ticket Type
                     <br>
                     <div class="row no-gutters">
                         <div class="card-text col-sm-6">
-                            
+
                             {{ Form::label('ticket_open_date') }}<br>
                             {{ Form::date('ticket_open_date', null, ['required' => 'required',  'class' => 'w-75'])}}
                         </div>
@@ -83,7 +83,7 @@ Add Ticket Type
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </div>
 {{Form::hidden('event_id', $event->id)}}
