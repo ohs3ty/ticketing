@@ -6,24 +6,25 @@
         <div class="modal-header">
             <div class="text-left">
                 <h3>{{ $event->event_name }}</h3>
-                <h5 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</h5>
+                <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</h4>
             </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <h5>Event Time:</h5>
+            <h4>Event Time:</h4>
                 <p>
                     {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}
                 </p>
-            <h5>About This Event:</h5>
+            <h4>About This Event:</h4>
                 <p>
                     {{ $event->event_description }}
                 </p>
-            <h5>Tickets</h5>
+            <h4>Tickets</h4>
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if($ticket_count->id == $event->id)
-                        {{ $ticket_count->ticket_name }}
+                        <h5>{{ $ticket_count->ticket_name }}</h5>
+                        <h6>{{ $ticket_count->ticket_count }}</h6>
                         {{ $ticket_count }}
                     <hr>
 
