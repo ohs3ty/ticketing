@@ -71,6 +71,6 @@ body {
     color: rgb(104, 104, 104);
 }
 
-.modal-dropdown {
-    padding: 2px;
+.modal-border {
+    border-bottom: rgb(189, 189, 189);
 }
