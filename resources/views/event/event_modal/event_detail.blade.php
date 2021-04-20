@@ -12,11 +12,15 @@
         </div>
         <div class="modal-body">
             <h5>Event Time:</h5>
-                <p class="modal-details-header">
+                <p>
                     {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}
                 </p>
-            <h5>About This Event:</h5> {{ $event->event_description }}<br>
-            Ticket Cost: ${{ $event->ticket_cost }}<br>
+            <h5>About This Event:</h5>
+                <p>
+                    {{ $event->event_description }}
+                </p>
+            <h5>Tickets</h5>
+            {{ $event }}
             Ticket Groups:<br>
             <div class="container">
                 @if($event->ticket_type_count > 0)
