@@ -11,7 +11,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <h5>Event Time:</h5>
+            <h5 class="modal-details-header">Event Time:</h5>
                 <p>
                     {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}
                 </p>
