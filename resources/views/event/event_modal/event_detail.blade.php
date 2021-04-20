@@ -20,6 +20,12 @@
                     {{ $event->event_description }}
                 </p>
             <h5>Tickets</h5>
+            @if($ticket_type_count > 0)
+
+            @else
+                <p>No tickets are currently available</p>
+            @endif
+
             {{ $event }}
             Ticket Groups:<br>
             <div class="container">
