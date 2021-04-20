@@ -38,10 +38,11 @@
                                 @endif
                             </div>
                         </div>
-                    @else
-                        <p class="text-danger">Tickets for this group are not currently selling at this time</p>
                     @endif
                 @endforeach
+            @else
+                <p class="text-danger">No tickets are currently available</p>
+                <hr>
             @endif
         </div>
         <div class="modal-footer">
