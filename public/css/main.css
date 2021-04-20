@@ -68,5 +68,5 @@ body {
 /* modals */
 
 .modal-subtitle {
-    color: rgb(165, 165, 165);
+    color: rgb(165, 165, 165) !important;
 }
