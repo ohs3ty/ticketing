@@ -23,7 +23,7 @@
             <hr>
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
-                    @if(($ticket_count->id == $event->id) && (now() > $ticket_count->ticket_open_date))
+                    @if(($ticket_count->id == $event->id))
                         <div class="row container modal-border" style="padding: 5px">
                             <div class="col-8">
                                 <h5>{{ $ticket_count->ticket_name }}</h5>
