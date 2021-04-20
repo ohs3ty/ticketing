@@ -39,9 +39,9 @@
                                         {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
                                     @endif
                                 </div>
-                            @endif
-                        </div>
-                        <hr>
+                            </div>
+                            <hr>
+                        @endif
                     @endif
                 @endforeach
             @else
