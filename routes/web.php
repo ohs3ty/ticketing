@@ -50,7 +50,7 @@ Route::post('/admin/editorganizer', [AdminController::class, 'edit_organizer_act
 // events
 Route::get('/events', [EventController::class, 'index']);
 // add
-Route::get('/addevent', [EventController::class, 'addview'])->name('addevent');
+Route::get('/addevent', [EventController::class, 'addevent'])->name('addevent');
 Route::post('/addeventaction', [EventController::class, 'add_event_action']);
 // view user events
 Route::get('/myevents', [EventController::class, 'view_user_events'])->name('myevents');

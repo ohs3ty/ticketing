@@ -83,7 +83,7 @@ class EventController extends Controller
     }
 
 
-    public function addview(Request $request) {
+    public function addevent(Request $request) {
 
         $user_id = intval($request->id);
         $event_types = EventType::pluck('type_name')->sort();
@@ -99,7 +99,7 @@ class EventController extends Controller
         $organization_names = $organizations->pluck('organization_name', 'id');
         $venues = Venue::pluck('venue_name');
 
-        return view('event.addview',
+        return view('event.add_event',
     [
         'event_types' => $event_types,
         'user_id' => $user_id,
