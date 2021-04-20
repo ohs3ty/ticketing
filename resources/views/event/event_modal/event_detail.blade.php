@@ -25,11 +25,11 @@
                 @foreach ($ticket_counts as $ticket_count)
                     @if($ticket_count->id == $event->id)
                     <div class="row">
-                        <div class="col-8 bg-danger">
+                        <div class="col-8">
                             <h5>{{ $ticket_count->ticket_name }}</h5>
                             <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                         </div>
-                        <div class="col-4 bg-primary">
+                        <div class="col-4">
                             {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
                             <select class="form-select">
                                 <option>select</option>
