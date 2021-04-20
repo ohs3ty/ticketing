@@ -20,15 +20,14 @@
                     {{ $event->event_description }}
                 </p>
             <h5>Tickets</h5>
-            <hr>
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     {{ $ticket_count }}
+                    <hr>
                 @endforeach
             @else
                 <p>No tickets are currently available</p>
             @endif
-
             {{ $event }}
 
             ticket
