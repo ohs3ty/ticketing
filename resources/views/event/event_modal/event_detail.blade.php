@@ -23,9 +23,8 @@
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if($ticket_count->id == $event->id)
-                        {{ $ticket_count->id }}
-
-                        {{ $event->id }}
+                        {{ $ticket_count->ticket_name }}
+                        {{ $ticket_count }}
                     <hr>
 
                     @endif
