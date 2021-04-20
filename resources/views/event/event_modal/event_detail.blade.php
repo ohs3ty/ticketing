@@ -38,8 +38,8 @@
                                 @endif
                             </div>
                         </div>
+                        <hr>
                     @endif
-                    <hr>
                 @endforeach
             @else
                 <p class="text-danger">No tickets are currently available</p>
