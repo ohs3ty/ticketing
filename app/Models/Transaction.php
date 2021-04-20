@@ -13,6 +13,5 @@ class Transaction extends Model
         'customer_id',
         'transaction_date',
         'status',
-
     ];
 }
