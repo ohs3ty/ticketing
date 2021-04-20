@@ -17,7 +17,11 @@
                 </p>
             <h4>About This Event:</h4>
                 <p>
-                    {{ $event->event_description }}
+                    @if ($event->event_description == null)
+                        <span class="fst-italic">No Description</span>
+                    @else
+                        {{ $event->event_description }}
+                    @endif
                 </p>
             <h4>Tickets</h4>
             <hr>
