@@ -31,27 +31,25 @@
                 @foreach ($ticket_counts as $ticket_count)
                     @if(($ticket_count->id == $event->id))
                     {{-- if past or before sale date range --}}
-                        @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
-                            <div class="row container" style="padding: 10px">
-                                <div class="col-8">
-                                    <h5>{{ $ticket_count->ticket_name }}</h5>
-                                    <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
-                                </div>
-                                <div class="col-4">
-                                    <h5>Ticket Quantity</h5>
-                                    @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
-                                        @if ($ticket_count->ticket_left == null)
-                                            {{ Form::selectRange('number', 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                        @else
-                                            {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                        @endif
-                                    @else
-                                        <span class="text-danger">Tickets not currently selling for this group</span>
-                                    @endif
-                                </div>
+                        <div class="row container" style="padding: 10px">
+                            <div class="col-8">
+                                <h5>{{ $ticket_count->ticket_name }}</h5>
+                                <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                             </div>
-                            <hr>
-                        @endif
+                            <div class="col-4">
+                                <h5>Ticket Quantity</h5>
+                                @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
+                                    @if ($ticket_count->ticket_left == null)
+                                        {{ Form::selectRange('number', 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                    @else
+                                        {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                    @endif
+                                @else
+                                    <span class="text-danger">Tickets not currently selling for this group</span>
+                                @endif
+                            </div>
+                        </div>
+                        <hr>
                     @endif
                 @endforeach
             @else
