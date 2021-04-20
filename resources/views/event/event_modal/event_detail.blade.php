@@ -26,8 +26,9 @@
                         {{ $ticket_count->id }}
 
                         {{ $event->id }}
-                    @endif
                     <hr>
+
+                    @endif
                 @endforeach
             @else
                 <p>No tickets are currently available</p>
