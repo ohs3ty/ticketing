@@ -70,3 +70,7 @@ body {
 .modal-subtitle {
     color: rgb(104, 104, 104);
 }
+
+.modal-dropdown {
+    padding: 100px;
+}
