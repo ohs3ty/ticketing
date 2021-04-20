@@ -6,7 +6,7 @@
         <div class="modal-header">
             <div class="text-left">
                 <h3>{{ $event->event_name }}</h3>
-                <h6 class="card-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</h6>
+                <h6 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</h6>
             </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>

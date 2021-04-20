@@ -64,3 +64,9 @@ body {
     transition: 1s;
     cursor: pointer;
 }
+
+/* modals */
+
+.modal-subtitle {
+    color: rgb(165, 165, 165);
+}
