@@ -6,14 +6,14 @@
         <div class="modal-header">
             <div class="text-left">
                 <h3>{{ $event->event_name }}</h3>
-                <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}</h4>
+                <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}</h4>
             </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
             <h4>Event Time:</h4>
                 <p>
-                    {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}
+                    {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('l, F j, Y, g:i a') }}
                 </p>
             <h4>About This Event:</h4>
                 <p>
@@ -24,7 +24,7 @@
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if(($ticket_count->id == $event->id) && (now() > $ticket_count->ticket_open_date))
-                        <div class="row container" style="padding: 5px">
+                        <div class="row container modal-border" style="padding: 5px">
                             <div class="col-8">
                                 <h5>{{ $ticket_count->ticket_name }}</h5>
                                 <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
@@ -38,7 +38,8 @@
                                 @endif
                             </div>
                         </div>
-                        <hr>
+                    @else
+                        <p class="text-danger">Tickets for this group are not currently selling at this time</p>
                     @endif
                 @endforeach
             @else
