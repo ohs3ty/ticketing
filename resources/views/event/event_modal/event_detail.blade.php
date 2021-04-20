@@ -24,8 +24,13 @@
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if($ticket_count->id == $event->id)
-                        <h5>{{ $ticket_count->ticket_name }}</h5>
-                        <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>{{ $ticket_count->ticket_name }}</h5>
+                            <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
+                        </div>
+                    </div>
+
                         {{ $ticket_count }}
                     <hr>
 
