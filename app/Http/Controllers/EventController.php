@@ -37,6 +37,7 @@ class EventController extends Controller
                                                 LEFT JOIN transaction_tickets on transaction_tickets.ticket_type_id = ticket_types.id
                                                 GROUP BY ticket_types.id)
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
+                            ->orderBy('ticket_types.ticket_name')
                             ->get();
 
 
