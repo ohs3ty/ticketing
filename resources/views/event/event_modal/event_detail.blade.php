@@ -22,10 +22,11 @@
             <h5>Tickets</h5>
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
-
+                    @if($ticket_count->id == $event->id)
                         {{ $ticket_count->id }}
 
                         {{ $event->id }}
+                    @endif
                     <hr>
                 @endforeach
             @else
