@@ -14,6 +14,8 @@ use DateTime;
 class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
+        print($request);
+
         return ('success');
     }
 }
