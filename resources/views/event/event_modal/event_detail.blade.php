@@ -4,8 +4,8 @@
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
-            <div class="text-left">
-                <h3>{{ $event->event_name }}</h3>
+            <div class="text-left" style="padding: 10px;">
+                <h2>{{ $event->event_name }}</h2>
                 <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}</h4>
             </div>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -18,11 +18,13 @@
             <h4>About This Event:</h4>
                 <p>
                     @if ($event->event_description == null)
-                        <span class="fst-italic">No Description</span>
+                        <span style="font-style: italic;">No Description</span>
                     @else
                         {{ $event->event_description }}
                     @endif
                 </p>
+            <h4>Venue</h4>
+                <p> {{$event->venue_name}}</p>
             <h4>Tickets</h4>
             <hr>
             @if($event->ticket_type_count > 0)
