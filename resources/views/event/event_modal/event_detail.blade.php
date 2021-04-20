@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
-    <div class="modal-content" style="width: 100px;">
+    <div class="modal-content" style="width: 100%;">
         <div class="modal-header">
             <div class="text-left">
                 <h3>{{ $event->event_name }}</h3>
