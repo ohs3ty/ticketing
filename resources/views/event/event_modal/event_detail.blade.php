@@ -24,7 +24,7 @@
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if(($ticket_count->id == $event->id))
-                        <div class="row container modal-border" style="padding: 5px">
+                        <div class="row container" style="padding: 10px">
                             <div class="col-8">
                                 <h5>{{ $ticket_count->ticket_name }}</h5>
                                 <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
@@ -39,6 +39,7 @@
                             </div>
                         </div>
                     @endif
+                    <hr>
                 @endforeach
             @else
                 <p class="text-danger">No tickets are currently available</p>

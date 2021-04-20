@@ -70,7 +70,3 @@ body {
 .modal-subtitle {
     color: rgb(104, 104, 104);
 }
-
-.modal-border {
-    border-bottom: rgb(189, 189, 189) solid 3px;
-}
