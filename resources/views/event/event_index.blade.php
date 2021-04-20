@@ -34,7 +34,7 @@ View All Events
                         <div class="col-sm-2">
                             <div class="text-center" style="padding-top: 25%;">
                                 {{-- modal button --}}
-                                <button class="btn" data-toggle="modal" data-target="#event{{$event->id}}">View Details</button>
+                                <button class="btn" data-toggle="modal" data-target="#event{{$event->id}}">View Details/Buy Tickets</button>
                             </div>
                         </div>
                         <!-- Modal -->
