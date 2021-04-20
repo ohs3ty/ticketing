@@ -24,6 +24,8 @@
                 @foreach ($ticket_counts as $ticket_count)
 
                         {{ $ticket_count->id }}
+
+                        {{ $event->id }}
                     <hr>
                 @endforeach
             @else
