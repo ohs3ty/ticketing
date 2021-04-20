@@ -72,5 +72,5 @@ body {
 }
 
 .modal-border {
-    border-bottom: rgb(189, 189, 189);
+    border-bottom: rgb(189, 189, 189) solid 3px;
 }
