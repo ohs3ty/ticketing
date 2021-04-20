@@ -38,16 +38,13 @@
                             @endif
                         </div>
                     </div>
-
-                        {{ $ticket_count }}
                     <hr>
 
                     @endif
                 @endforeach
             @else
-                <p>No tickets are currently available</p>
+                <p class="text-danger">No tickets are currently available</p>
             @endif
-            {{ $event }}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
