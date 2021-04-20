@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
-    <div class="modal-content" style="width: 50rem;">
+    <div class="modal-content">
         <div class="modal-header">
             <div class="text-left">
                 <h3>{{ $event->event_name }}</h3>
@@ -11,6 +11,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
+            <img src="..." class="card-img-top">
             Start of Event: {{ \Carbon\Carbon::parse($event->start_date)->format('F j, Y, g:i a') }}<br>
             End of Event: {{ \Carbon\Carbon::parse($event->end_date)->format('F j, Y, g:i a') }}<br>
             Description: {{ $event->event_description }}<br>
