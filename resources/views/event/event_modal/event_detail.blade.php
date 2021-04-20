@@ -31,7 +31,11 @@
                         </div>
                         <div class="col-4">
                             <h5>Ticket Quantity</h5>
-                            {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                            @if ($ticket_count->ticket_left == null)
+
+                            @else
+                                {{ Form::selectRange('number', 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                            @endif
                         </div>
                     </div>
 
