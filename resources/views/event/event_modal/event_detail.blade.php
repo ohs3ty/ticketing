@@ -20,11 +20,12 @@
                     {{ $event->event_description }}
                 </p>
             <h4>Tickets</h4>
+            <hr>
             @if($event->ticket_type_count > 0)
                 @foreach ($ticket_counts as $ticket_count)
                     @if($ticket_count->id == $event->id)
                         <h5>{{ $ticket_count->ticket_name }}</h5>
-                        <h6>{{ $ticket_count->ticket_count }}</h6>
+                        <h6>{{ $ticket_count->ticket_cost }}</h6>
                         {{ $ticket_count }}
                     <hr>
 
