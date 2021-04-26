@@ -73,9 +73,7 @@ class TransactionController extends Controller {
         $cart_items = TempCart::where('user_id', $request->user_id)
                     ->get();
 
-        return view('transaction.view_cart', [
-            'cart_items' => $cart_items,
-        ]);
+        return redirect()->route('mycart', ['user_id' => $request->user_id]);
 
     }
 
