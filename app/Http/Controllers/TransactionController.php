@@ -60,7 +60,8 @@ class TransactionController extends Controller {
         //the session to record the cart things to buy things
         //we also have to take into account whether the user is authorized to purchase a certain group of tickets
 
-        return ('success');
+        return view('transaction.view_cart');
+
     }
 
 
