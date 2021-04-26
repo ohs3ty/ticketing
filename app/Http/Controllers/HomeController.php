@@ -31,10 +31,11 @@ class HomeController extends Controller
     public function index()
     {
         $date = date_add(now(), date_interval_create_from_date_string("7 days"));
-        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
+        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_name',
                         'event_type_id', 'organization_id', DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
                     ->orderBy('start_date')
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
+                    ->leftJoin('venues', 'venues.id', '=', 'events.venue_id')
                     ->where('start_date', '>=', now())
                     ->where('start_date', '<=', $date)
                     ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
