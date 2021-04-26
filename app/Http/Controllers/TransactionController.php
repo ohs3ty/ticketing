@@ -23,7 +23,10 @@ class TransactionController extends Controller {
         if ($msg) {
             return Redirect::back()->withErrors(['general' => $msg]);
         }
+
+        print(count($request->ticket_quantity));
         dd($request->ticket_quantity);
+
         //if the ticket_quantity is null, validate and send user back
         // get the id of the ticket_name
         // create new customer object if not a user; if a user, create a customer object based off user? Not sure
