@@ -5,6 +5,15 @@ View All Events
 @endsection
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h3>This Year's Events</h3>
     <br>
     {{-- Loops through each month and all events in that month --}}
