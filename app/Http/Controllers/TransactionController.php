@@ -25,6 +25,9 @@ class TransactionController extends Controller {
         }
 
         print(count($request->ticket_quantity));
+        foreach ($request->ticket_quantity as $i) {
+            print(count($i));
+        }
         dd($request->ticket_quantity);
 
         //if the ticket_quantity is null, validate and send user back
