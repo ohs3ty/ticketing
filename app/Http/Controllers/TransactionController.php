@@ -46,8 +46,9 @@ class TransactionController extends Controller {
                                 ->where('ticket_type_id', key($ticket_group))
                                 ->get();
 
-                if ($current_carts > 0) {
+                if (count($current_carts) > 0) {
                     foreach ($current_carts as $current_cart) {
+                        // $cart = TempCart::find($current_cart->id);
                         print($current_cart->id);
                     }
                 }
