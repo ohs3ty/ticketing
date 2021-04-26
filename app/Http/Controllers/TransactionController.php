@@ -22,7 +22,7 @@ class TransactionController extends Controller {
             $msg = 'Select ticket quantities above 0.';
         }
 
-        if ($msg != null) {
+        if ($msg) {
             return Redirect::back()->withErrors(['general' => $msg]);
         }
 
