@@ -97,7 +97,7 @@ class TransactionController extends Controller {
         $cart = TempCart::where('user_id', $request->user_id)
                 ->where('ticket_type_id', $request->ticket_type_id)
                 ->first();
-        print($cart);
+        dd($cart);
 
         return redirect()->route('mycart', ['user_id' => $request->user_id]);
     }
