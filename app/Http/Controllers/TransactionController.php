@@ -48,7 +48,7 @@ class TransactionController extends Controller {
 
                 if ($current_carts > 0) {
                     foreach ($current_carts as $current_cart) {
-                        $cart = TempCart::find($current_cart->id);
+                        $cart = TempCart::find(intval($current_cart->id));
                         dd($cart);
                     }
                 }
