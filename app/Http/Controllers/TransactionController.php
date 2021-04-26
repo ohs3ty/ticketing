@@ -70,8 +70,12 @@ class TransactionController extends Controller {
         //we also have to take into account if the user isn't logged in and is just using
         //the session to record the cart things to buy things
         //we also have to take into account whether the user is authorized to purchase a certain group of tickets
+        $cart_items = TempCart::where('user_id', $request->user_id)
+                    ->get();
 
-        return view('transaction.view_cart');
+        return view('transaction.view_cart', [
+            'cart_items' => $cart_items,
+        ]);
 
     }
 
