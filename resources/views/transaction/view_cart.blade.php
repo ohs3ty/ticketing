@@ -9,7 +9,7 @@ View Cart
 <div class="row">
     <div class="col-8 bg-danger">
         <h3>Your Cart</h3>
-
+        <hr>
         {{ $cart_items }}
     </div>
     <div class="col-4 bg-primary">
