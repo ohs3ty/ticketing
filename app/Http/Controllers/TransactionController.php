@@ -15,11 +15,11 @@ class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
         $validated = $request->validate([
-            'ticket_quantity' => [
-                'required' => 'Please choose a ticket quantity to buy. If that option is
-                unavailable, the tickets you are trying to buy are not currently available.'
-            ]
+            'ticket_quantity' => 'required'
         ]);
+
+
+
         dd($request->ticket_quantity);
         //if the ticket_quantity is null, validate and send user back
         // get the id of the ticket_name
@@ -34,4 +34,12 @@ class TransactionController extends Controller {
 
         return ('success');
     }
+
+    public function messages() {
+        return [
+            'ticket_quantity.required' => 'No ticket groups for this event is currently selling.'
+        ];
+    }
+
+
 }
