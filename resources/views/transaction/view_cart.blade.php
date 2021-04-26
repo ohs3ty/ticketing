@@ -10,10 +10,10 @@ View Cart
     <div class="col-8 bg-danger">
         <h3>Your Cart</h3>
         <hr>
-        @foreach ($cart_items as $cart_item) {
+        @foreach ($cart_items as $cart_item)
             {{ $cart_item->event_name }}
             {{ $cart_item }}
-        }
+        @endforeach
     </div>
     <div class="col-4 bg-primary">
     </div>
