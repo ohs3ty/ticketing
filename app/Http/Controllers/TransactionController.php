@@ -41,11 +41,17 @@ class TransactionController extends Controller {
 
             //see if the specific ticket group and event already exists in the cart (because then we'll just update the cart)
             if ($ticket_group[key($ticket_group)] > 0) {
-                $current_cart = TempCart::where('user_id', $request->user_id)
+                $current_carts = TempCart::where('user_id', $request->user_id)
                                 ->where('event_id', $request->event_id)
                                 ->where('ticket_type_id', key($ticket_group))
-                                ->find();
-                dd($current_cart);
+                                ->get();
+
+                if ($current_carts > 0) {
+                    foreach ($current_carts as $current_cart) {
+                        $cart = TempCart::find($current_cart->id);
+                        dd($cart);
+                    }
+                }
 
                 $cart = new TempCart;
                 $cart->ticket_type_id = key($ticket_group);
