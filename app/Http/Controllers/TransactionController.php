@@ -15,7 +15,7 @@ use DateTime;
 class TransactionController extends Controller {
 
     public function buy_ticket_action(Request $request) {
-
+        $msg = '';
         if ($request->ticket_quantity == null) {
             $msg = 'Ticket groups for this event is not currently selling.';
         } elseif ($request->ticket_quantity == 0) {
