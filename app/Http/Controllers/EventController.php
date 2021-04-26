@@ -32,7 +32,7 @@ class EventController extends Controller
                     ->get();
         $ticket_types = TicketType::all();
 
-        $ticket_counts = Event::select('events.id', 'event_name', 'ticket_types.ticket_name', 'ticket_types.ticket_open_date',
+        $ticket_counts = Event::select('events.id', 'event_name','ticket_types.ticket_name', 'ticket_types.ticket_open_date',
                                     'ticket_types.ticket_close_date', 'ticket_types.ticket_cost', 'ticket_types.ticket_limit',
                                     DB::raw('(ticket_limit - ticket_count) as ticket_left'),
                                     DB::raw('ticket_types.id as ticket_type_id'))
