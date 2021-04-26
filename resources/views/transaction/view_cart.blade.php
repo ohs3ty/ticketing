@@ -12,8 +12,10 @@ View Cart
         <hr>
         @foreach ($cart_items as $cart_item)
         <div class="row">
+            <h4>{{ $cart_item->event_name }}</h4>
+        </div>
+        <div class="row">
             <div class="col-8">
-                <h4>{{ $cart_item->event_name }}</h4>
                 Ticket Group: {{ $cart_item->ticket_name }}
             </div>
             <div class="col-2">
