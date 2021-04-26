@@ -36,9 +36,6 @@ class TransactionController extends Controller {
         //create a new temp cart object
         //add the data into the temp cart
         foreach ($request->ticket_quantity as $ticket_group) {
-            print(key($ticket_group));
-            print($ticket_group[key($ticket_group)]);
-
             //see if the specific ticket group and event already exists in the cart (because then we'll just update the cart)
             if ($ticket_group[key($ticket_group)] > 0) {
                 $current_carts = TempCart::where('user_id', $request->user_id)
