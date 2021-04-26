@@ -15,10 +15,6 @@ class TransactionController extends Controller {
 
     public function buy_ticket_action(Request $request) {
 
-        $validated = $request->validate([
-            'ticket_quantity' => 'required'
-        ]);
-
         if ($request->ticket_quantity == null) {
             $msg = 'Ticket groups for this event is not currently selling.';
             return Redirect::back()->withErrors(['general' => $msg]);
