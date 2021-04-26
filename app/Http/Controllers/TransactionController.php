@@ -44,7 +44,7 @@ class TransactionController extends Controller {
                 $current_cart = TempCart::where('user_id', $request->user_id)
                                 ->where('event_id', $request->event_id)
                                 ->where('ticket_type_id', key($ticket_group))
-                                ->get();
+                                ->find();
                 dd($current_cart);
 
                 $cart = new TempCart;
