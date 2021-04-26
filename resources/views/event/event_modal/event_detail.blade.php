@@ -26,6 +26,7 @@
                     </p>
                 <h4>Venue</h4>
                     <p> {{$event->venue_name}}</p>
+                    {{ $event }}
                 <h4>Tickets</h4>
                 <hr>
                 @if($event->ticket_type_count > 0)

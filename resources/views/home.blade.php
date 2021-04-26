@@ -42,8 +42,9 @@ Home
         </div>
         <br>
     @endforeach
+
+    {{-- test role-based authentication here (probably could be commented out)--}}
     @guest
-        Guest only
 
     @else
 
