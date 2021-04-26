@@ -39,7 +39,8 @@ class TransactionController extends Controller {
             $cart->event_id = $request->event_id;
             $cart->user_id = $request->user_id;
 
-            dd($cart);
+            $cart->save();
+
         }
         dd($request->ticket_quantity);
 
