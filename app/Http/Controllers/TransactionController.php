@@ -80,6 +80,7 @@ class TransactionController extends Controller {
     }
 
     public function view_cart(Request $request) {
+        print($request);
         $cart_items = TempCart::where('user_id', $request->user_id)
         ->get();
 
