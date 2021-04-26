@@ -15,6 +15,12 @@ class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
         dd($request->ticket_quantity);
+        // get the id of the ticket_name
+        // create new customer object if not a user; if a user, create a customer object based of user? Not sure
+        // create a new transaction object (with cart in status)
+        // add transaction and ticket id to the linking table
+        // transfer that data to the view
+        // good luck, shayna
 
         return ('success');
     }
