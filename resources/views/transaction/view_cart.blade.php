@@ -11,9 +11,9 @@ View Cart
         <h2>Your Cart</h2>
         <hr>
         @foreach ($cart_items as $cart_item)
-            <h4>{{ $cart_item->event_name }}</h4>
         <div class="row">
             <div class="col-8">
+                <h4>{{ $cart_item->event_name }}</h4>
                 Ticket Group: {{ $cart_item->ticket_name }}
             </div>
             <div class="col-2">
