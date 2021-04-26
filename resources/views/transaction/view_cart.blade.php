@@ -14,8 +14,8 @@ View Cart
         <div class="row">
             <div class="col-8">
                 <h4>{{ $cart_item->event_name }}</h4>
-                Ticket Group: {{ $cart_item->ticket_name }}
-                Ticket Date: {{ $cart_item->start_date }}
+                Ticket Group: {{ $cart_item->ticket_name }}<br>
+                Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}
             </div>
             <div class="col-2">
                 <div class="input-group mb-3">
