@@ -25,8 +25,9 @@ class TransactionController extends Controller {
         }
 
         print(count($request->ticket_quantity));
-        foreach ($request->ticket_quantity as $ticket_group) {
-            print(key($ticket_group));
+        foreach ($request->ticket_quantity as $key => $value) {
+            // $arr[3] will be updated with each value from $arr...
+            echo "{$key} => {$value} ";
         }
         dd($request->ticket_quantity);
 
