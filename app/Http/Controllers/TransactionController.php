@@ -17,8 +17,7 @@ class TransactionController extends Controller {
         $validated = $request->validate([
             'ticket_quantity' => [
                 'required' => 'Please choose a ticket quantity to buy. If that option is
-                unavailable, the tickets you are trying to buy are not currently available.',
-                'min:1' => 'You must buy at least one ticket',
+                unavailable, the tickets you are trying to buy are not currently available.'
             ]
         ]);
         dd($request->ticket_quantity);
