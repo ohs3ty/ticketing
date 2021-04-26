@@ -48,8 +48,8 @@ class TransactionController extends Controller {
 
                 if (count($current_carts) > 0) {
                     foreach ($current_carts as $current_cart) {
-                        // $cart = TempCart::find($current_cart->id);
-                        print($current_cart->id);
+                        $cart = TempCart::find($current_cart->id);
+                        dd($cart);
                     }
                 }
 
