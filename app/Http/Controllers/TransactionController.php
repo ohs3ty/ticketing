@@ -13,19 +13,16 @@ use DateTime;
 
 class TransactionController extends Controller {
 
-    public function messages() {
-        return [
-            'ticket_quantity.required' => 'No ticket groups for this event is currently selling.'
-        ];
-    }
-
     public function buy_ticket_action(Request $request) {
 
         $validated = $request->validate([
             'ticket_quantity' => 'required'
         ]);
 
-
+        if ($request->ticket_quantity == null) {
+            $msg = 'Ticket groups for this event is not currently selling.';
+            return Redirect::back()->withErrors(['general' => $msg]);
+        }
 
         dd($request->ticket_quantity);
         //if the ticket_quantity is null, validate and send user back
