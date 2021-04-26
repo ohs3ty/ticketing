@@ -19,7 +19,7 @@ View Cart
             </div>
             <div class="col-2">
                 <div class="input-group mb-3">
-                    {{ Form::selectRange("ticket_quantity", $cart_item->ticket_quantity, 100, null,
+                    {{ Form::selectRange("ticket_quantity", 1, 100, null,
                         ['id' => 'inputGroupSelect01', 'class' => 'custom-select']) }}
                 </div>
             </div>
