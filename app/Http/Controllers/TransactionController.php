@@ -33,8 +33,11 @@ class TransactionController extends Controller {
         foreach ($request->ticket_quantity as $ticket_group) {
             print(key($ticket_group));
             print($ticket_group[key($ticket_group)]);
-            // $cart = new TempCart;
-            // $cart->
+            $cart = new TempCart;
+            $cart->ticket_type_id = key($ticket_group);
+            $cart->ticket_quantity = $ticket_group[key($ticket_group)];
+            $cart->event_id = $request->event_id;
+
         }
         dd($request->ticket_quantity);
 
