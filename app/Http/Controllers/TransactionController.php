@@ -15,7 +15,11 @@ class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
         $validated = $request->validate([
-            'ticket_quantity' => 'required|min:1'
+            'ticket_quantity' => [
+                'required' => 'Please choose a ticket quantity to buy. If that option is
+                unavailable, the tickets you are trying to buy are not currently available.',
+                'min:1' => 'You must buy at least one ticket',
+            ]
         ]);
         dd($request->ticket_quantity);
         //if the ticket_quantity is null, validate and send user back
