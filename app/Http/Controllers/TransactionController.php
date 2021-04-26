@@ -25,7 +25,7 @@ class TransactionController extends Controller {
         }
 
         //get event and ticket object
-        $event = Event::where('id', $request->event_id)
+        $event = TicketType::where('event_id', $request->event_id)
                 ->get();
         print("Event");
         print($event);
