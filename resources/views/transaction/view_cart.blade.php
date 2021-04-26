@@ -15,6 +15,7 @@ View Cart
             <div class="col-8">
                 <h4>{{ $cart_item->event_name }}</h4>
                 Ticket Group: {{ $cart_item->ticket_name }}
+                Ticket Date: {{ $cart_item->start_date }}
             </div>
             <div class="col-2">
                 <div class="input-group mb-3">
