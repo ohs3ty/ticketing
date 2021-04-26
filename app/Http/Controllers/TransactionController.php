@@ -24,6 +24,9 @@ class TransactionController extends Controller {
             return Redirect::back()->withErrors(['general' => $msg]);
         }
 
+        //get event and ticket object
+        print("Event");
+        print($request->event_id);
         print(count($request->ticket_quantity));
         foreach ($request->ticket_quantity as $ticket_group) {
             print(key($ticket_group));
