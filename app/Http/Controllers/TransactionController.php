@@ -82,6 +82,7 @@ class TransactionController extends Controller {
     public function view_cart(Request $request) {
         $cart_items = TempCart::where('user_id', $request->user_id)
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
+                        ->join('events', 'events.id', '=', 'temp_carts.event_id')
                         ->get();
 
         return view('transaction.view_cart', [
