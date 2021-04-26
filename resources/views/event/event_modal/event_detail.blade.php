@@ -66,7 +66,6 @@
                     {{ Form::hidden('event_id', $event->id) }}
                     @if(Auth::check())
                         {{ Form::hidden('user_id', Auth::user()->id) }}
-                        {{ Auth::user()->id }}
                     @endif
 
                     {{ Form::submit('Add to Cart', ['class' => 'btn']) }}
