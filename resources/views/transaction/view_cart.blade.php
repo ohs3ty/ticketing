@@ -22,6 +22,7 @@ View Cart
                 </select>
             </div>
             <div class="col-2">
+                {{ $cart_item->ticket_cost }}
             </div>
         </div>
         {{ $cart_item }}
