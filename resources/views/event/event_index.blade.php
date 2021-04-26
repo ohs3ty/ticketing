@@ -8,9 +8,7 @@ View All Events
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                @foreach ($errors as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+                {{ $errors }}
             </ul>
         </div>
     @endif
