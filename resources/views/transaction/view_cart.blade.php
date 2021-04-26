@@ -8,10 +8,10 @@ View Cart
 
 <div class="row">
     <div class="col-8 bg-danger">
-        <h3>Your Cart</h3>
+        <h2>Your Cart</h2>
         <hr>
         @foreach ($cart_items as $cart_item)
-            {{ $cart_item->event_name }}
+            <h3>{{ $cart_item->event_name }}</h3>
             {{ $cart_item }}
         @endforeach
     </div>
