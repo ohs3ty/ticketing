@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventTimes;
 use App\Models\TicketType;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use DateInterval;
 use DateTime;
 
