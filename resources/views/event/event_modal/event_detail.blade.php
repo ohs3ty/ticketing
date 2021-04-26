@@ -63,6 +63,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{-- buy tickets button --}}
                 @if ($event->ticket_type_count > 0)
+                    {{ Form::hidden('event_id', $event->id) }}
                     {{ Form::submit('Add to Cart', ['class' => 'btn']) }}
                 @endif
 
