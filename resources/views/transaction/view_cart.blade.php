@@ -22,10 +22,11 @@ View Cart
                 </select>
             </div>
             <div class="col-2">
-                {{ $cart_item->ticket_cost }}
+                ${{ number_format($cart_item->ticket_cost * $cart_item->ticket_quantity, '.', ',') }}
             </div>
         </div>
         {{ $cart_item }}
+        <hr>
         @endforeach
     </div>
     <div class="col-4">
