@@ -12,6 +12,13 @@ use DateInterval;
 use DateTime;
 
 class TransactionController extends Controller {
+
+    public function messages() {
+        return [
+            'ticket_quantity.required' => 'No ticket groups for this event is currently selling.'
+        ];
+    }
+
     public function buy_ticket_action(Request $request) {
 
         $validated = $request->validate([
@@ -35,11 +42,7 @@ class TransactionController extends Controller {
         return ('success');
     }
 
-    public function messages() {
-        return [
-            'ticket_quantity.required' => 'No ticket groups for this event is currently selling.'
-        ];
-    }
+
 
 
 }
