@@ -79,6 +79,15 @@ class TransactionController extends Controller {
 
     }
 
+    public function view_cart(Request $request) {
+        $cart_items = TempCart::where('user_id', $request->user_id)
+        ->get();
+
+        return view('transaction.view_cart', [
+        'cart_items' => $cart_items,
+        ]);
+    }
+
 
 
 

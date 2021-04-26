@@ -69,3 +69,4 @@ Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']
 //Transactions
 //buy tickets
 Route::post('buy/buy_ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
+Route::get('buy/view_cart', [TransactionController::class, 'view_cart'])->name('mycart');
