@@ -33,7 +33,7 @@ class TransactionController extends Controller {
         foreach ($request->ticket_quantity as $ticket_group) {
             print(key($ticket_group));
             print($ticket_group[key($ticket_group)]);
-            if ($ticket_group[key($ticket_group)] != 0) {
+            if ($ticket_group[key($ticket_group)] > 0) {
                 $cart = new TempCart;
                 $cart->ticket_type_id = key($ticket_group);
                 $cart->ticket_quantity = $ticket_group[key($ticket_group)];
