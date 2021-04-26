@@ -92,6 +92,11 @@ class TransactionController extends Controller {
         ]);
     }
 
+    public function change_ticket_quantity(Request $request) {
+
+        return view();
+    }
+
 
 
 
