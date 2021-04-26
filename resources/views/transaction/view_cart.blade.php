@@ -18,6 +18,7 @@ View Cart
                 Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}
             </div>
             <div class="col-2">
+                {{ $cart_item->ticket_quantity }}
                 <div class="input-group mb-3">
                     {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
                         ['id' => 'inputGroupSelect01', 'class' => 'custom-select']) }}
