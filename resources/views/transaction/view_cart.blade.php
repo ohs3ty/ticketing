@@ -18,6 +18,7 @@ View Cart
             </div>
             <div class="col-2">
                 <div class="input-group mb-3">
+                    {{ Form::selectRange("ticketquantity", 0, 100, null, ['id' => 'inputGroupSelect01', 'class' => 'custom-select']) }}
                     <select class="custom-select" id="inputGroupSelect01">
                       <option selected>Choose...</option>
                       <option value="1">One</option>
