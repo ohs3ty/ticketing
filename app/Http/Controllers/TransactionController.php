@@ -30,6 +30,11 @@ class TransactionController extends Controller {
         $event = TicketType::where('event_id', $request->event_id)
                 ->get();
 
+        //if the user is logged in, we'll send in the user_id
+        //otherwise we send in the current session id
+
+        //create a new temp cart object
+        //add the data into the temp cart
         foreach ($request->ticket_quantity as $ticket_group) {
             print(key($ticket_group));
             print($ticket_group[key($ticket_group)]);
@@ -43,13 +48,6 @@ class TransactionController extends Controller {
                 $cart->save();
             }
         }
-        dd($request->ticket_quantity);
-
-        //if the user is logged in, we'll send in the user_id
-        //otherwise we send in the current session id
-        //create a new temp cart object
-        //add the data into the temp cart
-
         //question? if we are using session tokens, then when do we delete that from the database or do we not even add the data with session
         //to the database, we just put it in the session
 
