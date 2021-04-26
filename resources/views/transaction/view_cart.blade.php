@@ -24,7 +24,7 @@ View Cart
                 </div>
             </div>
             <div class="col-2">
-                ${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}
+                <span style="font-size: 15px;">${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}</span>
             </div>
         </div>
         {{ $cart_item }}
