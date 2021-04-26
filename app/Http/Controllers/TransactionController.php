@@ -24,7 +24,6 @@ class TransactionController extends Controller {
             return Redirect::back()->withErrors(['general' => $msg]);
         }
 
-        dd($request->ticket_quantity);
         foreach ($request->ticket_quantity as $ticket_quantity) {
             print($ticket_quantity);
         }
