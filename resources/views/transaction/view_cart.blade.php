@@ -12,15 +12,23 @@ View Cart
         <hr>
         @foreach ($cart_items as $cart_item)
         <div class="row">
-            <div class="col-4">
-                <h3>{{ $cart_item->event_name }}</h3>
+            <div class="col-8">
+                <h4>{{ $cart_item->event_name }}</h4>
                 Ticket Group: {{ $cart_item->ticket_name }}
+            </div>
+            <div class="col-2">
+                <select>
+                    <option>Hello</option>
+                </select>
+            </div>
+            <div class="col-2">
+                {{ $cart_item-> }}
             </div>
         </div>
         {{ $cart_item }}
         @endforeach
     </div>
-    <div class="col-4 bg-primary">
+    <div class="col-4">
     </div>
 </div>
 
