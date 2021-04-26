@@ -26,7 +26,7 @@ class TransactionController extends Controller {
 
         print(count($request->ticket_quantity));
         foreach ($request->ticket_quantity as $i) {
-                print($i->Student);
+                print($i);
         }
         dd($request->ticket_quantity);
 
