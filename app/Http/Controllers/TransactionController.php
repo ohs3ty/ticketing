@@ -94,7 +94,7 @@ class TransactionController extends Controller {
 
     public function change_ticket_quantity(Request $request) {
 
-        return ('success');
+        return redirect()->route('mycart', ['user_id' => $request->user_id]);
     }
 
 
