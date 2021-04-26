@@ -14,13 +14,20 @@ use DateTime;
 class TransactionController extends Controller {
     public function buy_ticket_action(Request $request) {
 
+        $validated = $request->validate([
+            'ticket_quantity' => 'required'
+        ]);
         dd($request->ticket_quantity);
+        //if the ticket_quantity is null, validate and send user back
         // get the id of the ticket_name
-        // create new customer object if not a user; if a user, create a customer object based of user? Not sure
+        // create new customer object if not a user; if a user, create a customer object based off user? Not sure
         // create a new transaction object (with cart in status)
         // add transaction and ticket id to the linking table
         // transfer that data to the view
         // good luck, shayna
+
+        //we also have to take into account if the user isn't logged in and is just using
+        //the session to record the cart things to buy things
 
         return ('success');
     }
