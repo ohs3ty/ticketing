@@ -18,8 +18,6 @@ class TransactionController extends Controller {
         $msg = '';
         if ($request->ticket_quantity == null) {
             $msg = 'Ticket groups for this event is not currently selling.';
-        } elseif ($request->ticket_quantity == 0) {
-            $msg = 'Select ticket quantities above 0.';
         }
 
         if ($msg) {
@@ -27,6 +25,9 @@ class TransactionController extends Controller {
         }
 
         dd($request->ticket_quantity);
+        foreach ($request->ticket_quantity as $ticket_quantity) {
+            print($ticket_quantity);
+        }
         //if the ticket_quantity is null, validate and send user back
         // get the id of the ticket_name
         // create new customer object if not a user; if a user, create a customer object based off user? Not sure
@@ -37,6 +38,7 @@ class TransactionController extends Controller {
 
         //we also have to take into account if the user isn't logged in and is just using
         //the session to record the cart things to buy things
+        //we also have to take into account whether the user is authorized to purchase a certain group of tickets
 
         return ('success');
     }
