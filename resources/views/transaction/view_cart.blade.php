@@ -19,8 +19,11 @@ View Cart
             </div>
             <div class="col-2">
                 <div class="input-group mb-3">
+                    {{ Form::open(array('url' => 'buy/changequantity', 'method' => 'post')) }}
                     {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
                         ['class' => 'custom-select']) }}
+                    {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
+                    {{ Form::close() }}
                 </div>
             </div>
             <div class="col-2">
