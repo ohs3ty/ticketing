@@ -64,7 +64,11 @@
                 {{-- buy tickets button --}}
                 @if ($event->ticket_type_count > 0)
                     {{ Form::hidden('event_id', $event->id) }}
-                    {{ Auth::user()->id }}
+                    @if(Auth::check())
+                        {{ Form::hidden('user_id', Auth::user()->id) }}
+                        {{ Auth::user()->id }}
+                    @endif
+
                     {{ Form::submit('Add to Cart', ['class' => 'btn']) }}
                 @endif
 
