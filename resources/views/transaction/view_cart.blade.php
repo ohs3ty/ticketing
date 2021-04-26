@@ -7,7 +7,7 @@ View Cart
 @section('content')
 
 <div class="row">
-    <div class="col-8 bg-danger">
+    <div class="col-8">
         <h2>Your Cart</h2>
         <hr>
         @foreach ($cart_items as $cart_item)
