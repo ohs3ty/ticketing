@@ -15,4 +15,5 @@ class TempCart extends Model
         'session_id',
         'event_id',
     ];
+
 }
