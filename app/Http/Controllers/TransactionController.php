@@ -18,7 +18,12 @@ class TransactionController extends Controller {
 
         if ($request->ticket_quantity == null) {
             $msg = 'Ticket groups for this event is not currently selling.';
-            return Redirect::back()->withErrors(['ticket_null' => $msg]);
+        } elseif ($request->ticket_quantity == 0) {
+            $msg = 'Select ticket quantities above 0.';
+        }
+
+        if ($msg != null) {
+            return Redirect::back()->withErrors(['general' => $msg]);
         }
 
         dd($request->ticket_quantity);
