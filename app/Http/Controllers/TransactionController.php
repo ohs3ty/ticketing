@@ -43,7 +43,7 @@ class TransactionController extends Controller {
             if ($ticket_group[key($ticket_group)] > 0) {
                 $current_cart = TempCart::where('user_id', $request->user_id)
                                 ->where('event_id', $request->event_id)
-                                ->where('ticket_type_id', $ticket_group[key($ticket_group)])
+                                ->where('ticket_type_id', key($ticket_group))
                                 ->get();
                 dd($current_cart);
 
