@@ -22,7 +22,7 @@ View Cart
                 </select>
             </div>
             <div class="col-2">
-                ${{ number_format(intval($cart_item->ticket_cost) * intval($cart_item->ticket_quantity), '.', ',') }}
+                ${{ intval($cart_item->ticket_cost) * intval($cart_item->ticket_quantity) }}
             </div>
         </div>
         {{ $cart_item }}
