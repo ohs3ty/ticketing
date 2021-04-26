@@ -50,17 +50,18 @@ class TransactionController extends Controller {
                     foreach ($current_carts as $current_cart) {
                         $cart = TempCart::find($current_cart->id);
                         $cart->ticket_quantity = intval($cart->ticket_quantity) + intval($ticket_group[key($ticket_group)]);
-                        dd($cart);
                     }
                 }
-
-                $cart = new TempCart;
-                $cart->ticket_type_id = key($ticket_group);
-                $cart->ticket_quantity = $ticket_group[key($ticket_group)];
-                $cart->event_id = $request->event_id;
-                $cart->user_id = $request->user_id;
+                else {
+                    $cart = new TempCart;
+                    $cart->ticket_type_id = key($ticket_group);
+                    $cart->ticket_quantity = $ticket_group[key($ticket_group)];
+                    $cart->event_id = $request->event_id;
+                    $cart->user_id = $request->user_id;
+                }
 
                 $cart->save();
+
             }
         }
         //question? if we are using session tokens, then when do we delete that from the database or do we not even add the data with session
