@@ -8,7 +8,7 @@ View All Events
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                {{ $errors->ticket_null }}
+                {{ $errors }}
             </ul>
         </div>
     @endif
