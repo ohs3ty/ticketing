@@ -35,7 +35,7 @@ View Cart
         <hr>
         @endforeach
     </div>
-    <div style="background-color: lightgrey" class="col-4">
+    <div style="background-color: rgb(233, 233, 233)" class="col-4">
     </div>
 </div>
 
