@@ -58,7 +58,7 @@ View Cart
             <br>
         </div>
         <br>
-        <button style="width: 100%;" class="btn btn-primary" type="button">Pay Now</button>
+        <button style="width: 100%;" class="shadow btn btn-primary" type="button">Pay Now</button>
 
     </div>
 </div>
