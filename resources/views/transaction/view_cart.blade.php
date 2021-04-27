@@ -55,8 +55,10 @@ View Cart
                 <div class="col-8">Subtotal</div>
                 <div class="col-4">${{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
             </div>
+            <div style="background-color: red">Pay Now</div>
         </div>
-        <div style="background-color: red">Pay Now</div>
+        <br>
+
     </div>
 </div>
 
