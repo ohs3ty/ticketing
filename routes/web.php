@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,3 +72,4 @@ Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']
 Route::post('buy/buy_ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
 Route::get('buy/mycart', [TransactionController::class, 'view_cart'])->name('mycart');
 Route::post('buy/changequantity', [TransactionController::class, 'change_ticket_quantity']);
+Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');

@@ -103,6 +103,10 @@ class TransactionController extends Controller {
         return redirect()->route('mycart', ['user_id' => $request->user_id]);
     }
 
+    public function delete_cart_item(Request $request) {
+        return ('success');
+    }
+
 
 
 

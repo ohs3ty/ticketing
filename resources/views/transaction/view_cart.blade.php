@@ -25,7 +25,9 @@ View Cart
                     {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
                     {{ Form::hidden('user_id', $cart_item->user_id) }}
                     {{ Form::close() }}
-                    Remove
+
+                    {{-- delete --}}
+                    <a href="{{ route('delete_cart_item', [$cart_item->user_id]) }}">Remove</a>
                 </div>
             </div>
             <div class="col-2">
