@@ -102,7 +102,7 @@ class AdminController extends Controller
             'last_name' => 'required',
         ]);
 
-
+        $org_bool_count = 1;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $name = $first_name . " " . $last_name;
@@ -113,22 +113,19 @@ class AdminController extends Controller
                                 ->first();
 
 
-
         $user = User::where('name', $name)
         ->first();
-
-        dd($user);
 
 
         if ($user) {
 
             if (($user->role == "admin")) {
-                // pass
                 $organizer_bool = Organizer::where('user_id', $user->id)
                                     ->get();
+                $org_bool_count = count($organizer_bool);
 
             }
-            if (($user->role == "general") or (count($organizer_bool) == 0)) {
+            if (($user->role == "general") or ($org_bool_count == 0)) {
                 $validated = $request->validate([
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
                 ]);
