@@ -79,3 +79,8 @@ body {
     height: 70vh;
     overflow-y: auto;
 }
+
+/* cart styles */
+.cart-label {
+    color: rgb(223, 223, 223);
+}
