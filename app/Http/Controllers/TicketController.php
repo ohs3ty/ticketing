@@ -132,4 +132,8 @@ class TicketController extends Controller
 
         return redirect()->route('viewtickets', ['event_id' => $ticket_type->event_id]);
     }
+
+    public function delete_ticket(Request $request) {
+        return ("success");
+    }
 }

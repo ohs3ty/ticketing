@@ -62,6 +62,7 @@ View Ticket
         </div>
         <br>
         <a class="btn" style="border-color: lightgrey;" href="{{ route('edittickets', ['ticket_type_id' => $ticket_type->id]) }}")>Edit</a>
+        <a class="btn" style="border-color: lightgrey;" href="{{ route('deletetickets', ['ticket_type_id' => $ticket_type->id]) }}")>Delete</a>
     </div>
 </div>
 <br>

@@ -66,6 +66,7 @@ Route::post('/addticketaction', [TicketController::class, 'add_ticket_action']);
 Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
 Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');
 Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']);
+Route::post('/deleteticket', [TicketController::class, 'delete_ticket'])->name('deletetickets');
 
 //Transactions
 //buy tickets
