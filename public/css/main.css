@@ -92,5 +92,13 @@ body {
 }
 
 .btn-primary {
-    background-color: #002E5D !important;
+    color: #fff;
+    background-color: #3490dc;
+    border-color: #3490dc;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #227dc7;
+    border-color: #2176bd;
 }
