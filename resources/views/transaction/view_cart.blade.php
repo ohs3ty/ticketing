@@ -34,11 +34,13 @@ View Cart
             <div class="col-2">
                 <span class="cart-label">ITEM TOTAL</span>
                 <hr>
+                {{ $cart_item->ticket_quantity }} @ ${{ $cart_item->ticket_cost }}
                 <span style="font-size: 20px;">${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}</span>
             </div>
         </div>
         {{-- delete --}}
-        <a class="btn btn-secondary" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+        <br>
+        <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
         <br>
         {{ $cart_item }}
         <hr>
