@@ -11,8 +11,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <p> Are you sure you want to delete {{ $organizer->first_name }} 
-                    {{ $organizer->last_name }} as an organizer for {{ $organization->organization_name}} ? </p>
+            <p> Are you sure you want to delete {{$organizer}} as an organizer for {{ $organization->organization_name}} ? </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">No, go back</button>
