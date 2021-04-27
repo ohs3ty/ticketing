@@ -18,7 +18,7 @@ View Cart
                 <h3>{{ $cart_item->event_name }}</h3>
                 Ticket Group: {{ $cart_item->ticket_name }}<br>
                 Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}
-                Ticket Price: ${{ number_format(floatval($cart_item->ticket_cost), 2, '.', ',')) }}
+                Ticket Price: ${{ number_format(floatval($cart_item->ticket_cost), 2, '.', ',') }}
             </div>
             <div class="col-2">
                 <span class="cart-label">QTY</span>
