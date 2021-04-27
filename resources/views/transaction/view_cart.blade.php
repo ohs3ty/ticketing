@@ -48,7 +48,7 @@ View Cart
         </div>
     </div>
     <div class="col-4">
-        <div style="background-color: rgb(241, 241, 241); padding: 15px;">
+        <div class="shadow-sm rounded">
             <h2>Total</h2>
             <hr>
             <div class="row">
