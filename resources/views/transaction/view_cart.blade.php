@@ -48,7 +48,7 @@ View Cart
         </div>
     </div>
     <div class="col-4">
-        <div style="padding: 15px;" class="shadow-sm white rounded">
+        <div style="padding: 15px;" class="shadow rounded">
             <h2>Total</h2>
             <hr>
             <div class="row">
