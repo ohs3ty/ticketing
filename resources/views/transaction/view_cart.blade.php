@@ -40,7 +40,7 @@ View Cart
         </div>
         {{-- delete --}}
         <br>
-        <a class="font-weight-bold" style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+        <a style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
         <br>
         <hr>
         <br>
@@ -49,6 +49,11 @@ View Cart
     <div class="col-4">
         <h2>Total</h2>
         <hr>
+        <div class="row">
+            <div class="col-8">Subtotal</div>
+            <div class="col-4"></div>
+        </div>
+
 
     </div>
 </div>
