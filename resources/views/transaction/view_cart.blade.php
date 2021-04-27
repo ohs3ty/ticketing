@@ -40,13 +40,16 @@ View Cart
         </div>
         {{-- delete --}}
         <br>
-        <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+        <a class="font-weight-bold" style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
         <br>
-        {{ $cart_item }}
         <hr>
+        <br>
         @endforeach
     </div>
-    <div style="background-color: rgb(233, 233, 233)" class="col-4">
+    <div class="col-4">
+        <h2>Total</h2>
+        <hr>
+
     </div>
 </div>
 
