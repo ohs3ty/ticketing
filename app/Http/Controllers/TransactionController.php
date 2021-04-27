@@ -89,7 +89,7 @@ class TransactionController extends Controller {
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                         ->get();
             $cart_total = TempCart::where('user_id', $request->user_id)
-                            ->select(DB::raw('COUNT(ticket_quantity), SUM(ticket_cost * ticket_quantity) as ticket_total'))
+                            ->select(DB::raw('COUNT(ticket_quantity) as num_items, SUM(ticket_cost * ticket_quantity) as ticket_total'))
                             ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                             ->first();
 
