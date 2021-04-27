@@ -88,4 +88,5 @@ body {
 .cart_background {
     padding: 2rem;
     border: 1px solid lightgrey;
+    background-color: white;
 }
