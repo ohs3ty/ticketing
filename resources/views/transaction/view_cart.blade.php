@@ -8,7 +8,7 @@ View Cart
 
 <div class="row">
     <div class="col-8">
-        <div style="padding: 15px">
+        <div style="padding: 15px" class="shadow rounded">
             <h2>Your Cart ({{ $cart_total->num_items }} items)</h2>
             @foreach ($cart_items as $cart_item)
             <hr>
