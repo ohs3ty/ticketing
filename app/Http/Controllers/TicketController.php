@@ -135,6 +135,6 @@ class TicketController extends Controller
 
     public function delete_ticket(Request $request) {
         TicketType::find($request->ticket_type_id)->delete();
-        return ("success");
+        return redirect()->route('viewtickets', ['event_id' => $ticket_type->event_id]);
     }
 }
