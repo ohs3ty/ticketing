@@ -8,7 +8,7 @@ View Cart
 
 <div class="row">
     <div class="col-8">
-        <div style="padding: 2rem" class="shadow rounded">
+        <div style="padding: 2rem" class="rounded">
             <h2>Your Cart ({{ $cart_total->num_items }} items)</h2>
             @foreach ($cart_items as $cart_item)
             <hr>
@@ -48,7 +48,7 @@ View Cart
         </div>
     </div>
     <div class="col-4">
-        <div style="padding: 2rem;" class="shadow rounded">
+        <div style="padding: 2rem;" class="rounded">
             <h2>Total</h2>
             <hr>
             <div class="row">
@@ -58,7 +58,7 @@ View Cart
             <br>
         </div>
         <br>
-        <button style="width: 100%;" class="shadow btn btn-primary" type="button">Pay Now</button>
+        <button style="width: 100%;" class="btn btn-primary" type="button">Pay Now</button>
 
     </div>
 </div>
