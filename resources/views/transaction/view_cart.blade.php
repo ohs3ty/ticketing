@@ -18,6 +18,7 @@ View Cart
                 Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}
             </div>
             <div class="col-2">
+                Quantity
                 <div class="input-group mb-3">
                     {{ Form::open(array('url' => 'buy/changequantity', 'method' => 'post')) }}
                     {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
@@ -25,8 +26,6 @@ View Cart
                     {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
                     {{ Form::hidden('user_id', $cart_item->user_id) }}
                     {{ Form::close() }}
-
-
                 </div>
             </div>
             <div class="col-2">
