@@ -51,7 +51,7 @@ View Cart
         <hr>
         <div class="row">
             <div class="col-8">Subtotal</div>
-            <div class="col-4">{{ $cart_total }}</div>
+            <div class="col-4">{{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
         </div>
 
 
