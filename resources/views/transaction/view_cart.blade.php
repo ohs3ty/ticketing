@@ -38,7 +38,7 @@ View Cart
             </div>
         </div>
         {{-- delete --}}
-        <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+        <a class="btn btn-primary" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
         <br>
         {{ $cart_item }}
         <hr>
