@@ -56,9 +56,7 @@ View Cart
                 <div class="col-4">${{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
             </div>
             <br>
-            <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button">Pay Now</button>
-            </div>
+            <button style="width: 100px;" class="btn btn-primary" type="button">Pay Now</button>
         </div>
         <br>
 
