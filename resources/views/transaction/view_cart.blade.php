@@ -26,14 +26,15 @@ View Cart
                     {{ Form::hidden('user_id', $cart_item->user_id) }}
                     {{ Form::close() }}
 
-                    {{-- delete --}}
-                    <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">Remove</a>
+
                 </div>
             </div>
             <div class="col-2">
                 <span style="font-size: 20px;">${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}</span>
             </div>
         </div>
+        {{-- delete --}}
+        <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
         {{ $cart_item }}
         <hr>
         @endforeach
