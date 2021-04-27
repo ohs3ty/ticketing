@@ -84,3 +84,8 @@ body {
 .cart-label {
     color: rgb(182, 182, 182);
 }
+
+.cart_background {
+    padding: 2rem;
+    border: 1px solid lightgrey;
+}
