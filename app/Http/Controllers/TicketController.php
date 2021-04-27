@@ -137,6 +137,11 @@ class TicketController extends Controller
         $ticket_type = TicketType::find($request->ticket_type_id)->first();
         $event_id = $ticket_type->event_id;
         TicketType::find($request->ticket_type_id)->delete();
+        $cart_items = TempCart::where('ticket_type_id', $request->ticket_type_id)
+                        ->get();
+        foreach($cart_items as $item) {
+            TempCart::where('id', $item->id)->first()->delete();
+        }
         return redirect()->route('viewtickets', ['event_id' => $event_id]);
     }
 }
