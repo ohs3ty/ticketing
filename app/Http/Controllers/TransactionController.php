@@ -88,17 +88,15 @@ class TransactionController extends Controller {
                                                 GROUP BY ticket_types.id)
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                         ->get();
-        $cart_item_costs = TempCart::where('user_id', $request->user_id)
+            $cart_total = TempCart::where('user_id', $request->user_id)
                             ->select(DB::raw('SUM(ticket_cost * ticket_quantity) as ticket_total'))
                             ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                             ->first();
 
-        print($cart_item_costs);
-        dd($cart_item_costs);
-
 
         return view('transaction.view_cart', [
             'cart_items' => $cart_items,
+            'cart_total' => $cart_total,
         ]);
     }
 
