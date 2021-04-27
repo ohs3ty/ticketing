@@ -11,8 +11,8 @@ View Cart
         <div style="padding: 15px">
             <h2>Your Cart ({{ $cart_total->num_items }} items)</h2>
             @foreach ($cart_items as $cart_item)
+            <hr>
             <div class="row">
-                <hr>
                 <div class="col-8">
                     <span class="cart-label">ITEM</span>
                     <hr>
