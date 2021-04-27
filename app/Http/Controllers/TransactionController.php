@@ -88,6 +88,12 @@ class TransactionController extends Controller {
                                                 GROUP BY ticket_types.id)
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                         ->get();
+        $cart_item_cost = TempCart::where('user_id', $request->user_id)
+                            ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
+                            ->get();
+
+        dd($cart_item_cost);
+
 
         return view('transaction.view_cart', [
             'cart_items' => $cart_items,
