@@ -9,10 +9,10 @@ View Cart
 <div class="row">
     <div class="col-8">
         <div style="padding: 15px">
-            <h2>Your Cart ({{ $cart_total->num_items }})</h2>
-            <hr>
+            <h2>Your Cart ({{ $cart_total->num_items }} items)</h2>
             @foreach ($cart_items as $cart_item)
             <div class="row">
+                <hr>
                 <div class="col-8">
                     <span class="cart-label">ITEM</span>
                     <hr>
@@ -43,7 +43,6 @@ View Cart
             <br>
             <a style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
             <br>
-            <hr>
             <br>
             @endforeach
         </div>
