@@ -56,7 +56,7 @@ View Cart
                 <div class="col-4">${{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
             </div>
         </div>
-        <button class="btn">PAY NOW</button>
+        <div style="background-color: red">Pay Now</div>
     </div>
 </div>
 
