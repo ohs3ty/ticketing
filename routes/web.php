@@ -66,11 +66,11 @@ Route::post('/addticketaction', [TicketController::class, 'add_ticket_action']);
 Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
 Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');
 Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']);
-Route::post('/deleteticket', [TicketController::class, 'delete_ticket'])->name('deletetickets');
+Route::get('/deleteticket', [TicketController::class, 'delete_ticket'])->name('deletetickets');
 
 //Transactions
 //buy tickets
 Route::post('buy/buy_ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
 Route::get('buy/mycart', [TransactionController::class, 'view_cart'])->name('mycart');
 Route::post('buy/changequantity', [TransactionController::class, 'change_ticket_quantity']);
-Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
+Route::post('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
