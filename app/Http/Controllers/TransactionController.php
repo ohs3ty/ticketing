@@ -91,7 +91,7 @@ class TransactionController extends Controller {
         $cart_item_cost = TempCart::where('user_id', $request->user_id)
                             ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                             ->get();
-
+        print($cart_item_cost);
         dd($cart_item_cost);
 
 
