@@ -51,7 +51,7 @@ View Cart
         <hr>
         <div class="row">
             <div class="col-8">Subtotal</div>
-            <div class="col-4"></div>
+            <div class="col-4">{{ $cart_total }}</div>
         </div>
 
 
