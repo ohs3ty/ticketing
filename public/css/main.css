@@ -90,15 +90,3 @@ body {
     border: 1px solid lightgrey;
     background-color: white;
 }
-
-.btn-primary {
-    color: #fff;
-    background-color: #041548;
-    border-color: #041548;
-}
-
-.btn-primary:hover {
-    color: #fff;
-    background-color: #040d29;
-    border-color: #040d29;
-}
