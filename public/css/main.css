@@ -90,3 +90,7 @@ body {
     border: 1px solid lightgrey;
     background-color: white;
 }
+
+.btn-primary {
+    background-color: #002E5D !important;
+}
