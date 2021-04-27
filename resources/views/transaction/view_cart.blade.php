@@ -47,14 +47,14 @@ View Cart
         @endforeach
     </div>
     <div class="col-4">
-        <h2>Total</h2>
-        <hr>
-        <div class="row">
-            <div class="col-8">Subtotal</div>
-            <div class="col-4">{{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
+        <div style="background-color: rgb(233, 233, 233);">
+            <h2>Total</h2>
+            <hr>
+            <div class="row">
+                <div class="col-8">Subtotal</div>
+                <div class="col-4">${{ number_format($cart_total->ticket_total, 2, ".", ",") }}</div>
+            </div>
         </div>
-
-
     </div>
 </div>
 
