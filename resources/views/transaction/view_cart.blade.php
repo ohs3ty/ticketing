@@ -27,7 +27,7 @@ View Cart
                     {{ Form::close() }}
 
                     {{-- delete --}}
-                    <a href="{{ route('delete_cart_item', ['user_id' => $cart_item->user_id]) }}">Remove</a>
+                    <a href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">Remove</a>
                 </div>
             </div>
             <div class="col-2">
