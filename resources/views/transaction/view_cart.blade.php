@@ -8,43 +8,45 @@ View Cart
 
 <div class="row">
     <div class="col-8">
-        <h2>Your Cart</h2>
-        <hr>
-        @foreach ($cart_items as $cart_item)
-        <div class="row">
-            <div class="col-8">
-                <span class="cart-label">ITEM</span>
-                <hr>
-                <h3>{{ $cart_item->event_name }}</h3>
-                Ticket Group: {{ $cart_item->ticket_name }}<br>
-                Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}<br>
-                Ticket Price: ${{ number_format(floatval($cart_item->ticket_cost), 2, '.', ',') }}
-            </div>
-            <div class="col-2">
-                <span class="cart-label">QTY</span>
-                <hr>
-                <div class="input-group mb-3">
-                    {{ Form::open(array('url' => 'buy/changequantity', 'method' => 'post')) }}
-                    {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
-                        ['class' => 'custom-select', 'onchange' => 'this.form.submit()']) }}
-                    {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
-                    {{ Form::hidden('user_id', $cart_item->user_id) }}
-                    {{ Form::close() }}
+        <div style="padding: 15px">
+            <h2>Your Cart</h2>
+            <hr>
+            @foreach ($cart_items as $cart_item)
+            <div class="row">
+                <div class="col-8">
+                    <span class="cart-label">ITEM</span>
+                    <hr>
+                    <h3>{{ $cart_item->event_name }}</h3>
+                    Ticket Group: {{ $cart_item->ticket_name }}<br>
+                    Ticket Date: {{ \Carbon\Carbon::parse($cart_item->start_date)->format('l, F j, Y, g:i a') }}<br>
+                    Ticket Price: ${{ number_format(floatval($cart_item->ticket_cost), 2, '.', ',') }}
+                </div>
+                <div class="col-2">
+                    <span class="cart-label">QTY</span>
+                    <hr>
+                    <div class="input-group mb-3">
+                        {{ Form::open(array('url' => 'buy/changequantity', 'method' => 'post')) }}
+                        {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
+                            ['class' => 'custom-select', 'onchange' => 'this.form.submit()']) }}
+                        {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
+                        {{ Form::hidden('user_id', $cart_item->user_id) }}
+                        {{ Form::close() }}
+                    </div>
+                </div>
+                <div class="col-2">
+                    <span class="cart-label">ITEM TOTAL</span>
+                    <hr>
+                    <span style="font-size: 20px;">${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}</span>
                 </div>
             </div>
-            <div class="col-2">
-                <span class="cart-label">ITEM TOTAL</span>
-                <hr>
-                <span style="font-size: 20px;">${{ number_format((floatval($cart_item->ticket_cost) * floatval($cart_item->ticket_quantity)), 2, ".", ",") }}</span>
-            </div>
+            {{-- delete --}}
+            <br>
+            <a style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+            <br>
+            <hr>
+            <br>
+            @endforeach
         </div>
-        {{-- delete --}}
-        <br>
-        <a style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
-        <br>
-        <hr>
-        <br>
-        @endforeach
     </div>
     <div class="col-4">
         <div style="background-color: rgb(233, 233, 233); padding: 15px;">
