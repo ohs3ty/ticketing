@@ -25,6 +25,7 @@ View Cart
                     {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
                     {{ Form::hidden('user_id', $cart_item->user_id) }}
                     {{ Form::close() }}
+                    Remove
                 </div>
             </div>
             <div class="col-2">
