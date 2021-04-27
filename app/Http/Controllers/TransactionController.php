@@ -107,6 +107,10 @@ class TransactionController extends Controller {
 
     public function delete_cart_item(Request $request) {
 
+        $cart_item = TempCart::find($request->cart_item_id);
+
+        dd($cart_item);
+
         return ('success');
     }
 
