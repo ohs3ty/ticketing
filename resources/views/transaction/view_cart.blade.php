@@ -58,7 +58,7 @@ View Cart
             <br>
         </div>
         <br>
-        <button style="width: 100%; background-color:002E5D;" class="btn btn-primary" type="button">Pay Now</button>
+        <button style="width: 100%; background-color: #002E5D;" class="btn btn-primary" type="button">Pay Now</button>
 
     </div>
 </div>
