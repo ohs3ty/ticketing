@@ -77,4 +77,4 @@ Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_ite
 Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transaction'])->name('buy_cashnet');
 
 //User
-Route::get('user/home', [UserController::class, 'index'])->('user_home');
+Route::get('user/home', [UserController::class, 'index'])->name('user_home');
