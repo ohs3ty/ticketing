@@ -79,7 +79,7 @@ class TransactionController extends Controller {
         $cart_items = TempCart::where('user_id', $request->user_id)
                     ->get();
 
-        return redirect()->route('mycart', ['user_id' => $request->user_id]);
+        return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
 
     }
 
