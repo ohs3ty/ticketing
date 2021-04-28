@@ -58,8 +58,8 @@ View Cart
             <br>
         </div>
         <br>
-        <a href="{{ route('buy_cashnet', ['user_id' => $user_id]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
-
+        <a href="{{ route('buy_cashnet']) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
+        {{ Auth::user()->id }}
     </div>
 </div>
 
