@@ -6,7 +6,7 @@ View Cart
 
 @section('content')
 @include('layouts.partial.cart')
-
+<br>
 <div class="row">
     <div class="col-8">
         <div class="cart_background rounded">
