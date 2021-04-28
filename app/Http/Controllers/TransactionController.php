@@ -54,11 +54,13 @@ class TransactionController extends Controller {
                     $cart->ticket_type_id = key($ticket_group);
                     $cart->ticket_quantity = $ticket_group[key($ticket_group)];
                     $cart->event_id = $request->event_id;
-                    if ($cart->user_id == null) {
-                        $cart->user_id = $request->user_id;
-                    } else {
-                        $cart->session_id = $request->session_id;
-                    }
+                    $cart->user_id = $request->user_id;
+
+                    // if ($cart->user_id == null) {
+                    //     $cart->user_id = $request->user_id;
+                    // } else {
+                    //     $cart->session_id = $request->session_id;
+                    // }
                 }
 
                 $cart->save();
