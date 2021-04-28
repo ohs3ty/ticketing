@@ -59,7 +59,6 @@ class TransactionController extends Controller {
                         dd($request->user_id);
                         $cart->user_id = $request->user_id;
                     } else {
-                        dd($request->session_id);
                         $cart->session_id = $request->session_id;
                     }
                 }
