@@ -58,13 +58,11 @@ class HomeController extends Controller
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
-        $num_cart_items = (TempCart::select(DB::raw('COUNT(id) as count'))->first())->count;
 
         return view('home', [
             'events' => $events,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
-            'num_cart_items' => $num_cart_items,
         ]);
     }
 }

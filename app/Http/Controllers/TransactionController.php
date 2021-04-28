@@ -100,12 +100,10 @@ class TransactionController extends Controller {
                         ->select(DB::raw('COUNT(ticket_quantity) as num_items, SUM(ticket_cost * ticket_quantity) as ticket_total'))
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                         ->first();
-        $num_cart_items = (TempCart::select(DB::raw('COUNT(id) as count'))->first())->count;
 
         return view('transaction.view_cart', [
             'cart_items' => $cart_items,
             'cart_total' => $cart_total,
-            'num_cart_items' => $num_cart_items,
         ]);
     }
 
