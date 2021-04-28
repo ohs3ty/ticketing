@@ -84,8 +84,8 @@ class TransactionController extends Controller {
     }
 
     public function view_cart(Request $request) {
-        dd($request->session_id);
         $cart_items = TempCart::where('user_id', $request->user_id)
+                        ->where('session_id', $request->session_id)
                         ->select('temp_carts.id', 'ticket_type_id', 'user_id', 'temp_carts.event_id', 'ticket_name', 'ticket_quantity', 'ticket_cost',
                                 'event_name', 'start_date', 'ticket_count' )
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
@@ -96,6 +96,7 @@ class TransactionController extends Controller {
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                         ->get();
         $cart_total = TempCart::where('user_id', $request->user_id)
+                        ->where('session_id', $request->session_id)
                         ->select(DB::raw('COUNT(ticket_quantity) as num_items, SUM(ticket_cost * ticket_quantity) as ticket_total'))
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                         ->first();
