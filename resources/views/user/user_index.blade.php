@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{Auth::user()->name}}
+My Tickets and Orders
 @endsection
 
 @section('content')
