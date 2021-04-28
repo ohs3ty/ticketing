@@ -9,6 +9,8 @@ Home
 @endsection
 
 @section('content')
+@include('layouts.partial.cart')
+
 <div class="container">
     <h3>This Week's Events</h3>
 

@@ -5,6 +5,7 @@ View Cart
 @endsection
 
 @section('content')
+@include('layouts.partial.cart')
 
 <div class="row">
     <div class="col-8">
