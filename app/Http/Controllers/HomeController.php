@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         // $date = date_add(now(), date_interval_create_from_date_string("7 days"));
         $date = date('Y-m-d', strtotime('+1 week'));
-        print(time());
+        print($date('Y-m-d'));
         print($date);
         $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_name',
                         'event_type_id', 'organization_id', DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
