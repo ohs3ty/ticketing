@@ -75,3 +75,6 @@ Route::get('buy/mycart', [TransactionController::class, 'view_cart'])->name('myc
 Route::post('buy/changequantity', [TransactionController::class, 'change_ticket_quantity']);
 Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
 Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transaction'])->name('buy_cashnet');
+
+//User
+Route::get('user/home', [UserController::class, 'index'])->('user_home');

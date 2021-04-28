@@ -61,7 +61,7 @@
                 <a slot="logout" href="{{ route('logout') }}"></a>
 
             @else <!-- Logged in -->
-            <a href="" slot="user-name">{{ auth()->user()->name }}</a>
+            <a href="{{ route('user_home', ['user_id' => Auth::user()->id]) }}" slot="user-name">{{ auth()->user()->name }}</a>
             <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
