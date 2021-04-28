@@ -55,7 +55,7 @@ class TransactionController extends Controller {
                     $cart->ticket_quantity = $ticket_group[key($ticket_group)];
                     $cart->event_id = $request->event_id;
 
-                    if ($request->user_id == null) {
+                    if ($request->user_id != null) {
                         dd($request->user_id);
                         $cart->user_id = $request->user_id;
                     } else {
