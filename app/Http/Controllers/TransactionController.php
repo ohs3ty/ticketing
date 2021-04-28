@@ -109,7 +109,6 @@ class TransactionController extends Controller {
     }
 
     public function change_ticket_quantity(Request $request) {
-        dd($request->session_id);
         $cart = TempCart::where('user_id', $request->user_id)
                 ->where('session_id', $request->session_id)
                 ->where('ticket_type_id', $request->ticket_type_id)
