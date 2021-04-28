@@ -58,7 +58,7 @@ class HomeController extends Controller
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
-        $num_cart_items = TempCart::select(DB::raw('COUNT(id)'))->pluck();
+        $num_cart_items = TempCart::select(DB::raw('COUNT(id) as count'))->pluck('count');
 
         dd($num_cart_items);
 
