@@ -121,7 +121,9 @@ class TransactionController extends Controller {
         return redirect()->route('mycart', ['user_id' => $user_id]);
     }
 
-
+    public function view_cashnet_transaction(Request $request) {
+        return ('success');
+    }
 
 
 }

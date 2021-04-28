@@ -70,7 +70,8 @@ Route::get('/deleteticket', [TicketController::class, 'delete_ticket'])->name('d
 
 //Transactions
 //buy tickets
-Route::post('buy/buy_ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
+Route::post('buy/buy-ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
 Route::get('buy/mycart', [TransactionController::class, 'view_cart'])->name('mycart');
 Route::post('buy/changequantity', [TransactionController::class, 'change_ticket_quantity']);
 Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
+Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transaction'])->name('buy_cashnet');
