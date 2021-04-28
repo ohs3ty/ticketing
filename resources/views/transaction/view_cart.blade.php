@@ -59,7 +59,7 @@ View Cart
         </div>
         <br>
         <a href="" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
-        {{ Auth::user()->id }}
+        {{ Auth::user() }}
     </div>
 </div>
 
