@@ -64,4 +64,6 @@ View Cart
     </div>
 </div>
 
+Test
+
 @endsection
