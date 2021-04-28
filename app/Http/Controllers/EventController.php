@@ -44,6 +44,8 @@ class EventController extends Controller
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
 
+        $num_cart_items = (TempCart::select(DB::raw('COUNT(id) as count'))->first())->count;
+
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -52,6 +54,7 @@ class EventController extends Controller
             'months' => $months,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
+            'num_cart_items' => $num_cart_items,
         ]);
     }
 

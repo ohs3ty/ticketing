@@ -60,13 +60,11 @@ class HomeController extends Controller
                             ->get();
         $num_cart_items = (TempCart::select(DB::raw('COUNT(id) as count'))->first())->count;
 
-        dd($num_cart_items);
-
-
         return view('home', [
             'events' => $events,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
+            'num_cart_items' => $num_cart_items,
         ]);
     }
 }
