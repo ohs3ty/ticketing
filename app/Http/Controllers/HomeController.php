@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use App\Models\EventTimes;
+use App\Models\TicketType;
+use App\Models\TempCart;
 use DateInterval;
 use DateTime;
-use App\Models\TicketType;
+
 
 class HomeController extends Controller
 {
