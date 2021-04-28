@@ -65,5 +65,6 @@ View Cart
 </div>
 
 Test
+{{ Session::getId() }}
 
 @endsection
