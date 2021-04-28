@@ -29,6 +29,7 @@ View Cart
                         {{ Form::selectRange("ticket_quantity", 1, 100, $cart_item->ticket_quantity,
                             ['class' => 'custom-select', 'onchange' => 'this.form.submit()']) }}
                         {{ Form::hidden('ticket_type_id', $cart_item->ticket_type_id) }}
+                        {{ Form::hidden('session_id', Session::getId()) }}
                         {{ Form::hidden('user_id', $cart_item->user_id) }}
                         {{ Form::close() }}
                     </div>
