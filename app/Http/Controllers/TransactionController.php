@@ -122,7 +122,9 @@ class TransactionController extends Controller {
     }
 
     public function view_cashnet_transaction(Request $request) {
-        return ('success');
+        const CASHNET_FORM_URL = 'https://commerce.cashnet.com/';
+
+        return (CASHNET_FORM_URL);
     }
 
 

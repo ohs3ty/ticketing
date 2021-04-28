@@ -92,4 +92,9 @@ class User extends Authenticatable
         }
         return $this;
     }
+
+    public function pay_ticket() 
+    {
+        return ('success');
+    }
 }
