@@ -24,7 +24,6 @@ class EventController extends Controller
 
         $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_name',
                                     'event_type_id', 'organization_id', DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
-                    ->orderBy('start_date')
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->leftJoin('venues', 'venues.id', '=', 'events.venue_id')
                     ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
