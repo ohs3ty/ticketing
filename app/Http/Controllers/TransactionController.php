@@ -121,10 +121,8 @@ class TransactionController extends Controller {
         return redirect()->route('mycart', ['user_id' => $user_id]);
     }
 
-    const CASHNET_FORM_URL = 'https://commerce.cashnet.com/';
     public function view_cashnet_transaction(Request $request) {
-        
-        print('hello' + CASHNET_FORM_URL);
+        $cashnet_form_url = "https://commerce.cashnet.com/";
         
         return ("success");
     }
