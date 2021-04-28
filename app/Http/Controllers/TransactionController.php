@@ -116,7 +116,7 @@ class TransactionController extends Controller {
         $cart->ticket_quantity = $request->ticket_quantity;
         $cart->save();
 
-        return redirect()->route('mycart', ['user_id' => $request->user_id]);
+        return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
     }
 
     public function delete_cart_item(Request $request) {
@@ -126,7 +126,7 @@ class TransactionController extends Controller {
         TempCart::find($request->cart_item_id)->delete();
 
 
-        return redirect()->route('mycart', ['user_id' => $user_id]);
+        return redirect()->route('mycart', ['user_id' => $user_id, 'session_id' => $request->session_id]);
     }
 
     public function view_cashnet_transaction(Request $request) {
