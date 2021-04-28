@@ -60,7 +60,10 @@ View Cart
         <br>
         @if (Auth::user())
             <a href="{{ route('buy_cashnet', ['user_id' => Auth::user()->id]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
+        @else
+            <a href="{{ route('buy_cashnet', ['session_id' => Session::getId()) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
         @endif
+
     </div>
 </div>
 

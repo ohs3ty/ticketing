@@ -66,6 +66,8 @@
                     {{ Form::hidden('event_id', $event->id) }}
                     @if(Auth::check())
                         {{ Form::hidden('user_id', Auth::user()->id) }}
+                    @else
+                        {{ Form::hidden('session_id', Session::getId()) }}
                     @endif
 
                     {{ Form::submit('Add to Cart', ['class' => 'btn']) }}
