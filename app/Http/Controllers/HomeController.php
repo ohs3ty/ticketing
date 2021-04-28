@@ -39,7 +39,7 @@ class HomeController extends Controller
                     ->orderBy('start_date')
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->leftJoin('venues', 'venues.id', '=', 'events.venue_id')
-                    ->where('start_date', '>=', now())
+                    ->where('start_date', '>=', date('Y-m-d'))
                     ->where('start_date', '<=', $date)
                     ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
                     'event_type_id', 'organization_id')
