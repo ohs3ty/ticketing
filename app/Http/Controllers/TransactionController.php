@@ -126,7 +126,7 @@ class TransactionController extends Controller {
         
 
         
-        return (CASHNET_FORM_URL);
+        return ("success");
     }
 
 
