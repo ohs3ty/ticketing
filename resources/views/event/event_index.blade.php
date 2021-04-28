@@ -5,6 +5,7 @@ View All Events
 @endsection
 
 @section('content')
+@include('layouts.partial.cart')
     @if ($errors->any())
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)

@@ -74,7 +74,6 @@
         </byu-user-info>
     </byu-header>
     <div id="app">
-        @include('layouts.partial.cart')
         <div class="container">
             <main class="py-4">
                 {{-- {{ $_SESSION['phpCAS'] }} --}}
