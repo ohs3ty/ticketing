@@ -29,6 +29,7 @@ class EventController extends Controller
                     ->leftJoin('venues', 'venues.id', '=', 'events.venue_id')
                     ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
                     'event_type_id', 'organization_id')
+                    ->orderBy('start_date')
                     ->get();
         $ticket_types = TicketType::all();
 

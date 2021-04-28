@@ -32,8 +32,6 @@ class HomeController extends Controller
     {
         // $date = date_add(now(), date_interval_create_from_date_string("7 days"));
         $date = date('Y-m-d', strtotime('+1 week'));
-        print(date('Y-m-d'));
-        print($date);
         $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_name',
                         'event_type_id', 'organization_id', DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
                     ->orderBy('start_date')
@@ -48,9 +46,10 @@ class HomeController extends Controller
 
         $ticket_types = TicketType::all();
 
-        $ticket_counts = Event::select('events.id', 'event_name', 'ticket_types.ticket_name', 'ticket_types.ticket_open_date',
+        $ticket_counts = Event::select('events.id', 'event_name','ticket_types.ticket_name', 'ticket_types.ticket_open_date',
                                     'ticket_types.ticket_close_date', 'ticket_types.ticket_cost', 'ticket_types.ticket_limit',
-                                    DB::raw('(ticket_limit - ticket_count) as ticket_left'))
+                                    DB::raw('(ticket_limit - ticket_count) as ticket_left'),
+                                    DB::raw('ticket_types.id as ticket_type_id'))
                             ->leftJoin('ticket_types', 'ticket_types.event_id', 'events.id')
                             ->leftJoin(DB::raw("(SELECT ticket_types.id, count(transaction_tickets.id) as ticket_count from ticket_types
                                                 LEFT JOIN transaction_tickets on transaction_tickets.ticket_type_id = ticket_types.id
@@ -58,6 +57,7 @@ class HomeController extends Controller
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
+
 
 
         return view('home', [
