@@ -7,6 +7,8 @@ My Tickets and Orders
 @section('content')
 <h3>Past Orders</h3>
 
+{{ $user_transactions }}
+
 @foreach($user_transactions as $transaction)
     {{ $transaction }}
 @endforeach
