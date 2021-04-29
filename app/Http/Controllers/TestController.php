@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\TempCart;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
