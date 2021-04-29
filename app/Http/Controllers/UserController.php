@@ -21,7 +21,6 @@ class UserController extends Controller
                                 ->join('customers', 'customers.id', '=', 'transactions.customer_id')
                                 ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
-        dd($user_transactions);
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
         ]);
