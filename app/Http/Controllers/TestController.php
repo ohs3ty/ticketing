@@ -48,7 +48,7 @@ class TestController extends Controller
         $new_transaction->save();
         dd($cart_items);
 
-        foreach($cart_items as $item) {
+        foreach($cart_items->get() as $item) {
             $new_transactionticket = new TransactionTicket;
             $new_transactionticket->quantity = $item->ticket_quantity;
             $new_transactionticket->transaction_id = $new_transaction->id;
