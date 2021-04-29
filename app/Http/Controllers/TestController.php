@@ -27,7 +27,7 @@ class TestController extends Controller
             if ($customer) {
                 //pass
             } else {
-                $user = User::where('user_id', $request->user_id)->first();
+                $user = User::where('id', $request->user_id)->first();
                 $new_customer = new Customer;
                 $new_customer->cust_firstname = $user->preferredFirstName;
                 $new_customer->cust_lastname = $user->preferredLastName;
