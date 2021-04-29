@@ -53,7 +53,6 @@ class TestController extends Controller
             $new_transactionticket->quantity = $item->ticket_quantity;
             $new_transactionticket->transaction_id = $new_transaction->id;
             $new_transactionticket->ticket_type_id = $item->ticket_type_id;
-            dd($new_transactionticket);
             $new_transactionticket->save();
         }
     
