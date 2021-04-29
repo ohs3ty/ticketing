@@ -73,7 +73,7 @@ View Cart
 
 <br><br>
     {{ hash('sha256', date('Ymd')) }}<br>
-    {{ substr(hash('sha256', date('Ymd')), 0, 5) }}<br>
+    {{ substr(hash('sha256', date('Ymd')), 0, 5) + substr(time(), 0, 5) }}<br>
     {{ time() }}
     {{-- for testing --}}
     @if (Auth::user())
