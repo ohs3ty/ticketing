@@ -7,6 +7,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestController;
 use App\Models\Transaction;
 
 /*
@@ -79,3 +80,6 @@ Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transacti
 
 //User
 Route::get('user/home', [UserController::class, 'index'])->name('user_home');
+
+//Test
+Route::get('test/buy', [TestController::class, 'test_buy'])->name('test_buy');
