@@ -76,7 +76,7 @@ View Cart
     {{-- for testing --}}
     @if (Auth::user())
         @if($cart_items)
-            <a href="{{ route('test_buy', ['user_id' => Auth::user()->id, 'ticket_type_id' => $cart_items->ticket_type_id]) }}" class="btn btn-primary">Skip to Buy</a>
+            <a href="{{ route('test_buy', ['user_id' => Auth::user()->id]) }}" class="btn btn-primary">Skip to Buy</a>
         @endif
     @endif
 @endsection
