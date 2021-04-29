@@ -75,8 +75,8 @@ class User extends Authenticatable
         $attributes = $phpCAS['attributes'] ?? [];
         // dd($attributes);
         $user->set_attribute($attributes, 'name', 'name', 'preferred_name', $net_id)
-            ->set_attribute($attributes, 'preferredFirstName', 'preferredFirstName', 'first_name')
-            ->set_attribute($attributes, 'preferredSurname', 'preferredSurname', 'last_name')
+            ->set_attribute($attributes, 'preferredFirstName', 'preferredFirstName', 'preferredFirstName')
+            ->set_attribute($attributes, 'preferredSurname', 'preferredSurname', 'preferredSurname')
             ->set_attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
             // ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
             ->set_attribute($attributes, 'byu_id', 'byuId', 'byu_id')
