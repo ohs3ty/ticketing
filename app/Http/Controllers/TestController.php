@@ -24,10 +24,17 @@ class TestController extends Controller
         if ($request->user_id != null) {
             $customer = Customer::where('user_id', $request->user_id)->first();
             if ($customer) {
+                //pass
+            } else {
+                $user = User::where('user_id', $request->user_id)->first();
                 $new_customer = new Customer;
-
-
+                $new_customer->cust_firstname = $user->preferredFirstName;
+                $new_customer->cust_lastname = $user->preferredLastName;
+                $new_customer->cust_email = $user->email;
+                $new_customer->save();
+                $customer = Customer::where('user_id', $request->user_id)->first();
             }
+            dd($customer);
         }
 
         $new_transaction = new Transaction;

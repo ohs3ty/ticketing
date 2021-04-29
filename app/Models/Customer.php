@@ -12,7 +12,7 @@ class Customer extends Model
     protected $fillable = [
         'cust_firstname',
         'cust_lastname',
-        'cust_phone',
+        'cust_email',
         'user_id',
     ];
 }
