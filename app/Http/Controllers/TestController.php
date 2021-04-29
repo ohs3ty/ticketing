@@ -47,7 +47,7 @@ class TestController extends Controller
         $new_transaction->customer_id = $customer->id;
         $new_transaction->status = "pending";
         $new_transaction->save();
-        dd($cart_items);
+        dd($cart_items->get());
 
         foreach($cart_items->get() as $item) {
             $new_transactionticket = new TransactionTicket;
