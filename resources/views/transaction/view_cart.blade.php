@@ -75,7 +75,7 @@ View Cart
 
     {{-- for testing --}}
     @if (Auth::user())
-        @if($cart_items)
+        @if(count($cart_items) > 0)
             <a href="{{ route('test_buy', ['user_id' => Auth::user()->id]) }}" class="btn btn-primary">Skip to Buy</a>
         @endif
     @endif
