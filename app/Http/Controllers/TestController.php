@@ -23,9 +23,10 @@ class TestController extends Controller
         //if session_id exists, create a new customer
         if ($request->user_id != null) {
             $customer = Customer::where('user_id', $request->user_id)->first();
-            if (count($customer) > 0) {
+            if ($customer) {
                 $new_customer = new Customer;
-                
+
+
             }
         }
 
