@@ -59,6 +59,6 @@ class TestController extends Controller
             TempCart::find($item->id)->delete();
         }
 
-        return ("success");
+        return view('transaction.order_success');
     }
 }
