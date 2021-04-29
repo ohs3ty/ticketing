@@ -74,8 +74,8 @@ View Cart
 <br><br>
     {{ hash('sha256', date('Ymd')) }}<br>
     {{ substr(hash('sha256', date('Ymd')), 0, 5) }}<br>
-    {{ substr(time(), 0, 5) }}<br>
-    {{ time() }}
+    {{ substr(hash('sha356', time()), 0, 5) }}<br>
+    {{ hash('sha356', time()) }}
     {{-- for testing --}}
     @if (Auth::user())
         @if(count($cart_items) > 0)
