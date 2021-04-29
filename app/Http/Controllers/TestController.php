@@ -16,11 +16,13 @@ class TestController extends Controller
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                         ->first())->transaction_total;
 
-        dd($cart_total);
-        
+        date_default_timezone_set("America/Denver");
+
         $new_transaction = new Transaction;
+        $new_transaction->transaction_total = $cart_total;
+        $new_transaction->transaction_date = date("Y/m/d h:i:s");
         
-        
+        dd($new_transaction);
         foreach($cart_items as $item) {
             
 
