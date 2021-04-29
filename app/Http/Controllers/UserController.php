@@ -21,7 +21,9 @@ class UserController extends Controller
         $user_transactions = Transaction::where('customer_id', '=', $request->user_id)
                                 ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
                                 ->get();
-        return view("user.user_index");
+        return view("user.user_index", [
+            'user_transactions' => $user_transactions,
+        ]);
     }
 
 
