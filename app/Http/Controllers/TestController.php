@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\TempCart;
 use App\Models\Transaction;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -18,10 +19,20 @@ class TestController extends Controller
                         ->first())->transaction_total;
 
         date_default_timezone_set("America/Denver");
+        //see if customer with user_id exists
+        //if session_id exists, create a new customer
+        if ($request->user_id != null) {
+            $customer = Customer::where('user_id', $request->user_id)->first();
+            if (count($customer) > 0) {
+                $new_customer = new Customer;
+                
+            }
+        }
 
         $new_transaction = new Transaction;
         $new_transaction->transaction_total = $cart_total;
         $new_transaction->transaction_date = date("Y/m/d h:i:s");
+        
         
         dd($new_transaction);
         foreach($cart_items as $item) {

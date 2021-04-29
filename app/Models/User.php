@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'net_id',
         'byu_id',
         'memberOf',
@@ -70,7 +71,7 @@ class User extends Authenticatable
         $user = static::firstOrNew(['net_id' => $net_id]);
 
         $attributes = $phpCAS['attributes'] ?? [];
-        //dd($attributes);
+        dd($attributes);
         $user->set_attribute($attributes, 'name', 'name', 'preferred_name', $net_id)
             ->set_attribute($attributes, 'email', 'emailAddress', 'personal_email_address')
             // ->set_attribute($attributes, 'phone', 'phone', 'phone_number')
