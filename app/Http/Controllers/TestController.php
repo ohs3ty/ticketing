@@ -7,7 +7,6 @@ use App\Models\TempCart;
 use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\User;
-use App\Models\TransactionTicket;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
