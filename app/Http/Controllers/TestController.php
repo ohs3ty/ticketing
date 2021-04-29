@@ -56,8 +56,7 @@ class TestController extends Controller
             $new_transactionticket->transaction_id = $new_transaction->id;
             $new_transactionticket->ticket_type_id = $item->ticket_type_id;
             $new_transactionticket->save();
-            dd($item->id);
-            TempCart::find('id', $item->id)->delete();
+            TempCart::find($item->id)->delete();
         }
 
         return ("success");
