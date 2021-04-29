@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $user_transactions = Transaction::all();
+        $user_transactions = Transaction::where('user_id', $request->user_id)
+                                ->join('customers', 'customers.id', '=', 'trnasactions.customer_id')
+                                ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
-                                // ->get();
         dd($user_transactions);
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
