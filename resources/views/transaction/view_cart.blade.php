@@ -72,7 +72,7 @@ View Cart
 </div>
 
 <br><br>
-    {{ hash('sha256', date('Ymd')) }}
+    {{ hash('sha256', date('Ymd')) }}<br>
     {{ time() }}
     {{-- for testing --}}
     @if (Auth::user())
