@@ -42,6 +42,8 @@ class TestController extends Controller
         }
 
         $new_transaction = new Transaction;
+        dd(substr(hash('sha256', date('Ymd')), 0, 5));
+        time();
         $new_transaction->transaction_total = $cart_total;
         $new_transaction->transaction_date = date("Y/m/d h:i:s");
         $new_transaction->customer_id = $customer->id;
