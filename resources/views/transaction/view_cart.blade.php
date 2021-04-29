@@ -73,6 +73,7 @@ View Cart
 
 <br><br>
     {{ hash('sha256', date('Ymd')) }}
+    {{ time() }}
     {{-- for testing --}}
     @if (Auth::user())
         @if(count($cart_items) > 0)
