@@ -7,6 +7,7 @@ use App\Models\TempCart;
 use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\TransactionTicket;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -37,20 +38,23 @@ class TestController extends Controller
 
                 $customer = Customer::where('user_id', $request->user_id)->first();
             }
-            dd($customer);
         }
 
         $new_transaction = new Transaction;
         $new_transaction->transaction_total = $cart_total;
         $new_transaction->transaction_date = date("Y/m/d h:i:s");
-        
-        
-        dd($new_transaction);
+        $new_transaction->customer_id = $customer->id;
+        $new_transaction->status = "pending";
+        $new_transaction->save();
+
         foreach($cart_items as $item) {
-            
-
+            $new_transactionticket = new TransactionTicket;
+            $new_transactionticket->quantity = $item->ticket_quantity;
+            $new_transactionticket->transaction_id = $new_transaction->id;
+            $new_transactionticket->ticket_type_id = $item->ticket_type_id;
+            $new_transactionticket->save();
         }
-
+    
         return ("success");
     }
 }
