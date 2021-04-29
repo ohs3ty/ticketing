@@ -50,7 +50,7 @@ class TestController extends Controller
         $new_transaction->status = "pending";
         $new_transaction->save();
 
-        foreach($cart_items->get() as $item) {
+        foreach($cart_items as $item) {
             $new_transactionticket = new TransactionTicket;
             $new_transactionticket->quantity = $item->ticket_quantity;
             dd($item);
