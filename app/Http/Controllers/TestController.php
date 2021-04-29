@@ -12,7 +12,7 @@ class TestController extends Controller
         $cart_items = TempCart::where('user_id', $request->user_id)
                         ->where('ticket_type_id', $request->ticket_type_id);
         $cart_total = $cart_items
-                        ->select(DB::raw('ticket_quantity * ticket_cost '))
+                        ->select(DB::raw('SUM(ticket_quantity * ticket_cost) as transaction_total'))
                         ->join('ticket_types', 'ticket_types.id', '=', 'temp_carts.ticket_type_id')
                         ->get();
 
