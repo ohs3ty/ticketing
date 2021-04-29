@@ -42,8 +42,8 @@ class TestController extends Controller
         }
 
         $transaction_id = substr(hash('sha256', time()), 0, 5) . substr(hash('sha256', $request->user_id), 0, 5);
-        dd($transaction_id);
         $new_transaction = new Transaction;
+        $new_transaction->id = $transaction_id;
         $new_transaction->transaction_total = $cart_total;
         $new_transaction->transaction_date = date("Y/m/d h:i:s");
         $new_transaction->customer_id = $customer->id;
