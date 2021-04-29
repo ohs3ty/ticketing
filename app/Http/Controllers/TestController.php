@@ -32,7 +32,9 @@ class TestController extends Controller
                 $new_customer->cust_firstname = $user->preferredFirstName;
                 $new_customer->cust_lastname = $user->preferredSurname;
                 $new_customer->cust_email = $user->email;
+                $new_customer->user_id = $user->id;
                 $new_customer->save();
+
                 $customer = Customer::where('user_id', $request->user_id)->first();
             }
             dd($customer);
