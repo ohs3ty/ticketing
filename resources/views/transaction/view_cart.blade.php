@@ -71,6 +71,7 @@ View Cart
     </div>
 </div>
 
-
+{{-- for testing --}}
+<a href="" class="btn">Skip to Buy</a>
 
 @endsection
