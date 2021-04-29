@@ -18,7 +18,7 @@ class UserController extends Controller
 {
     public function index(Request $request) {
 
-        $user_transactions = Transaction::where('user_id', '=', $request->user_id)
+        $user_transactions = Transaction::where('customer_id', '=', $request->user_id)
                                 ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
                                 ->get();
         return view("user.user_index");
