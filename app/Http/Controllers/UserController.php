@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function index(Request $request) {
-        dd($request->user_id);
         $user_transactions = Transaction::where('user_id', $request->user_id)
                                 ->select('transactions.id', 'transaction_total', 'transaction_date')
                                 ->join('customers', 'customers.id', '=', 'transactions.customer_id')
