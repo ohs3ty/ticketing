@@ -8,7 +8,7 @@ My Tickets and Orders
 <h3>Past Orders</h3>
 
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Date Purchased</th>
