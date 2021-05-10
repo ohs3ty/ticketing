@@ -16,6 +16,7 @@ use DateTime;
 class TransactionController extends Controller {
 
     public function buy_ticket_action(Request $request) {
+        
         //if the ticket_quantity is null, validate and send user back
         $msg = '';
         if ($request->ticket_quantity == null) {

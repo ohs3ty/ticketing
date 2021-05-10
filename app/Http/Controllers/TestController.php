@@ -45,7 +45,6 @@ class TestController extends Controller
         $new_transaction = new Transaction;
         $new_transaction->id = $transaction_id;
         $new_transaction->transaction_total = $cart_total;
-        $new_transaction->transaction_date = date("Y/m/d h:i:s");
         $new_transaction->customer_id = $customer->id;
         $new_transaction->status = "pending";
         $new_transaction->save();
