@@ -20,7 +20,8 @@ My Tickets and Orders
         @foreach($user_transactions as $transaction)
             <tr>
                 <td>{{ $transaction->transaction_date }}</td>
-                <td>{{ $transaction->id }}
+                <td>{{ $transaction->transaction_id }}</td>
+                <td>{{ $transaction->trasaction_total }}</td>
             </tr>
             {{ $transaction }}
         @endforeach
