@@ -23,7 +23,6 @@ My Tickets and Orders
                 <td>{{ $transaction->transaction_id }}</td>
                 <td>${{ number_format($transaction->transaction_total, 2, ".", ",") }}</td>
             </tr>
-            {{ $transaction }}
         @endforeach
     </tbody>
 </table>
