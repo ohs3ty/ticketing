@@ -21,7 +21,7 @@ My Tickets and Orders
             <tr>
                 <td>{{ $transaction->transaction_date }}</td>
                 <td>{{ $transaction->transaction_id }}</td>
-                <td>{{ $transaction->transaction_total }}</td>
+                <td>${{ number_format($transaction->transaction_total, 2, ".", ",") }}</td>
             </tr>
             {{ $transaction }}
         @endforeach
