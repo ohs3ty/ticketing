@@ -19,7 +19,7 @@ My Tickets and Orders
     <tbody>
         @foreach($user_transactions as $transaction)
             <tr>
-                <td></td>
+                <td>{{ $transaction->transaction_date }}</td>
             </tr>
             {{ $transaction }}
         @endforeach
