@@ -6,7 +6,7 @@ Transaction Details
 
 @section('content')
 
-<h4>Order Summary for Order #{{ $transaction_id }}</h4>
+<h4>Order Summary for Order #{{ $transaction->transaction_id }}</h4>
 {{$transaction_details}}
 <div class="row">
     <div class="col-8">
@@ -25,14 +25,14 @@ Transaction Details
                 <div class="col-2">
                     <span class="cart-label">QTY</span>
                     <hr>
-                    <span style="font-size: 20px;">{{$detail->quantity}}</span>
+                    <span style="font-size: 20px;">{{ $detail->quantity }}</span>
 
                     
                 </div>
                 <div class="col-2">
                     <span class="cart-label">ITEM TOTAL</span>
                     <hr>
-                    <span style="font-size: 20px;">${{ $detail->ticket_cost * $detail->quantity }}</span>
+                    <span style="font-size: 20px;">${{ number_format($detail->ticket_cost * $detail->quantity, 2, ".", ",") }}</span>
                 </div>
             </div>
             <br>
