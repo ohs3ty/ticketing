@@ -6,4 +6,7 @@ Transaction Details
 
 @section('content')
 
+
+{{$transaction_details}}
+
 @endsection
