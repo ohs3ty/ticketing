@@ -6,7 +6,7 @@ Transaction Details
 
 @section('content')
 
-<h4>Order Summary for {{ $transaction_id }}</h4>
+<h4>Order Summary for Order #{{ $transaction_id }}</h4>
 {{$transaction_details}}
 <div class="row">
     <div class="col-8">
@@ -38,6 +38,8 @@ Transaction Details
             @endforeach
         </div>
     </div>
+    <br>
+    Back to Order History
     <div class="col-4">
         <div class="cart_background rounded">
             <h2>Order Total</h2>
