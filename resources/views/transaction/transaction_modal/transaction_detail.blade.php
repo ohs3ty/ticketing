@@ -14,9 +14,9 @@
               @if($detail->transaction_id == $transaction->transaction_id)
                 <div class="row">
                   <div class="col-8 bg-primary">
+                    <h4>{{ $detail->event_name }}</h4>
                   </div>
                 </div>
-                <h4>{{ $detail->event_name }}</h4>
 
                 {{ $detail }}
               @endif
