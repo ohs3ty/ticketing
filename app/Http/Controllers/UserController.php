@@ -9,6 +9,7 @@ use App\Models\Organization;
 use App\Models\User;
 use App\Models\OrganizationOrganizer;
 use App\Models\Transaction;
+use App\Models\TransactionTicket;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,13 @@ class UserController extends Controller
                                 ->orderByDesc('transaction_date')
                                 ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
+
+        $transaction_details = TransactionTicket::all()
+                                ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id')
+                                ->get();
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
+            'transaction_details', => $transaction_details,
         ]);
     }
 
