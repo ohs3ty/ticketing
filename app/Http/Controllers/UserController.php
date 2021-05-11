@@ -27,6 +27,7 @@ class UserController extends Controller
 
         $transaction_details = TransactionTicket::all()
                                 ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id');
+                                
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
             'transaction_details' => $transaction_details,

@@ -9,6 +9,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
+          {{ $transaction_details }}
           <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
