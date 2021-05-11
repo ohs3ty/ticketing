@@ -10,17 +10,17 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               <h4>Event Name</h4>
             </div>
-            <div class="col-4">
+            <div class="col-2">
               <h4>Quantity</h4>
             </div>
           </div>
             @foreach ($transaction_details as $detail)
               @if($detail->transaction_id == $transaction->transaction_id)
                 <div class="row">
-                  <div class="col-6 bg-primary">
+                  <div class="col-4 bg-primary">
                     <h5>{{ $detail->event_name }}</h5>
                   </div>
                 </div>
