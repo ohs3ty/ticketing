@@ -20,9 +20,17 @@ My Tickets and Orders
         @foreach($user_transactions as $transaction)
             <tr>
                 <td>{{ \Carbon\Carbon::parse($transaction->transaction_date)->format("F j, Y g:i a") }}</td>
-                <td>{{ $transaction->transaction_id }}</td>
+                {{-- modal --}}
+                <td>    
+                    {{ $transaction->transaction_id }}
+                    <button class="btn" data-toggle="modal" data-target="#myModal">View Details/Buy Tickets</button>
+                </td>
                 <td>${{ number_format($transaction->transaction_total, 2, ".", ",") }}</td>
+                
             </tr>
+            <!-- Modal -->
+            @include('transaction.transaction_modal.transaction_detail')
+            {{-- End of modal --}}
         @endforeach
     </tbody>
 </table>

@@ -37,6 +37,7 @@
                         <tr>
                             <th>Organizer</th>
                             <th>List of Organizations</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                                         @endif
                                     @endforeach
                                 </td>
+                                <td>Delete</td>
                             </tr>
                         @endforeach
 
