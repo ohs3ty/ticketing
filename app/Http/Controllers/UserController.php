@@ -28,7 +28,8 @@ class UserController extends Controller
 
 
         return view("user.user_index", [
-            'user_transactions' => $user_transactions,
+            'user_transactions' => $user_transactions, 
+            'user_id' => $request->user_id,
         ]);
     }
 
