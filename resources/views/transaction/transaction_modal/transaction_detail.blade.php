@@ -11,7 +11,8 @@
         <div class="modal-body">
             @foreach ($transaction_details as $detail)
               @if($detail->transaction_id == $transaction->transaction_id)
-                <h4>{{ $detail->event_name }}</h4>
+                Event Name: {{ $detail->event_name }}<br>
+                
 
                 {{ $detail }}
               @endif
