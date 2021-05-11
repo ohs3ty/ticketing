@@ -11,10 +11,10 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-4">
-              <h4>Event Name</h4>
+              <h4>Event Details</h4>
             </div>
             <div class="col-2">
-              <h4>Ticket Cost</h4>
+              <h4>Ticket Detail</h4>
             </div>
           </div>
             @foreach ($transaction_details as $detail)
@@ -26,11 +26,10 @@
 
                   </div>
                   <div class="col-2">
-                    <h5>{{ number_format($detail->ticket_cost, 2, ".", ",") }}</h5>
+                    <h5>${{ number_format($detail->ticket_cost, 2, ".", ",") }}</h5>
                   </div>
                 </div>
 
-                {{ $detail }}
               @endif
             @endforeach
         </div>
