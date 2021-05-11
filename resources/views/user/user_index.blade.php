@@ -22,8 +22,7 @@ My Tickets and Orders
                 <td>{{ \Carbon\Carbon::parse($transaction->transaction_date)->format("F j, Y g:i a") }}</td>
                 {{-- modal --}}
                 <td>    
-                    {{ $transaction->transaction_id }}
-                    <button class="btn" data-toggle="modal" data-target="#myModal">View Details/Buy Tickets</button>
+                    <button class="btn" data-toggle="modal" data-target="#myModal">{{ $transaction->transaction_id }}</button>
                 </td>
                 <td>${{ number_format($transaction->transaction_total, 2, ".", ",") }}</td>
                 
