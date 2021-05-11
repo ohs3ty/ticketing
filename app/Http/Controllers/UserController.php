@@ -20,7 +20,7 @@ class UserController extends Controller
         $user_transactions = Transaction::where('user_id', $request->user_id)
                                 ->select('transactions.id as transaction_id', 'transaction_total', 'transactions.created_at as transaction_date')
                                 ->join('customers', 'customers.id', '=', 'transactions.customer_id')
-                                ->orderBy('transaction_date')
+                                ->orderByDesc('transaction_date')
                                 ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
         return view("user.user_index", [
