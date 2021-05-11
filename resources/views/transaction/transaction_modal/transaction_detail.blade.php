@@ -9,10 +9,17 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>hello</th>
+              </tr>
+            </thead>
+          </table>
             @foreach ($transaction_details as $detail)
               @if($detail->transaction_id == $transaction->transaction_id)
+                <h4>{{ $detail->event_name }}</h4>
 
-                <h4>{{ $detail->event_name }}</h4><br>
                 {{ $detail }}
               @endif
             @endforeach
