@@ -25,12 +25,14 @@ Transaction Details
                 <div class="col-2">
                     <span class="cart-label">QTY</span>
                     <hr>
+                    <span style="font-size: 20px;">{{$detail->quantity}}</span>
+
                     
                 </div>
                 <div class="col-2">
                     <span class="cart-label">ITEM TOTAL</span>
                     <hr>
-                    <span style="font-size: 20px;">$</span>
+                    <span style="font-size: 20px;">${{ $detail->ticket_cost * $detail->quantity }}</span>
                 </div>
             </div>
             <br>
