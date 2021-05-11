@@ -12,10 +12,10 @@
           @foreach ($transaction_details as $detail)
             @if($detail->transaction_id == $transaction->transaction_id)
 
-              {{$detail}}
+              {{ $detail->event_name }}
+              {{ $detail }}
             @endif
           @endforeach
-          <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
