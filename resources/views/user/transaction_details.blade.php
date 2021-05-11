@@ -12,7 +12,7 @@ Transaction Details
     <div class="col-8">
         <div class="cart_background rounded">
             <h2>Order Summary</h2>
-            @foreach ($transaction_detail as $detail)
+            @foreach ($transaction_details as $detail)
             <hr>
             <div class="row">
                 <div class="col-8">
