@@ -22,6 +22,8 @@
                 <div class="row">
                   <div class="col-4 bg-primary">
                     <h5>{{ $detail->event_name }}</h5>
+                    {{\Carbon\Carbon::parse($detail->start_date)->format("F j, Y g:i a")}}
+
                   </div>
                   <div class="col-2">
                     <h5>{{ number_format($detail->ticket_cost, 2, ".", ",") }}</h5>
