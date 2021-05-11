@@ -9,7 +9,11 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          
+          <div class="row">
+            <div class="col-8 bg-primary">
+              <h3>Event Name</h3>
+            </div>
+          </div>
             @foreach ($transaction_details as $detail)
               @if($detail->transaction_id == $transaction->transaction_id)
                 <div class="row">
