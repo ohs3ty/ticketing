@@ -9,15 +9,20 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <table>
-            
-          </table>
-          @foreach ($transaction_details as $detail)
-            @if($detail->transaction_id == $transaction->transaction_id)
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+              </tr>
+            </thead>
+          
+            @foreach ($transaction_details as $detail)
+              @if($detail->transaction_id == $transaction->transaction_id)
 
-              {{$detail}}
-            @endif
-          @endforeach
+                {{$detail}}
+              @endif
+            @endforeach
+          </table>
           <p>Some text in the modal.</p>
         </div>
         <div class="modal-footer">
