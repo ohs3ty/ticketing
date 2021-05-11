@@ -9,10 +9,14 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
+          
             @foreach ($transaction_details as $detail)
               @if($detail->transaction_id == $transaction->transaction_id)
-                Event Name: {{ $detail->event_name }}<br>
-                
+                <div class="row">
+                  <div class="col-8 bg-primary">
+                  </div>
+                </div>
+                <h4>{{ $detail->event_name }}</h4>
 
                 {{ $detail }}
               @endif
