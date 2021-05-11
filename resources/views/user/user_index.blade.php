@@ -18,7 +18,7 @@ My Tickets and Orders
     </thead>
     <tbody>
         @foreach($user_transactions as $transaction)
-            <tr onclick="transaction_details()">
+            <tr onclick="transactionDetails()">
                 <td>{{ \Carbon\Carbon::parse($transaction->transaction_date)->format("F j, Y g:i a") }}</td>
                 {{-- modal --}}
                 <td>    

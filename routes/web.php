@@ -80,6 +80,7 @@ Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transacti
 
 //User
 Route::get('user/home', [UserController::class, 'index'])->name('user_home');
+Route::get('user/transaction', [UserController::class, 'transaction_details'])->name('transaction_details');
 
 //Test
 Route::get('test/buy', [TestController::class, 'test_buy'])->name('test_buy');

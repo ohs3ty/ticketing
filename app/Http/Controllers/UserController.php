@@ -25,15 +25,20 @@ class UserController extends Controller
                                 ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
 
+
+
+        return view("user.user_index", [
+            'user_transactions' => $user_transactions,
+        ]);
+    }
+
+    public function transaction_detail(Request $request) {
         $transaction_details = TransactionTicket::select('transaction_tickets.transaction_id', 'events.event_name', 'quantity', 'ticket_cost', 'events.start_date')
                                 ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id')
                                 ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                 ->get();
 
-        return view("user.user_index", [
-            'user_transactions' => $user_transactions,
-            'transaction_details' => $transaction_details,
-        ]);
+        return ("works");
     }
 
 
