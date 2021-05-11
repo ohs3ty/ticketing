@@ -5,7 +5,7 @@ My Tickets and Orders
 @endsection
 
 @section('content')
-@if(Auth::user()->id == $user_id) {
+@if(Auth::user()->id == $user_id)
     <h3>Past Orders</h3>
 
 
@@ -32,7 +32,7 @@ My Tickets and Orders
             @endforeach
         </tbody>
     </table>
-}
+@endif
 
 
 @endsection
