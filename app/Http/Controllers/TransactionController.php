@@ -113,18 +113,25 @@ class TransactionController extends Controller {
             $cart = TempCart::where('user_id', $request->user_id)
             ->where('ticket_type_id', $request->ticket_type_id)
             ->first();
+
+            $cart->ticket_quantity = $request->ticket_quantity;
+            $cart->save();
+
+            return redirect()->route('mycart', ['user_id' => $request->user_id]);
+
         } else {
             $cart = TempCart::where('user_id', $request->user_id)
             ->where('session_id', $request->session_id)
             ->where('ticket_type_id', $request->ticket_type_id)
             ->first(); 
+
+            $cart->ticket_quantity = $request->ticket_quantity;
+            $cart->save();
+
+            return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
+
         }
 
-        
-        $cart->ticket_quantity = $request->ticket_quantity;
-        $cart->save();
-
-        return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
     }
 
     public function delete_cart_item(Request $request) {
