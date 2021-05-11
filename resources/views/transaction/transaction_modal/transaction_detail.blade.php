@@ -21,7 +21,7 @@
               @if($detail->transaction_id == $transaction->transaction_id)
                 <div class="row">
                   <div class="col-6 bg-primary">
-                    {{ $detail->event_name }}
+                    <h5>{{ $detail->event_name }}</h5>
                   </div>
                 </div>
 
