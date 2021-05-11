@@ -37,7 +37,7 @@ Transaction Details
             <br>
             @endforeach
         </div>
-        <br><br><br>
+        <br>
         Back to Order History
     </div>
     <div class="col-4">
