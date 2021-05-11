@@ -49,6 +49,12 @@ function greyQuantity() {
 
 }
 
+//user page
+//view the details within a transaction
+function transaction_details() {
+    alert("works");
+}
+
 // no need currently
 // document.getElementsByName('user_organizer')[1].addEventListener("click", function() {
 //     document.getElementById('not_user').hidden = false;
