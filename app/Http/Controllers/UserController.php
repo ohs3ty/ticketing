@@ -35,7 +35,6 @@ class UserController extends Controller
 
     public function transaction_details(Request $request) {
         $transaction = Transaction::find($request->transaction_id);
-        dd($transaction);
 
         $transaction_details = TransactionTicket::select('transaction_tickets.transaction_id', 'events.event_name', 'quantity', 'ticket_cost', 'events.start_date', 'ticket_name')
                                 ->where('transaction_id', '=', $request->transaction_id)
