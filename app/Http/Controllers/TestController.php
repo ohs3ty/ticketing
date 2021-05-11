@@ -41,7 +41,7 @@ class TestController extends Controller
             }
         }
 
-        $transaction_id = "TICK" . substr(hash('sha256', time()), 0, 5) . substr(hash('sha256', $request->user_id), 0, 3);
+        $transaction_id = strtoupper("TICK" . substr(hash('sha256', time()), 0, 5) . substr(hash('sha256', $request->user_id), 0, 3));
         $new_transaction = new Transaction;
         $new_transaction->id = $transaction_id;
         $new_transaction->transaction_total = $cart_total;
