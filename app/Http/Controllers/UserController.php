@@ -42,6 +42,7 @@ class UserController extends Controller
 
         return view("user.transaction_details", [
             'transaction_details' => $transaction_details,
+            'transaction_id' => $request->transaction_id
         ]);
     }
 

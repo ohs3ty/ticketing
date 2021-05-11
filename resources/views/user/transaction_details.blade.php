@@ -6,12 +6,11 @@ Transaction Details
 
 @section('content')
 
-<h4>Order Summary</h4>
+<h4>Order Summary for {{ $transaction_id }}</h4>
 {{$transaction_details}}
 <div class="row">
     <div class="col-8">
         <div class="cart_background rounded">
-            <h2>Order Summary</h2>
             @foreach ($transaction_details as $detail)
             <hr>
             <div class="row">
