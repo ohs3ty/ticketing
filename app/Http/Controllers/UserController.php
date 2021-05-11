@@ -25,9 +25,9 @@ class UserController extends Controller
                                 ->get();
                                 // ->join('transaction_tickets', 'transactions.id', '=', 'transaction_tickets.transaction_id' )
 
-        $transaction_details = TransactionTicket::all()
+        $transaction_details = TransactionTicket::select('*')
                                 ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id');
-                                
+
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
             'transaction_details' => $transaction_details,
