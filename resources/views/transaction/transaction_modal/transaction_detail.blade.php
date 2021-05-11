@@ -10,7 +10,9 @@
         </div>
         <div class="modal-body">
           @foreach ($transaction_details as $detail)
-            {{$detail}}
+            @if($detail->transaction_id == $transaction->transaction_id)
+              {{$detail}}
+            @endif
           @endforeach
           <p>Some text in the modal.</p>
         </div>
