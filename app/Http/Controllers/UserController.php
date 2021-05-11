@@ -38,7 +38,7 @@ class UserController extends Controller
                                 ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                 ->get();
 
-        return ("works");
+        return view("user.transaction_details");
     }
 
 
