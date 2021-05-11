@@ -30,7 +30,7 @@ class UserController extends Controller
                                 ->get();
         return view("user.user_index", [
             'user_transactions' => $user_transactions,
-            'transaction_details', => $transaction_details,
+            'transaction_details' => $transaction_details,
         ]);
     }
 
