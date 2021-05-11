@@ -24,7 +24,7 @@
                     <h5>{{ $detail->event_name }}</h5>
                   </div>
                   <div class="col-2">
-                    <h5>Cost</h5>
+                    <h5>{{ number_format($detail->ticket_cost, 2, ".", ",") }}</h5>
                   </div>
                 </div>
 
