@@ -36,8 +36,9 @@ Transaction Details
             <br>
             <br>
             @endforeach
-            Back to Order History
         </div>
+        <br><br><br>
+        Back to Order History
     </div>
     <div class="col-4">
         <div class="cart_background rounded">
