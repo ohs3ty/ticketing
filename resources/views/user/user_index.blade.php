@@ -26,7 +26,6 @@ My Tickets and Orders
                 </td>
                 <td>${{ number_format($transaction->transaction_total, 2, ".", ",") }}</td>
             </tr>
-            @include('transaction.transaction_modal.transaction_detail')
         @endforeach
     </tbody>
 </table>
