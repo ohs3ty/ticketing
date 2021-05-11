@@ -6,7 +6,7 @@ Transaction Details
 
 @section('content')
 
-<h4>Order Summary for Order #{{ $transaction->id }}</h4>
+<h4>Order Summary for Order #{{ $transaction }}</h4>
 {{$transaction_details}}
 <div class="row">
     <div class="col-8">
