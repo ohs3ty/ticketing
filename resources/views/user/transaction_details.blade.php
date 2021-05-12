@@ -7,7 +7,7 @@ Transaction Details
 @section('content')
 
 @auth
-    <h4>Order Summary for Order #{{ $transaction->getTransactionDate() }}</h4>
+    <h4>Order Summary for Order #{{ \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y, g:i a') }}</h4>
     <div class="row">
         <div class="col-8">
             <div class="cart_background rounded">
