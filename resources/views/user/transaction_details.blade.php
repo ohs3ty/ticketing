@@ -7,7 +7,7 @@ Transaction Details
 @section('content')
 
 @auth
-    <h4>Order Summary for Order #{{ $transaction->transaction_id }}</h4>
+    <h4>Order Summary for Order #{{ $transaction }}</h4>
     <div class="row">
         <div class="col-8">
             <div class="cart_background rounded">
