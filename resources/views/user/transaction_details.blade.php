@@ -12,7 +12,7 @@ Transaction Details
             <div class="cart_background rounded">
                 <div class="row">
                     <div class="col-8">
-                        <h2>Order Summary for #{{ $transaction->transaction_id }}</h2>
+                        <h2>Order Summary: #{{ $transaction->transaction_id }}</h2>
                         <h4>Order Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('F j, Y, g:i a') }}</h4>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ Transaction Details
                 @endforeach
             </div>
             <br>
-            Back to Order History
+            <a href="{{ route('user_home', ['user_id' => Auth()->user()->id]) }}">Back to Order History</a>
         </div>
         <div class="col-4">
             <div class="cart_background rounded">
