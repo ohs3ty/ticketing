@@ -203,13 +203,18 @@ class AdminController extends Controller
 
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
-        $organization_id = $request->organization_id;
+        
 
 
         if ($request->deleteorganizer == "true") {
+            $organizer_organization = OrganizationOrganizer::where('organizer_id', $request->organizer_id)->destroy();
+            
+            $organizer = Organizer::where('id', $request->organizer_id)->delete();
 
-            return ("worked");
+
+            return back();
         } 
+        $organization_id = $request->organization_id;
         $organization = Organization::where('id', $organization_id)->first();
 
         //if user has other organizations, they stay organizer, otherwise, back to general
