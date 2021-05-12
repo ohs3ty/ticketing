@@ -6,52 +6,61 @@ Transaction Details
 
 @section('content')
 
-<h4>Order Summary for Order #{{ $transaction }}</h4>
-<div class="row">
-    <div class="col-8">
-        <div class="cart_background rounded">
-            @foreach ($transaction_details as $detail)
-            <hr>
-            <div class="row">
-                <div class="col-8">
-                    <span class="cart-label">ITEM</span>
-                    <hr>
-                    <h3>{{ $detail->event_name }}</h3>
-                    Ticket Group: {{ $detail->ticket_name }}<br>
-                    Ticket Date: {{ \Carbon\Carbon::parse($detail->start_date)->format('l, F j, Y, g:i a') }}<br>
-                    Ticket Price: ${{ number_format(floatval($detail->ticket_cost), 2, '.', ',') }}
+@auth
+    <h4>Order Summary for Order #{{ $transaction->transaction_id }}</h4>
+    <div class="row">
+        <div class="col-8">
+            <div class="cart_background rounded">
+                <div class="row">
+                    <div class="col-8">
+                        <h3>Order Date: {{  }}</h3>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <span class="cart-label">QTY</span>
-                    <hr>
-                    <span style="font-size: 20px;">{{ $detail->quantity }}</span>
+                @foreach ($transaction_details as $detail)
+                <hr>
+                <div class="row">
+                    <div class="col-8">
+                        <span class="cart-label">ITEM</span>
+                        <hr>
+                        <h3>{{ $detail->event_name }}</h3>
+                        Ticket Group: {{ $detail->ticket_name }}<br>
+                        Ticket Date: {{ \Carbon\Carbon::parse($detail->start_date)->format('l, F j, Y, g:i a') }}<br>
+                        Ticket Price: ${{ number_format(floatval($detail->ticket_cost), 2, '.', ',') }}
+                    </div>
+                    <div class="col-2">
+                        <span class="cart-label">QTY</span>
+                        <hr>
+                        <span style="font-size: 20px;">{{ $detail->quantity }}</span>
 
-                    
+                        
+                    </div>
+                    <div class="col-2">
+                        <span class="cart-label">ITEM TOTAL</span>
+                        <hr>
+                        <span style="font-size: 20px;">${{ number_format($detail->ticket_cost * $detail->quantity, 2, ".", ",") }}</span>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <span class="cart-label">ITEM TOTAL</span>
-                    <hr>
-                    <span style="font-size: 20px;">${{ number_format($detail->ticket_cost * $detail->quantity, 2, ".", ",") }}</span>
-                </div>
+                <br>
+                <br>
+                @endforeach
             </div>
             <br>
-            <br>
-            @endforeach
+            Back to Order History
         </div>
-        <br>
-        Back to Order History
-    </div>
-    <div class="col-4">
-        <div class="cart_background rounded">
-            <h2>Order Total</h2>
-            <hr>
-            <div class="row">
-                <div class="col-8">Subtotal</div>
-                <div class="col-4">$</div>
+        <div class="col-4">
+            <div class="cart_background rounded">
+                <h2>Order Total</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-8">Subtotal</div>
+                    <div class="col-4">$</div>
+                </div>
+                <br>
             </div>
-            <br>
         </div>
     </div>
-</div>
+
+@endauth
+
 
 @endsection

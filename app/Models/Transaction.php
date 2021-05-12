@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Transaction extends Model
 {
@@ -11,7 +12,11 @@ class Transaction extends Model
     protected $fillable = [
         'transaction_total',
         'customer_id',
-        'transaction_date',
         'status',
     ];
+
+    public function getTransactionDate() {
+        $date = Carbon::parse($this->created_at)->format('l, F j, Y, g:i a');
+        return $date;
+    }
 }
