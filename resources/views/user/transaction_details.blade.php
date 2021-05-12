@@ -46,6 +46,7 @@ Transaction Details
             </div>
             <br>
             <a href="{{ route('user_home', ['user_id' => Auth()->user()->id]) }}">Back to Order History</a>
+            {{ Auth::user() }}
         </div>
         <div class="col-4">
             <div class="cart_background rounded">
