@@ -49,6 +49,7 @@ class HomeController extends Controller
 
         $ticket_counts = Event::select('events.id', 'event_name','ticket_types.ticket_name', 'ticket_types.ticket_open_date',
                                     'ticket_types.ticket_close_date', 'ticket_types.ticket_cost', 'ticket_types.ticket_limit',
+                                    'profile_name',
                                     DB::raw('(ticket_limit - ticket_count) as ticket_left'),
                                     DB::raw('ticket_types.id as ticket_type_id'))
                             ->leftJoin('ticket_types', 'ticket_types.event_id', 'events.id')
@@ -56,6 +57,7 @@ class HomeController extends Controller
                                                 LEFT JOIN transaction_tickets on transaction_tickets.ticket_type_id = ticket_types.id
                                                 GROUP BY ticket_types.id)
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
+                            ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
 
