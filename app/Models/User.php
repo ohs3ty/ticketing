@@ -73,6 +73,7 @@ class User extends Authenticatable
         $user = static::firstOrNew(['net_id' => $net_id]);
 
         $attributes = $phpCAS['attributes'] ?? [];
+        dd($attributes);
         // dd($attributes);
         $user->set_attribute($attributes, 'name', 'name', 'preferred_name', $net_id)
             ->set_attribute($attributes, 'preferredFirstName', 'preferredFirstName', 'preferredFirstName')
