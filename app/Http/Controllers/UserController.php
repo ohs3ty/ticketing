@@ -45,6 +45,7 @@ class UserController extends Controller
                                 ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id')
                                 ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                 ->get();
+        dd($transaction->getTransactionDate());
 
         return view("user.transaction_details", [
             'transaction_details' => $transaction_details,
