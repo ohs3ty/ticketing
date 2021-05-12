@@ -7,13 +7,13 @@ Transaction Details
 @section('content')
 
 @auth
-    <h4>Order Summary for Order #{{ \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y, g:i a') }}</h4>
+    <h4>Order Summary for Order #{{ $transaction->transaction_id }}</h4>
     <div class="row">
         <div class="col-8">
             <div class="cart_background rounded">
                 <div class="row">
                     <div class="col-8">
-                        <h3>Order Date:</h3>
+                        <h3>Order Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y, g:i a') }}</h3>
                     </div>
                 </div>
                 @foreach ($transaction_details as $detail)
