@@ -32,7 +32,7 @@
                     @foreach ($ticket_counts as $ticket_count)
                         @if(($ticket_count->id == $event->id))
                         {{-- if past or before sale date range --}}
-                            @if ($ticket_count->patron_profile_id == 1)
+                            @if (($ticket_count->patron_profile_id == 1) || (Auth::user()->id))
                                 <div class="row container" style="padding: 10px">
                                     <div class="col-8"> 
                                         <h5>{{ $ticket_count->ticket_name }}</h5>
