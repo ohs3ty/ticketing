@@ -52,7 +52,7 @@
                                         @endif
                                     @endforeach
                                 </td>
-                                <td>Delete</td>
+                                <td><th><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOrganizer{{ $organizer->id }}"><i class="bi-trash-fill"></i></button></th></td>
                             </tr>
                         @endforeach
 
