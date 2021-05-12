@@ -206,6 +206,11 @@ class AdminController extends Controller
         $organization_id = $request->organization_id;
 
         dd($request->deleteorganizer);
+
+        if ($request->deleteorganizer == "true") {
+
+            return ("worke");
+        } 
         $organization = Organization::where('id', $organization_id)->first();
 
         //if user has other organizations, they stay organizer, otherwise, back to general
