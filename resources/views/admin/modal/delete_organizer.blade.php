@@ -17,7 +17,7 @@
           <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">No, go back</button>
             {{ Form::open(array('url' => '/admin/deleteorganizer', 'method' => 'post')) }}
                 {{ Form::hidden('organizer_id', $organizer->id) }}
-                {{ Form::hidden('organizer', 'true')}}
+                {{ Form::hidden('deleteorganizer', 'true')}}
                 {{ Form::submit('Yes, delete', ['class' => 'btn btn-default btn-danger']) }}
             {{ Form::close() }}
             
