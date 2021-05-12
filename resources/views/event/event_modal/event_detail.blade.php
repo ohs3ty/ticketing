@@ -37,6 +37,7 @@
                                     <h5>{{ $ticket_count->ticket_name }}</h5>
                                     <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                                     {{ $ticket_count->profile_name }}
+                                    {{ Auth::user()->patron_profile}}
                                 </div>
 
                                 <div class="col-4">
