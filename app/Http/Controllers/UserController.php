@@ -37,6 +37,7 @@ class UserController extends Controller
         $transaction = TransactionTicket::select('transaction_id', 'transactions.created_at', 'transaction_total', 'customer_id', 'status')
                         ->where('transaction_id', $request->transaction_id)
                         ->join('transactions', 'transactions.id' ,'=','transaction_tickets.transaction_id')
+                        ->distinct()
                         ->get();
 
         $transaction_details = TransactionTicket::select('transaction_tickets.transaction_id', 'events.event_name', 'quantity', 'ticket_cost', 'events.start_date', 'ticket_name')
