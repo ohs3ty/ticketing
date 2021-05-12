@@ -33,9 +33,10 @@
                         @if(($ticket_count->id == $event->id))
                         {{-- if past or before sale date range --}}
                             <div class="row container" style="padding: 10px">
-                                <div class="col-8">
+                                <div class="col-8"> 
                                     <h5>{{ $ticket_count->ticket_name }}</h5>
                                     <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
+                                    {{ $ticket_count->profile_name }}
                                 </div>
 
                                 <div class="col-4">
