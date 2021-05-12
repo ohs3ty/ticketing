@@ -212,7 +212,10 @@ class AdminController extends Controller
                 $org->delete();
             }
             
-            $organizer = Organizer::where('id', $request->organizer_id)->delete();
+            $organizer = Organizer::where('id', $request->organizer_id)->first();
+            $user = User::where('id', $organizer->user_id)->first();
+            $user->resetRole();
+            $organizer->delete();
 
 
             return back();
