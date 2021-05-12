@@ -32,30 +32,32 @@
                     @foreach ($ticket_counts as $ticket_count)
                         @if(($ticket_count->id == $event->id))
                         {{-- if past or before sale date range --}}
-                            <div class="row container" style="padding: 10px">
-                                <div class="col-8"> 
-                                    <h5>{{ $ticket_count->ticket_name }}</h5>
-                                    <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
-                                    {{ $ticket_count->profile_name }}
-                                    {{ Auth::user()->patron_profile}}
-                                </div>
+                            @if ($ticket_count->profile_name == 1)
+                                <div class="row container" style="padding: 10px">
+                                    <div class="col-8"> 
+                                        <h5>{{ $ticket_count->ticket_name }}</h5>
+                                        <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
+                                        {{ $ticket_count->profile_name }}
+                                        {{-- {{ Auth::user()->patron_profile}} --}}
+                                    </div>
 
-                                <div class="col-4">
-                                    <h5>Ticket Quantity</h5>
-                                    @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
-                                        @if ($ticket_count->ticket_left == null)
-                                            {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                        @elseif ($ticket_count->ticket_left == 0) 
-                                            <span class="text-danger">No more tickets available for this group</span>
+                                    <div class="col-4">
+                                        <h5>Ticket Quantity</h5>
+                                        @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
+                                            @if ($ticket_count->ticket_left == null)
+                                                {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                            @elseif ($ticket_count->ticket_left == 0) 
+                                                <span class="text-danger">No more tickets available for this group</span>
+                                            @else
+                                                {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                            @endif
                                         @else
-                                            {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                            <span class="text-danger">Tickets not currently selling for this group</span>
                                         @endif
-                                    @else
-                                        <span class="text-danger">Tickets not currently selling for this group</span>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
+                                <hr>
+                            @endif
                         @endif
                     @endforeach
                 @else
