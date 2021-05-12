@@ -13,7 +13,7 @@ Transaction Details
             <div class="cart_background rounded">
                 <div class="row">
                     <div class="col-8">
-                        <h3>Order Date: {{  }}</h3>
+                        <h3>Order Date:</h3>
                     </div>
                 </div>
                 @foreach ($transaction_details as $detail)
