@@ -205,11 +205,10 @@ class AdminController extends Controller
         $organizer_id = $request->organizer_id;
         $organization_id = $request->organization_id;
 
-        dd($request->deleteorganizer);
 
         if ($request->deleteorganizer == "true") {
 
-            return ("worke");
+            return ("worked");
         } 
         $organization = Organization::where('id', $organization_id)->first();
 
