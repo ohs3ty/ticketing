@@ -12,7 +12,7 @@ Transaction Details
             <div class="cart_background rounded">
                 <div class="row">
                     <div class="col-8">
-                        <h3>Order Summary for #{{ $transaction->transaction_id }}</h3>
+                        <h2>Order Summary for #{{ $transaction->transaction_id }}</h2>
                         <h4>Order Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('F j, Y, g:i a') }}</h4>
                     </div>
                 </div>
