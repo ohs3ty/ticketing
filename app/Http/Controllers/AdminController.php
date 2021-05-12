@@ -209,7 +209,7 @@ class AdminController extends Controller
         if ($request->deleteorganizer == "true") {
             $organizer_organization = OrganizationOrganizer::where('organizer_id', $request->organizer_id)->get();
             foreach($organizer_organization as $org) {
-                $org->delete();
+                // $org->delete();
             }
             
             $organizer = Organizer::where('id', $request->organizer_id)->first();
