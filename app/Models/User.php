@@ -56,7 +56,6 @@ class User extends Authenticatable
 
     public function resetRole() {
         $this->role = "general";
-        dd("general");
         return null;
     }
 
