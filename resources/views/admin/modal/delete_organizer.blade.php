@@ -11,13 +11,13 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <p> Are you sure you want to delete {{ $organizer->name }} as an organizer for {{ $organization->organization_name}} ? </p>
+            <p> Are you sure you want to delete {{ $organizer->name }} as an organizer? </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-secondary" data-dismiss="modal">No, go back</button>
             {{ Form::open(array('url' => '/admin/deleteorganizer', 'method' => 'post')) }}
                 {{ Form::hidden('organizer_id', $organizer->id) }}
-                {{ Form::hidden('organization_id', $organization->id) }}
+                {{ Form::hidden('organizer', 'true')}}
                 {{ Form::submit('Yes, delete', ['class' => 'btn btn-default btn-danger']) }}
             {{ Form::close() }}
             
