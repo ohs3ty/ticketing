@@ -53,7 +53,7 @@
                                     @endforeach
                                 </td>
                                 <td><th><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOrganizer{{ $organizer->id }}"><i class="bi-trash-fill"></i></button></th></td>
-                                @include("admin.modal.delete_confirm")
+                                @include("admin.modal.delete_organizer")
                             </tr>
                         @endforeach
 
