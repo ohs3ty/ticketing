@@ -13,7 +13,7 @@ Transaction Details
             <div class="cart_background rounded">
                 <div class="row">
                     <div class="col-8">
-                        <h3>Order Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('l, F j, Y, g:i a') }}</h3>
+                        <h3>Order Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('F j, Y, g:i a') }}</h3>
                     </div>
                 </div>
                 @foreach ($transaction_details as $detail)
@@ -53,7 +53,7 @@ Transaction Details
                 <hr>
                 <div class="row">
                     <div class="col-8">Subtotal</div>
-                    <div class="col-4">$</div>
+                    <div class="col-4">${{ number_format($transaction->transaction_total, 2, ".", ",") }}</div>
                 </div>
                 <br>
             </div>

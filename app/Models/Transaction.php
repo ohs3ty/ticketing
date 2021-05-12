@@ -17,8 +17,4 @@ class Transaction extends Model
         'status',
     ];
 
-    public function getTransactionDate() {
-        $date = Carbon::parse($this->created_at)->format('l, F j, Y, g:i a');
-        return $date;
-    }
 }
