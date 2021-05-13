@@ -147,7 +147,8 @@ class TransactionController extends Controller {
 
     public function view_cashnet_transaction(Request $request) {
         $cashnet_form_url = "https://commerce.cashnet.com/";
-        dd($request);
+        $user = User::where('id', $request->user_id)->first();
+        dd($user);
         
         return ("the cashnet form here :D");
     }
