@@ -147,6 +147,7 @@ class TransactionController extends Controller {
 
     public function view_cashnet_transaction(Request $request) {
         $cashnet_form_url = "https://commerce.cashnet.com/";
+        dd($request);
         
         return ("the cashnet form here :D");
     }

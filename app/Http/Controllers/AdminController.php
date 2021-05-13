@@ -119,18 +119,18 @@ class AdminController extends Controller
 
         if ($user) {
 
-            if (($user->role == "admin")) {
+            if (($user->role == 'admin')) {
                 $organizer_bool = Organizer::where('user_id', $user->id)
                                     ->get();
                 $org_bool_count = count($organizer_bool);
 
             }
-            if (($user->role == "general") or ($org_bool_count == 0)) {
+            if (($user->role == 'general') or ($org_bool_count == 0)) {
                 $validated = $request->validate([
                     'organizer_phone' => 'required|regex:/[0-9]{10}/',
                 ]);
 
-                if ($user->role == "general") {
+                if ($user->role == 'general') {
                     $user->role = 'organizer';
                     $user->save();
                 }
@@ -206,7 +206,7 @@ class AdminController extends Controller
         
 
 
-        if ($request->deleteorganizer == "true") {
+        if ($request->deleteorganizer == 'true') {
             $organizer_organization = OrganizationOrganizer::where('organizer_id', $request->organizer_id)->get();
             foreach($organizer_organization as $org) {
                 $org->delete();
