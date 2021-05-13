@@ -18,6 +18,7 @@ class Transaction extends Model
     ];
 
     const CASHNET_FORM_URL = 'https://commerce.cashnet.com/';
+    const CASHNET_STORE_CODE = 'WEBOU';
 
     const STATUS_PENDING = 'pending';
     const STATUS_SUCCESS = 'success';
@@ -25,14 +26,5 @@ class Transaction extends Model
 
     // Interacting with Cashnet
 
-    public static function initialize($amount, $product, $user)
-    {
-        return static::create([
-            'status' => static::STATUS_PENDING,
-            'user_id' => $user->id,
-            'amount' => $amount,
-            'product' => $product,
-        ]);
-    }
 
 }

@@ -150,8 +150,14 @@ class TransactionController extends Controller {
     public function view_cashnet_transaction(Request $request) {
         $cashnet_form_url = "https://commerce.cashnet.com/";
         $user = User::where('id', $request->user_id)->first();
-        dd($user);
         
+        //what I hope the cashnet logic will be 
+        //get the data from the cart, including the item code (do I need to add the item code to the temp_cart? Probably or else have to do
+        //a lot of joining)
+        //add the data (and the items will probably have be separated, but HOW?)
+        //After it succeeds and the person has successfully paid, the temp cart will be deleted and a new transaction object will be created
+        //Send a confirmation email (may not have to because cashnet might do that)
+
         return ("the cashnet form here :D");
     }
 

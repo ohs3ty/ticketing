@@ -77,7 +77,7 @@ class EventController extends Controller
 
                 })
                 ->join('organizations', 'organizations.id', '=', 'events.organization_id')
-                ->orderBy('start_date')->paginate(8);
+                ->orderByDesc('start_date')->paginate(8);
 
 
         $events->withPath("/myevents?id=$user_id");
