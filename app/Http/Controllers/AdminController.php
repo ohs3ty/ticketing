@@ -214,7 +214,9 @@ class AdminController extends Controller
             
             $organizer = Organizer::where('id', $request->organizer_id)->first();
             $user = User::where('id', $organizer->user_id)->first();
-            $user->resetRole();
+            if ($user->role != 'admin') {
+                $user->resetRole();
+            }
             $organizer->delete();
 
 
