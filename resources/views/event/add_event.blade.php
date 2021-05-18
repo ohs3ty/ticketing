@@ -20,7 +20,7 @@ Add Event
                 <div class="error text-danger"> Please correct the errors below </div>
                 @endif
 
-                
+
                 {{-- {{Auth::user()->id}} --}}
                 {{ Form::open(array('url' => '/addeventaction', 'method' => 'post')) }}
 
@@ -76,15 +76,14 @@ Add Event
                     {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
                     {{ Form::text('venue_zipcode') }}
                 </div>
-                
+
                 {{-- organization information --}}
                 <h3>Organization Information</h3>
                 Choose the organization in charge.<br><br>
-                
+
                 <div class="form-group">
                     {{ Form::label('organization_name', 'Organization Name')}}<br>
                     {{ Form::select('organization_name', $organization_names)}}
-                    {{-- {{ Form::select('size', array('L' => 'Large'), 'S') }} --}}
                 </div>
 
                 {{-- organizer information --}}
@@ -94,7 +93,7 @@ Add Event
                 <div class='form-group'>
                     {{ Form::label('organizer_phone', 'Organizer Phone Number') }}<br>
                     {{ Form::text('organizer_phone', $organizer->organizer_phone) }}
-                </div>    
+                </div>
                 <div class='form-group'>
                     {{ Form::label('organizer_email', 'Organizer Email') }}<br>
                     {{ Form::email('organizer_email', $organizer->organizer_email) }}
@@ -106,7 +105,7 @@ Add Event
                 {{ Form::close() }}
                 <br><br>
             </div>
-        
+
     @else
         {{-- if general or nonadmin --}}
 
@@ -114,8 +113,8 @@ Add Event
             <h3 class='text-center'>Sorry, you don't have permission to add an event.</h3>
             <h5 class='text-center'>Contact your department to gain access.</h5>
         </div>
-    @endif    
     @endif
-        
+    @endif
+
         <script src="/js/script.js"></script>
 @endsection

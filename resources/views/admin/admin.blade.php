@@ -3,6 +3,11 @@
 @section('title')
     Admin
 @endsection
+
+@section('admin-header')
+    class="active"
+@endsection
+
 @section('content')
 
 @if((Auth::user()) and (Auth::user()->role == 'admin'))

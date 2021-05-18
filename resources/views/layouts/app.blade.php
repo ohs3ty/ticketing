@@ -50,7 +50,7 @@
             </div>
             @if (Auth::check())
                 @if((Auth::user()->role == 'admin'))
-                    <a href="{{ url('admin') }}">Admin</a>
+                    <a href="{{ url('admin') }}" @yield('admin-header')>Admin</a>
                 @endif
             @endif
 
