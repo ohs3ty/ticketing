@@ -70,13 +70,13 @@ Add Event
                     {{ Form::checkbox('new_venue', 1, null, array('id' => 'new_venue')) }}
                     {{ Form::label('new_venue', 'Check if adding a new venue') }}
                 </div>
+
                 <div class="form-group" id="add_venue" hidden>
                     {{ Form::label('venue_addr', 'Venue Address') }}<br>
                     {{ Form::text('venue_addr') }}<br>
                     {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
                     {{ Form::text('venue_zipcode') }}
                 </div>
-
 
                 {{-- organization information --}}
                 <h3>Organization Information</h3>
