@@ -77,6 +77,7 @@ Add Event
                     {{ Form::text('venue_zipcode') }}
                 </div>
 
+
                 {{-- organization information --}}
                 <h3>Organization Information</h3>
                 Choose the organization in charge.<br><br>
