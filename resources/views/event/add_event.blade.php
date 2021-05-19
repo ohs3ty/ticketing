@@ -30,7 +30,7 @@ Add Event
                 @enderror
                 <div class="form-group">
                     {{ Form::label('event_name', 'Event Name')}}<br>
-                    {{ Form::text('event_name')}}
+                    {{ Form::text('event_name', array('placeholder' => 'Write a brief description') }}
                 </div>
                 @error('end_date')
                     <div class="error text-danger"> {{ $message }} </div>
