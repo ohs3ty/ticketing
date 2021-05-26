@@ -23,7 +23,7 @@ use App\Models\Transaction;
 
 
 Route::get('/', function () {
-    return redirect('/events');
+    return redirect('/home');
 });
 
 Auth::routes();

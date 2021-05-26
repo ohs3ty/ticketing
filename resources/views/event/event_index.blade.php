@@ -40,9 +40,9 @@ View All Events
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="text-center" style="padding-top: 25%;">
+                            <div class="text-left" style="padding-top: 25%;">
                                 {{-- modal button --}}
-                                <button class="btn" data-toggle="modal" data-target="#event{{$event->id}}">View Details/Buy Tickets</button>
+                                <button class="btn border-secondary" data-toggle="modal" data-target="#event{{$event->id}}">View Details/Buy Tickets</button>
                             </div>
                         </div>
                         <!-- Modal -->

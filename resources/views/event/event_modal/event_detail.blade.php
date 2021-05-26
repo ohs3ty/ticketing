@@ -64,7 +64,13 @@
                     <p class="text-danger">No tickets are currently available</p>
                     <hr>
                 @endif
+                <div>
+                    <h4>Contact Info</h4>
+                    Organizer Name:<br>
+                    Organizer Phone:
+                </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{-- buy tickets button --}}

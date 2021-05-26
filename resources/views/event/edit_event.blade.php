@@ -26,7 +26,7 @@ Edit Event
         @enderror
         <div class="form-group">
             {{ Form::label('event_name', 'Event Name')}}<br>
-            {{ Form::text('event_name', $event->event_name)}}
+            {{ Form::text('event_name', $event->event_name, ['class' => "form-control"]) }}
         </div>
 
         @error('end_date')
@@ -38,22 +38,34 @@ Edit Event
         @enderror
         <div class="form-group">
             {{ Form::label('start_date', 'Event Start Date')}}<br>
-            {{ Form::date('start_date', \Carbon\Carbon::parse($event->start_date)) }}
-            {{ Form::time('start_time', \Carbon\Carbon::parse($event->start_date)) }}
+            <div class="row">
+                <div class="col-8">
+                    {{ Form::date('start_date', \Carbon\Carbon::parse($event->start_date), ['class' => 'form-control']) }}
+                </div>
+                <div class="col-4">
+                    {{ Form::time('start_time', \Carbon\Carbon::parse($event->start_date), ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
         <div class="form-group">
             {{ Form::label('end_date', 'Event End Date')}}<br>
-            {{ Form::date('end_date', \Carbon\Carbon::parse($event->end_date)) }}
-            {{ Form::time('end_time', \Carbon\Carbon::parse($event->end_date)) }}
+            <div class="row">
+                <div class="col-8">
+                    {{ Form::date('end_date', \Carbon\Carbon::parse($event->end_date), ['class' => 'form-control']) }}
+                </div>
+                <div class="col-4">
+                    {{ Form::time('end_time', \Carbon\Carbon::parse($event->end_date), ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
         <div class="form-group">
             {{ Form::label('event_type', 'Event Type')}}<br>
-            {{ Form::select('event_type', $event_types, ($event->event_type_id - 1))}}
+            {{ Form::select('event_type', $event_types, ($event->event_type_id - 1), ['class' => 'form-control'])}}
 
         </div>
         <div class="form-group">
             {{ Form::label('event_description', 'Event Description')}}<br>
-            {{ Form::textarea('event_description', $event->event_description) }}
+            {{ Form::textarea('event_description', $event->event_description, ['class' => 'form-control']) }}
         </div>
 
         @error('venue_error')
@@ -62,39 +74,52 @@ Edit Event
 
         <div class="form-group">
             <label for="venue">Venue</label><br>
-            <input type="text" name="venue" id="venue" autocomplete="off" onkeyup="getVenues({{$venues}})" value="{{$event->venue_name}}">
+            <input class="form-control" type="text" name="venue" id="venue" autocomplete="off" onkeyup="getVenues({{$venues}})" value="{{$event->venue_name}}">
             <div style="padding-top: 10px; padding-bottom: 10px;" id='venue_lookup'></div>
             {{-- add new venue  --}}
             {{ Form::checkbox('new_venue', 1, null, array('id' => 'new_venue')) }}
             {{ Form::label('new_venue', 'Check if adding a new venue') }}
         </div>
         <div class="form-group" id="add_venue" hidden>
-            {{ Form::label('venue_addr', 'Venue Address') }}<br>
-            {{ Form::text('venue_addr') }}<br>
-            {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
-            {{ Form::text('venue_zipcode') }}
+            <div class="row">
+                <div class="col-8">
+                    {{ Form::label('venue_addr', 'Venue Address') }}<br>
+                    {{ Form::text('venue_addr', null, ['class' => 'form-control']) }}<br>
+                </div>
+                <div class="col-4">
+                    {{ Form::label('venue_zipcode', 'Venue Zipcode') }}<br>
+                    {{ Form::text('venue_zipcode', null, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
 
         {{-- organization information --}}
+        <hr>
         <h3>Organization Information</h3>
         Choose the organization in charge.<br><br>
         <div class="form-group">
             {{ Form::label('organization_name', 'Organization Name')}}<br>
-            {{ Form::select('organization_name', $organization_names, ($event->organization_id))}}
+            {{ Form::select('organization_name', $organization_names, ($event->organization_id), ['class' => 'form-control'])}}
 
         </div>
-
+        <hr>
         {{-- organizer information --}}
         <h3>Organizer Information</h3>
         Please change your contact information (as the organization contact) as needed:
         <br><br>
-        <div class='form-group'>
-            {{ Form::label('organizer_phone', 'Organizer Phone Number') }}<br>
-            {{ Form::text('organizer_phone', $organizer->organizer_phone) }}
-        </div>
-        <div class='form-group'>
-            {{ Form::label('organizer_email', 'Organizer Email') }}<br>
-            {{ Form::email('organizer_email', $organizer->organizer_email) }}
+        <div class="row">
+            <div class="col-6">
+                <div class='form-group'>
+                    {{ Form::label('organizer_phone', 'Organizer Phone Number') }}<br>
+                    {{ Form::text('organizer_phone', $organizer->organizer_phone, ['class' => 'form-control']) }}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class='form-group'>
+                    {{ Form::label('organizer_email', 'Organizer Email') }}<br>
+                    {{ Form::email('organizer_email', $organizer->organizer_email, ['class' => 'form-control']) }}
+                </div>
+            </div>
         </div>
         <br>
         {{ Form::hidden('user_id', $user_id) }}

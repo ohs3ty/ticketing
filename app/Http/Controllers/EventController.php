@@ -48,11 +48,9 @@ class EventController extends Controller
                             ->get();
 
 
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('event.event_index', [
             'events' => $events,
-            'months' => $months,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
         ]);
