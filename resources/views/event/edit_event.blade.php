@@ -18,7 +18,7 @@ Edit Event
 
 
         {{-- {{Auth::user()->id}} --}}
-        {{ Form::open(array('url' => '/updateevent', 'method' => 'POST')) }}
+        {{ Form::open(array('url' => 'event/updateevent', 'method' => 'POST')) }}
 
         <h3>Edit Event Details</h3>
         @error('event_name')
@@ -99,11 +99,11 @@ Edit Event
         <br>
         {{ Form::hidden('user_id', $user_id) }}
         {{ Form::hidden('event_id', $event_id) }}
-        <a class="btn btn-secondary" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
+        <a class="btn btn-secondary" href="{{ route('event.myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
         {{ Form::submit('Update Event', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
         <br>
-        {{ Form::open(array('url' => 'delete', 'method' => 'post')) }}
+        {{ Form::open(array('url' => 'event/delete', 'method' => 'post')) }}
         {{ Form::hidden('event_id', $event_id) }}
         {{ Form::hidden('user_id', $user_id) }}
 

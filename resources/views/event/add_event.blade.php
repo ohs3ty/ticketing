@@ -22,7 +22,7 @@ Add Event
 
 
                 {{-- {{Auth::user()->id}} --}}
-                {{ Form::open(array('url' => '/addeventaction', 'method' => 'post')) }}
+                {{ Form::open(array('url' => 'event/addeventaction', 'method' => 'post')) }}
 
                 <h3>Event Information</h3>
                 @error('event_name')
@@ -30,7 +30,7 @@ Add Event
                 @enderror
                 <div class="form-group">
                     {{ Form::label('event_name', 'Event Name')}}<br>
-                    {{ Form::text('event_name', array('placeholder' => 'Write a brief description') }}
+                    {{ Form::text('event_name') }}
                 </div>
                 @error('end_date')
                     <div class="error text-danger"> {{ $message }} </div>
@@ -100,7 +100,7 @@ Add Event
                 </div>
                 <br>
                 {{Form::hidden('user_id', $user_id)}}
-                <a class="btn btn-danger" href="{{ url('events') }}">Cancel</a>
+                <a class="btn btn-danger" href="{{ url('event') }}">Cancel</a>
                 {{ Form::submit('Add Event', array('class' => 'btn btn-secondary')) }}
                 {{ Form::close() }}
                 <br><br>

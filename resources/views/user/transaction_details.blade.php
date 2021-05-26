@@ -32,7 +32,7 @@ Transaction Details
                         <hr>
                         <span style="font-size: 20px;">{{ $detail->quantity }}</span>
 
-                        
+
                     </div>
                     <div class="col-2">
                         <span class="cart-label">ITEM TOTAL</span>
@@ -45,7 +45,7 @@ Transaction Details
                 @endforeach
             </div>
             <br>
-            <a href="{{ route('user_home', ['user_id' => Auth()->user()->id]) }}">Back to Order History</a>
+            <a href="{{ route('user.index', ['user_id' => Auth()->user()->id]) }}">Back to Order History</a>
         </div>
         <div class="col-4">
             <div class="cart_background rounded">

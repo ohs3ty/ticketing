@@ -7,7 +7,7 @@ View Ticket
 @section('content')
 
 <h2>Ticket Types</h2>
-<a class="btn" style="border-color: lightgrey;" href="{{ route('myevents', ['id' => Auth::user()->id]) }}">Back</a>
+<a class="btn" style="border-color: lightgrey;" href="{{ route('event.myevents', ['id' => Auth::user()->id]) }}">Back</a>
 <br><br>
 @if( $ticket_types->isEmpty())
     No ticket groups made yet.
@@ -61,13 +61,13 @@ View Ticket
             <span class="col-4">{{ \Carbon\Carbon::parse($ticket_type->ticket_close_date)->format('F j, Y')}}</span>
         </div>
         <br>
-        <a class="btn" style="border-color: lightgrey;" href="{{ route('edittickets', ['ticket_type_id' => $ticket_type->id]) }}")>Edit</a>
-        <a class="btn" style="border-color: lightgrey;" href="{{ route('deletetickets', ['ticket_type_id' => $ticket_type->id]) }}")>Delete</a>
+        <a class="btn" style="border-color: lightgrey;" href="{{ route('ticket.edit', ['ticket_type_id' => $ticket_type->id]) }}")>Edit</a>
+        <a class="btn" style="border-color: lightgrey;" href="{{ route('ticket.delete', ['ticket_type_id' => $ticket_type->id]) }}")>Delete</a>
     </div>
 </div>
 <br>
 @endforeach
 </div>
 <br><br>
-<a class="btn btn-secondary" href="{{ route('ticket-add', ['event_id' => $event_id]) }}">Add Ticket Type</a><br><br>
+<a class="btn btn-secondary" href="{{ route('ticket.add', ['event_id' => $event_id]) }}">Add Ticket Type</a><br><br>
 @endsection

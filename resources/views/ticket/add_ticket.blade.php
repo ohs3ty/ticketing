@@ -13,7 +13,7 @@ Add Ticket Type
 
         {{ $errors }}
     @endif
-{{Form::open(['url' => '/addticketaction', 'action' => 'post'])}}
+{{Form::open(['url' => 'ticket/addticketaction', 'action' => 'post'])}}
 <div id="card1" class="card" style="border-color: grey;">
     <div class="card-body">
         <h5 class="card-title">Ticket Type:</h5>
@@ -75,7 +75,7 @@ Add Ticket Type
                     <div class="row no-guttters">
                         <div class="card-text col-2"></div>
                         <div class="card-text col-2 text-center">
-                            <a class="btn btn-secondary" href="{{ route('viewtickets', ['event_id' => $event->id]) }}">Cancel</a>
+                            <a class="btn btn-secondary" href="{{ route('ticket.index', ['event_id' => $event->id]) }}">Cancel</a>
                         </div>
                         <div class="card-text col-3 text-center">
                             {{ Form::submit('Add Ticket Group', ['class' => 'btn btn-primary']) }}

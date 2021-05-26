@@ -11,7 +11,7 @@ Add Ticket Type
     @if($errors->any())
         <div class="error text-danger"> Please correct the errors below </div>
     @endif
-{{Form::open(['url' => '/editticketaction', 'action' => 'post'])}}
+{{Form::open(['url' => 'ticket/editticketaction', 'action' => 'post'])}}
 <div id="card1" class="card" style="border-color: grey;">
     <div class="card-body">
         <h5 class="card-title">Ticket Type:</h5>
@@ -79,7 +79,7 @@ Add Ticket Type
                     <div class="row no-guttters">
                         <div class="card-text col-2"></div>
                         <div class="card-text col-2 text-center">
-                            <a class="btn btn-secondary" href="{{ route('viewtickets', ['event_id' => $ticket_type->event_id]) }}">Cancel</a>
+                            <a class="btn btn-secondary" href="{{ route('ticket.index', ['event_id' => $ticket_type->event_id]) }}">Cancel</a>
                         </div>
                         <div class="card-text col-3 text-center">
                             {{ Form::hidden('ticket_type_id', $ticket_type->id) }}

@@ -43,7 +43,7 @@ View Cart
             </div>
             {{-- delete --}}
             <br>
-            <a style="color: black;" href="{{ route('delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
+            <a style="color: black;" href="{{ route('buy.delete_cart_item', ['cart_item_id' => $cart_item->id]) }}">REMOVE</a>
             <br>
             <br>
             @endforeach
@@ -60,12 +60,12 @@ View Cart
             <br>
         </div>
         <br>
-        @if (count($cart_items) > 0) 
-            
+        @if (count($cart_items) > 0)
+
             @if (Auth::user())
-                <a href="{{ route('buy_cashnet', ['user_id' => Auth::user()->id]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
+                <a href="{{ route('buy.buy_cashnet', ['user_id' => Auth::user()->id]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
             @else
-                <a href="{{ route('buy_cashnet', ['session_id' => Session::getId()]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
+                <a href="{{ route('buy.buy_cashnet', ['session_id' => Session::getId()]) }}" style="width: 100%;" class="btn btn-primary" type="button">Pay Now</a>
             @endif
         @endif
     </div>
@@ -75,7 +75,7 @@ View Cart
     {{-- for testing --}}
     @if (Auth::user())
         @if(count($cart_items) > 0)
-            <a href="{{ route('test_buy', ['user_id' => Auth::user()->id]) }}" class="btn btn-primary">Skip to Buy</a>
+            <a href="{{ route('test.test_buy', ['user_id' => Auth::user()->id]) }}" class="btn btn-primary">Skip to Buy</a>
         @endif
     @endif
 @endsection

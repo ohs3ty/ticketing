@@ -18,7 +18,7 @@ use DateTime;
 class TransactionController extends Controller {
 
     public function buy_ticket_action(Request $request) {
-        
+
         //if the ticket_quantity is null, validate and send user back
         $msg = '';
         if ($request->ticket_quantity == null) {
@@ -82,7 +82,7 @@ class TransactionController extends Controller {
         $cart_items = TempCart::where('user_id', $request->user_id)
                     ->get();
 
-        return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
+        return redirect()->route('buy.mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
 
     }
 
@@ -120,18 +120,18 @@ class TransactionController extends Controller {
             $cart->ticket_quantity = $request->ticket_quantity;
             $cart->save();
 
-            return redirect()->route('mycart', ['user_id' => $request->user_id]);
+            return redirect()->route('buy.mycart', ['user_id' => $request->user_id]);
 
         } else {
             $cart = TempCart::where('user_id', $request->user_id)
             ->where('session_id', $request->session_id)
             ->where('ticket_type_id', $request->ticket_type_id)
-            ->first(); 
+            ->first();
 
             $cart->ticket_quantity = $request->ticket_quantity;
             $cart->save();
 
-            return redirect()->route('mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
+            return redirect()->route('buy.mycart', ['user_id' => $request->user_id, 'session_id' => $request->session_id]);
 
         }
 
@@ -144,14 +144,14 @@ class TransactionController extends Controller {
         TempCart::find($request->cart_item_id)->delete();
 
 
-        return redirect()->route('mycart', ['user_id' => $user_id, 'session_id' => $request->session_id]);
+        return redirect()->route('buy.mycart', ['user_id' => $user_id, 'session_id' => $request->session_id]);
     }
 
     public function view_cashnet_transaction(Request $request) {
         $cashnet_form_url = "https://commerce.cashnet.com/";
         $user = User::where('id', $request->user_id)->first();
-        
-        //what I hope the cashnet logic will be 
+
+        //what I hope the cashnet logic will be
         //get the data from the cart, including the item code (do I need to add the item code to the temp_cart? Probably or else have to do
         //a lot of joining)
         //add the data (and the items will probably have be separated, but HOW?)

@@ -66,7 +66,7 @@ class TicketController extends Controller
 
         $new_ticket->save();
 
-        return redirect()->route('viewtickets', ['event_id' => $event_id]);
+        return redirect()->route('ticket.index', ['event_id' => $event_id]);
     }
 
     public function view_tickets(Request $request) {
@@ -131,11 +131,12 @@ class TicketController extends Controller
         $ticket_type->ticket_limit = $request->ticket_limit;
         $ticket_type->save();
 
-        return redirect()->route('viewtickets', ['event_id' => $ticket_type->event_id]);
+        return redirect()->route('ticket.index', ['event_id' => $ticket_type->event_id]);
     }
 
     public function delete_ticket(Request $request) {
-        $ticket_type = TicketType::find($request->ticket_type_id)->first();
+        // $ticket_type = TicketType::find($request->ticket_type_id)->first();
+        $ticket_type = TicketType::where('id', $request->ticket_type_id)->first();
         $event_id = $ticket_type->event_id;
         TicketType::find($request->ticket_type_id)->delete();
         $cart_items = TempCart::where('ticket_type_id', $request->ticket_type_id)
@@ -143,6 +144,6 @@ class TicketController extends Controller
         foreach($cart_items as $item) {
             TempCart::where('id', $item->id)->first()->delete();
         }
-        return redirect()->route('viewtickets', ['event_id' => $event_id]);
+        return redirect()->route('ticket.index', ['event_id' => $event_id]);
     }
 }

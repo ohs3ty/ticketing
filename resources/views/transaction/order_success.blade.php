@@ -9,6 +9,6 @@ Order Success
 
 Success Message Here<br>
 
-Go to <a href="{{ route('user_home', ['user_id' => Auth::user()->id]) }}">Your Orders</a>
+Go to <a href="{{ route('user.index', ['user_id' => Auth::user()->id]) }}">Your Orders</a>
 
 @endsection
