@@ -2,10 +2,10 @@
 
 @section('title')
     Add Organization
-@endsection 
+@endsection
 
 @section('content')
-    {{ Form::open(array('url' => '/admin/addorganizationaction', 'method' => 'post')) }}
+    {{ Form::open(array('url' => 'admin/addorganizationaction', 'method' => 'post')) }}
 
     @error('organization_name')
         <div class="text-danger">

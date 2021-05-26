@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Organizer;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,8 +22,8 @@ class User extends Authenticatable
     protected $fillable = [
         'preferredFirstName',
         'preferredSurname',
-        'last_name',
-        'name',
+        'role',
+        'patron_profile',
         'net_id',
         'byu_id',
         'memberOf',
@@ -30,6 +32,9 @@ class User extends Authenticatable
         'phone',
         'has_paid'
     ];
+
+    const PROGRAMMER = 'SL_COMPUTER_SUPPORT';
+    const ADMIN = 'SLT-programmers';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -101,11 +106,30 @@ class User extends Authenticatable
             else
                 $this->$name = $default;
         }
+        $this->setRole();
         return $this;
     }
 
-    public function pay_ticket() 
+    public function setRole() {
+        if ((str_contains($this->memberOf, User::PROGRAMMER) || (str_contains($this->memberOf, User::ADMIN))) == true) {
+            $this->role = 'admin';
+        }
+        return $this;
+    }
+
+    public function pay_ticket()
     {
         return ('success');
     }
+
+    public function organizer()
+    {
+        return $this->hasOne(Organizer::class, 'foreign_key', 'user_id');
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->preferredFirstName . " " . $this->preferredSurname;
+    }
+
 }

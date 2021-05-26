@@ -24,8 +24,8 @@ My Tickets and Orders
                     <tr>
                         <td>{{ \Carbon\Carbon::parse($transaction->transaction_date)->format("F j, Y g:i a") }}</td>
                         {{-- modal --}}
-                        <td>    
-                            <a href="{{ route('transaction_details', ['transaction_id' => $transaction->transaction_id]) }}">
+                        <td>
+                            <a href="{{ route('user.transaction_details', ['transaction_id' => $transaction->transaction_id]) }}">
                                 {{ $transaction->transaction_id }}
                             </a>
                         </td>

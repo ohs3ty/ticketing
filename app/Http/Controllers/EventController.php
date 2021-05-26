@@ -16,6 +16,7 @@ use App\Models\Organizer;
 use App\Models\Venue;
 use App\Models\Organization;
 use App\Models\TicketType;
+use DateTime;
 
 class EventController extends Controller
 {
@@ -47,11 +48,9 @@ class EventController extends Controller
                             ->get();
 
 
-        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
         return view('event.event_index', [
             'events' => $events,
-            'months' => $months,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
         ]);
@@ -80,7 +79,7 @@ class EventController extends Controller
                 ->orderByDesc('start_date')->paginate(8);
 
 
-        $events->withPath("/myevents?id=$user_id");
+        $events->withPath("event/myevents?id=$user_id");
 
         return view('event.user_events', [
             'user_id' => $user_id,
@@ -162,11 +161,7 @@ class EventController extends Controller
 
             return Redirect::back()->withErrors(['venue_error' => $msg]);
         }
-
-
-
         // $venue_id = Venue::where('venue_name', $venue)->get()->first()->id;
-
         $new_event = new Event;
         $new_event->event_name = $event_name;
         $new_event->event_description = $event_description;
@@ -181,7 +176,7 @@ class EventController extends Controller
         $new_event->save();
 
         // return ($new_event->id);
-        return redirect('/events');
+        return redirect('/event');
         // get the organizer and organization info
 
 
@@ -278,19 +273,22 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('myevents', ['id' => $user_id]);
+        return redirect()->route('event.myevents', ['id' => $user_id]);
     }
 
     public function delete_event(Request $request) {
-        // first drop ticket type because it is foreign keyed into event
         // if ticket types already have customers who bought them, then we have to know which customers bought
         // so we can refund them
-        // Should NOT be able to delete an event 24 hours (or even more) before
+        // also we can't delete an event after people have purchased after the event is over
+        // because we need to leave it for transaction history
         $event = Event::find($request->event_id);
+        // Should NOT be able to delete an event 24 hours (or even more) before
+
+        // first drop ticket type because it is foreign keyed into event
         TicketType::where('event_id', $request->event_id)->delete();
         $event->delete();
 
-        return redirect()->route("myevents", ['id' => $request->user_id]);
+        return redirect()->route("event.myevents", ['id' => $request->user_id]);
     }
 
     public function event_detail(Request $request) {

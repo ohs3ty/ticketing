@@ -1,4 +1,4 @@
-{{ Form::open(['route' => 'buy_ticket', 'method' => 'post']) }}
+{{ Form::open(['route' => 'buy.buy_ticket', 'method' => 'post']) }}
     <div id="event{{$event->id}}" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
@@ -34,7 +34,7 @@
                         {{-- if past or before sale date range --}}
                             @if (($ticket_count->profile_name == 'General') || (Auth::user() && (Auth::user()->patron_profile == $ticket_count->profile_name)))
                                 <div class="row container" style="padding: 10px">
-                                    <div class="col-8"> 
+                                    <div class="col-8">
                                         <h5>{{ $ticket_count->ticket_name }}</h5>
                                         <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                                         {{ $ticket_count->profile_name }}
@@ -46,7 +46,7 @@
                                         @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
                                             @if ($ticket_count->ticket_left == null)
                                                 {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                            @elseif ($ticket_count->ticket_left == 0) 
+                                            @elseif ($ticket_count->ticket_left == 0)
                                                 <span class="text-danger">No more tickets available for this group</span>
                                             @else
                                                 {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
@@ -64,7 +64,13 @@
                     <p class="text-danger">No tickets are currently available</p>
                     <hr>
                 @endif
+                <div>
+                    <h4>Contact Info</h4>
+                    Organizer Name:<br>
+                    Organizer Phone:
+                </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{-- buy tickets button --}}

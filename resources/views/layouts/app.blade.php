@@ -39,11 +39,11 @@
             <div class="dropdown">
                 <button class="dropdown-btn">Events</button>
                 <div class="dropdown-child @yield('event-header')">
-                    <a href="{{ url('events') }}">View All Events</a>
+                    <a href="{{ url('event') }}">View All Events</a>
                     @if(Auth::check())
-                        <a href="{{ route('addevent', ['id' => Auth::user()->id]) }}">Add New Event</a>
+                        <a href="{{ route('event.add', ['id' => Auth::user()->id]) }}">Add New Event</a>
                         @if((Auth::user()->role == 'organizer') or (Auth::user()->role == 'admin'))
-                            <a href="{{ route('myevents', ['id' => Auth::user()->id])}}">My Events</a>
+                            <a href="{{ route('event.myevents', ['id' => Auth::user()->id])}}">My Events</a>
                         @endif
                     @endif
                 </div>
@@ -61,7 +61,7 @@
                 <a slot="logout" href="{{ route('logout') }}"></a>
 
             @else <!-- Logged in -->
-            <a href="{{ route('user_home', ['user_id' => Auth::user()->id]) }}" slot="user-name">{{ auth()->user()->name }}</a>
+            <a href="{{ route('user.index', ['user_id' => Auth::user()->id]) }}" slot="user-name">{{ auth()->user()->name }}</a>
             <a slot="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}

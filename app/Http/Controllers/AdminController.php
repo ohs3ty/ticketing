@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EventType;
 use Illuminate\Http\Request;
+
 use App\Models\Organizer;
 use App\Models\Organization;
 use App\Models\OrganizationOrganizer;
@@ -24,9 +25,9 @@ class AdminController extends Controller
         $event_types = EventType::select('type_name', 'id')
                         ->orderBy('type_name')
                         ->get();
-        $organizers = Organizer::select('users.name', 'organizers.id')
+        $organizers = Organizer::select(DB::raw('CONCAT(preferredFirstName, \' \', preferredSurname) as name'), 'organizers.id')
                         ->join('users', 'users.id', '=', 'organizers.user_id')
-                        ->orderBy('users.name')
+                        ->orderBy('name')
                         ->get();
         $organization_organizers = OrganizationOrganizer::select()
                                     ->join('organizations', 'organizations.id', '=', 'organization_organizers.organization_id')
@@ -81,7 +82,7 @@ class AdminController extends Controller
 
         $organization = Organization::where('organization_name', '=', $organization_name)
                             ->first();
-        $organizers = Organizer::select('organizer_email', 'organizers.id', 'organizer_phone', 'name', 'email')
+        $organizers = Organizer::select('organizer_email', 'organizers.id', 'organizer_phone', DB::raw('CONCAT(preferredFirstName, \' \', preferredSurname) as name'), 'email')
                         ->where('organization_name', '=', $organization_name)
                         ->join('organization_organizers', 'organization_organizers.organizer_id', '=', 'organizers.id')
                         ->join('organizations', 'organizations.id','=', 'organization_organizers.organization_id')
@@ -203,7 +204,7 @@ class AdminController extends Controller
 
     public function delete_organizer(Request $request) {
         $organizer_id = $request->organizer_id;
-        
+
 
 
         if ($request->deleteorganizer == 'true') {
@@ -211,7 +212,7 @@ class AdminController extends Controller
             foreach($organizer_organization as $org) {
                 $org->delete();
             }
-            
+
             $organizer = Organizer::where('id', $request->organizer_id)->first();
             $user = User::where('id', $organizer->user_id)->first();
             if ($user->role != 'admin') {
@@ -221,7 +222,7 @@ class AdminController extends Controller
 
 
             return back();
-        } 
+        }
 
         $organization_id = $request->organization_id;
         $organization = Organization::where('id', $organization_id)->first();

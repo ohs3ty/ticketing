@@ -23,7 +23,7 @@ use App\Models\Transaction;
 
 
 Route::get('/', function () {
-    return redirect('/events');
+    return redirect('/home');
 });
 
 Auth::routes();
@@ -41,46 +41,59 @@ Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::get('/admin/addorganization', [AdminController::class, 'add_organization']);
-Route::post('/admin/addorganizationaction', [AdminController::class, 'add_organization_action']);
-Route::post('/admin/editorganization', [AdminController::class, 'edit_organization_action']);
-Route::get('/admin/organization', [AdminController::class, 'organization_detail'])->name('/admin/organization');
-Route::post('/admin/deleteorganizer', [AdminController::class, 'delete_organizer']);
-Route::post('/admin/addorganizer', [AdminController::class, 'add_organizer_action']);
-Route::post('/admin/editorganizer', [AdminController::class, 'edit_organizer_action']);
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('', [AdminController::class, 'index'])->name('/');
+    Route::get('addorganization', [AdminController::class, 'add_organization']);
+    Route::post('addorganizationaction', [AdminController::class, 'add_organization_action']);
+    Route::post('editorganization', [AdminController::class, 'edit_organization_action']);
+    Route::get('organization', [AdminController::class, 'organization_detail'])->name('organization');
+    Route::post('deleteorganizer', [AdminController::class, 'delete_organizer']);
+    Route::post('addorganizer', [AdminController::class, 'add_organizer_action']);
+    Route::post('editorganizer', [AdminController::class, 'edit_organizer_action']);
+});
 
 // events
-Route::get('/events', [EventController::class, 'index']);
-// add
-Route::get('/addevent', [EventController::class, 'addevent'])->name('addevent');
-Route::post('/addeventaction', [EventController::class, 'add_event_action']);
-// view user events
-Route::get('/myevents', [EventController::class, 'view_user_events'])->name('myevents');
-// edit event page
-Route::get('/editevent', [EventController::class, 'edit_event'])->name('editevent');
-Route::post('/updateevent', [EventController::class, 'edit_event_action']);
-Route::post('/delete', [EventController::class, 'delete_event']);
+Route::group(['prefix' => 'event', 'as' => 'event.'], function() {
+    Route::get('/', [EventController::class, 'index']);
+    //add
+    Route::get('add', [EventController::class, 'addevent'])->name('add');
+    Route::post('addeventaction', [EventController::class, 'add_event_action']);
+    // view user events
+    Route::get('myevents', [EventController::class, 'view_user_events'])->name('myevents');
+    //edit event page
+    Route::get('edit', [EventController::class, 'edit_event'])->name('edit');
+    Route::post('updateevent', [EventController::class, 'edit_event_action']);
+    Route::post('delete', [EventController::class, 'delete_event']);
+});
 
 // ticketing
-Route::get('/ticket-add', [TicketController::class, 'add_ticket'])->name('ticket-add');
-Route::post('/addticketaction', [TicketController::class, 'add_ticket_action']);
-Route::get('/viewtickets', [TicketController::class, 'view_tickets'])->name('viewtickets');
-Route::get('/edittickets', [TicketController::class, 'edit_tickets'])->name('edittickets');
-Route::post('/editticketaction', [TicketController::class, 'edit_ticket_action']);
-Route::get('/deleteticket', [TicketController::class, 'delete_ticket'])->name('deletetickets');
+Route::group(['prefix' => 'ticket', 'as' => 'ticket.'], function() {
+    Route::get('add', [TicketController::class, 'add_ticket'])->name('add');
+    Route::post('addticketaction', [TicketController::class, 'add_ticket_action']);
+    Route::get('index', [TicketController::class, 'view_tickets'])->name('index');
+    Route::get('edit', [TicketController::class, 'edit_tickets'])->name('edit');
+    Route::post('editticketaction', [TicketController::class, 'edit_ticket_action']);
+    Route::get('delete', [TicketController::class, 'delete_ticket'])->name('delete');
+});
 
 //Transactions
 //buy tickets
-Route::post('buy/buy-ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
-Route::get('buy/mycart', [TransactionController::class, 'view_cart'])->name('mycart');
-Route::post('buy/changequantity', [TransactionController::class, 'change_ticket_quantity']);
-Route::get('buy/deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
-Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transaction'])->name('buy_cashnet');
+Route::group(['prefix' => 'buy', 'as' => 'buy.'], function() {
+    Route::post('buy-ticket', [TransactionController::class, 'buy_ticket_action'])->name('buy_ticket');
+    Route::get('mycart', [TransactionController::class, 'view_cart'])->name('mycart');
+    Route::post('changequantity', [TransactionController::class, 'change_ticket_quantity']);
+    Route::get('deletecartitem', [TransactionController::class, 'delete_cart_item'])->name('delete_cart_item');
+    Route::get('buy/cashnet', [TransactionController::class, 'view_cashnet_transaction'])->name('buy_cashnet');
+});
+
 
 //User
-Route::get('user/home', [UserController::class, 'index'])->name('user_home');
-Route::get('user/transaction', [UserController::class, 'transaction_details'])->name('transaction_details');
+Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
+    Route::get('home', [UserController::class, 'index'])->name('index');
+    Route::get('transaction', [UserController::class, 'transaction_details'])->name('transaction_details');
+});
 
 //Test
-Route::get('test/buy', [TestController::class, 'test_buy'])->name('test_buy');
+Route::group(['prefix' => 'test', 'as' => 'test.'], function() {
+    Route::get('buy', [TestController::class, 'test_buy'])->name('test_buy');
+});

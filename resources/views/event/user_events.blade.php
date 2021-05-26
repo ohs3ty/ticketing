@@ -24,9 +24,9 @@ My Events
                     </div>
                     <div class="card-footer">
                         <div class="row text-center no-gutters">
-                            <a href="{{ route('editevent', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-small col-5" style="border-color: lightgrey">View/Edit</a>
+                            <a href="{{ route('event.edit', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-small col-5" style="border-color: lightgrey">View/Edit</a>
                             <span class="col-sm-1"></span>
-                            <a href="{{ route('viewtickets', ['event_id' => $event->id]) }}" class="btn btn-small col-5" style="border-color: lightgrey">Tickets</a>
+                            <a href="{{ route('ticket.index', ['event_id' => $event->id]) }}" class="btn btn-small col-5" style="border-color: lightgrey">Tickets</a>
                         </div>
                     </div>
                 </div>
