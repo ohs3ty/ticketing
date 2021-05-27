@@ -17,6 +17,8 @@ class Transaction extends Model
         'status',
     ];
 
+    public $incrementing = false;
+
     const CASHNET_FORM_URL = 'https://commerce.cashnet.com/';
     const CASHNET_STORE_CODE = 'WEBOU';
 
@@ -26,5 +28,12 @@ class Transaction extends Model
 
     // Interacting with Cashnet
 
+    public function ticket_types() {
+        return $this->hasManyThrough(TicketType::class, TransactionTicket::class, 'transaction_id', 'id', 'id', 'ticket_type_id');
+    }
+
+    public function transaction_tickets() {
+        return $this->hasMany(TransactionTicket::class);
+    }
 
 }

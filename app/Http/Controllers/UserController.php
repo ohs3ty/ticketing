@@ -34,27 +34,35 @@ class UserController extends Controller
     }
 
     public function transaction_details(Request $request) {
-        $transaction = Transaction::select('transaction_id', 'transactions.created_at', 'transaction_total', 'customer_id', 'status')
-                        ->join('transaction_tickets', 'transactions.id' ,'=','transaction_tickets.transaction_id')
-                        ->where('transaction_id', $request->transaction_id)
-                        ->distinct()
-                        ->first();
+        $error = 0;
 
-        $transaction_details = TransactionTicket::select('transaction_tickets.transaction_id', 'events.event_name', 'quantity', 'ticket_cost', 'events.start_date', 'ticket_name')
-                                ->where('transaction_id', '=', $request->transaction_id)
-                                ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id')
-                                ->join('events', 'events.id', '=', 'ticket_types.event_id')
-                                ->get();
+        $transaction = Transaction::find($request->transaction_id);
+        print($transaction);
+
+        //what this code is if the event or ticket type is suddenly deleted the order page will still have
+        //information from this order, since the html page is saved into the database
         $transaction_html = view("user.transaction_details", [
-            'transaction_details' => $transaction_details,
             'transaction' => $transaction
         ])->render();
 
-        return view("user.transaction_details", [
-            'transaction_details' => $transaction_details,
-            'transaction' => $transaction
-        ]);
+        foreach($transaction->transaction_tickets as $detail) {
+            //if event or ticket name is not found
+            if (!$detail->ticket_type->event) {
+                $error = $error + 1;
+            }
+            if (!$detail->ticket_type) {
+                $error = $error + 1;
+            }
+        }
+        print($error);
+        if (!$error) {
+            //if there is no error, then we want to update the page if there are any changes
+            if ($transaction->html != $transaction_html) {
+                $transaction->html = $transaction_html;
+                $transaction->save();
+            }
+        }
+        return $transaction->html;
     }
-
 
 }

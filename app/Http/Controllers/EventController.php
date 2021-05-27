@@ -288,7 +288,7 @@ class EventController extends Controller
         $start_date = new DateTime($event->start_date);
 
         // Should NOT be able to delete an event 24 hours (or even more) before
-        if ($start_date->modify('+1 day') >= now()) {
+        if (now() >= $start_date->modify('-1 day')) {
             $delete_msg = 'You cannot delete an event within 24 hours of its starting date.';
         }
 
@@ -298,9 +298,10 @@ class EventController extends Controller
         }
 
         // first drop ticket type because it is foreign keyed into event
-        // TicketType::where('event_id', $request->event_id)->delete();
-        $event->archived = true;
-        $event->save();
+        TicketType::where('event_id', $request->event_id)->delete();
+        // $event->archived = true;
+        $event->delete();
+        // $event->save();
 
         return redirect()->route("event.myevents", ['id' => $request->user_id]);
     }

@@ -15,7 +15,7 @@ class AddColumnEventTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             //
-            $table->boolean('archived');
+            $table->boolean('archived')->default('false');
         });
     }
 

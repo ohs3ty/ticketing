@@ -15,6 +15,7 @@ class AddHtmlColumnTransaction extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             //
+            $table->text('html')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddHtmlColumnTransaction extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             //
+            $table->dropColumn('html');
         });
     }
 }

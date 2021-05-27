@@ -9,9 +9,7 @@ Add Ticket Type
 <h2>{{ $event->event_name }} - {{\Carbon\Carbon::parse($event->start_date)->format('F j, Y')}}</h2>
 <br>
     @if($errors->any())
-        <div class="error text-danger"> Please correct the errors below </div>
-
-        {{ $errors }}
+        <div class="alert alert-danger"> Please correct the errors below </div>
     @endif
 {{Form::open(['url' => 'ticket/addticketaction', 'action' => 'post'])}}
 <div id="card1" class="card" style="border-color: grey;">
@@ -52,6 +50,9 @@ Add Ticket Type
                 <div class="col-6">
                     <div class="row no-gutters">
                         <div class="card-text col-sm-6">
+                            @error('ticket_price')
+                                <div class="error text-danger"> {{ $message }} </div>
+                            @enderror
                             {{ Form::label('ticket_price', 'Ticket Price') }}<br>
                             {{ Form::number('ticket_price', null, ['step' => 0.01, 'class' => 'w-75 form-control']) }}<br>
                         </div>

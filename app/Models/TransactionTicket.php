@@ -13,4 +13,9 @@ class TransactionTicket extends Model
         'ticket_type_id',
         'quantity',
     ];
+
+    public function ticket_type()
+    {
+        return $this->belongsTo(TicketType::class);
+    }
 }
