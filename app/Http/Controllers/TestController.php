@@ -57,7 +57,6 @@ class TestController extends Controller
             $new_transactionticket->save();
             TempCart::find($item->id)->delete();
         }
-
         return view('transaction.order_success');
     }
 }

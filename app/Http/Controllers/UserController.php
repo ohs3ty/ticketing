@@ -28,7 +28,7 @@ class UserController extends Controller
 
 
         return view("user.user_index", [
-            'user_transactions' => $user_transactions, 
+            'user_transactions' => $user_transactions,
             'user_id' => $request->user_id,
         ]);
     }
@@ -45,6 +45,10 @@ class UserController extends Controller
                                 ->join('ticket_types', 'ticket_types.id', '=', 'transaction_tickets.ticket_type_id')
                                 ->join('events', 'events.id', '=', 'ticket_types.event_id')
                                 ->get();
+        $transaction_html = view("user.transaction_details", [
+            'transaction_details' => $transaction_details,
+            'transaction' => $transaction
+        ])->render();
 
         return view("user.transaction_details", [
             'transaction_details' => $transaction_details,
