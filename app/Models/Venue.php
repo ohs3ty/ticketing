@@ -14,4 +14,9 @@ class Venue extends Model
         'venue_addr',
         'venue_zipcode',
     ];
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

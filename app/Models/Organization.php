@@ -22,6 +22,6 @@ class Organization extends Model
 
     public function organizers()
     {
-        return $this->belongsToMany(Organizer::class)->using(OrganizationOrganizer::class);
+        return $this->hasManyThrough(Organizer::class, OrganizationOrganizer::class, 'organization_id', 'id', 'id', 'organizer_id');
     }
 }

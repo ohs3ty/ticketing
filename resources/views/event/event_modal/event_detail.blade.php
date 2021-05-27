@@ -5,71 +5,81 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <div class="text-left" style="padding: 10px;">
+                <div class="text-left" style="padding: 10px; padding-bottom: 0px;">
                     <h2>{{ $event->event_name }}</h2>
                     <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}</h4>
+                    <h5 class="modal-subtitle">by {{ $event->organization->organization_name }}</h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <h4>Event Time:</h4>
-                    <p>
-                        {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }} to {{ \Carbon\Carbon::parse($event->end_date)->format('l, F j, Y, g:i a') }}
-                    </p>
-                <h4>About This Event:</h4>
-                    <p>
-                        @if ($event->event_description == null)
-                            <span style="font-style: italic;">No Description</span>
-                        @else
-                            {{ $event->event_description }}
-                        @endif
-                    </p>
-                <h4>Venue</h4>
-                    {{-- <p> {{ $event->venue_name }}</p> --}}
-                    <p> {{ $event }}</p>
-                <h4>Tickets</h4>
-                <hr>
-                @if($event->ticket_type_count > 0)
-                    @foreach ($ticket_counts as $ticket_count)
-                        @if(($ticket_count->id == $event->id))
-                        {{-- if past or before sale date range --}}
-                            @if (($ticket_count->profile_name == 'General') || (Auth::user() && (Auth::user()->patron_profile == $ticket_count->profile_name)))
-                                <div class="row container" style="padding: 10px">
-                                    <div class="col-8">
-                                        <h5>{{ $ticket_count->ticket_name }}</h5>
-                                        <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
-                                        {{ $ticket_count->profile_name }}
-                                        {{-- {{ Auth::user()->patron_profile}} --}}
-                                    </div>
-
-                                    <div class="col-4">
-                                        <h5>Ticket Quantity</h5>
-                                        @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
-                                            @if ($ticket_count->ticket_left == null)
-                                                {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                            @elseif ($ticket_count->ticket_left == 0)
-                                                <span class="text-danger">No more tickets available for this group</span>
-                                            @else
-                                                {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
-                                            @endif
-                                        @else
-                                            <span class="text-danger">Tickets not currently selling for this group</span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <hr>
-                            @endif
-                        @endif
-                    @endforeach
-                @else
-                    <p class="text-danger">No tickets are currently available</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-7">
+                            <h4>About This Event:</h4>
+                            <p>
+                                @if ($event->event_description == null)
+                                    <span style="font-style: italic;">No Description</span>
+                                @else
+                                    {{ $event->event_description }}
+                                @endif
+                            </p>
+                            <br>
+                        </div>
+                        <div class="col-4">
+                            <h4>Event Time:</h4>
+                                <p>
+                                    {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}<br>
+                                    to<br>
+                                    {{ \Carbon\Carbon::parse($event->end_date)->format('l, F j, Y, g:i a') }}
+                                </p>
+                            <br>
+                            <h4>Venue</h4>
+                            <p>
+                                {{ $event->venue->venue_name }}<br>
+                                <span>{{ $event->venue->venue_addr }}</span><br>
+                                {{ $event->venue->venue_zipcode }}
+                            </p>
+                        </div>
+                    </div>
+                    <h4>Tickets</h4>
                     <hr>
-                @endif
-                <div>
-                    <h4>Contact Info</h4>
-                    {{-- use methods found in the models (organizer_name in event model, and the one to one etc. relationships in user to organizer) --}}
-                    Organizer Name: {{ $event->organization->organizers }}<br>
-                    {{-- Organizer Phone: {{ $event->organizer_name->format_phone }} --}}
+                    @if($event->ticket_type_count > 0)
+                        @foreach ($ticket_counts as $ticket_count)
+                            @if(($ticket_count->id == $event->id))
+                            {{-- if past or before sale date range --}}
+                                @if (($ticket_count->profile_name == 'General') || (Auth::user() && (Auth::user()->patron_profile == $ticket_count->profile_name)))
+                                    <div class="row container" style="padding: 10px">
+                                        <div class="col-8">
+                                            <h5>{{ $ticket_count->ticket_name }}</h5>
+                                            <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
+                                            {{ $ticket_count->profile_name }}
+                                            {{-- {{ Auth::user()->patron_profile}} --}}
+                                        </div>
+
+                                        <div class="col-4">
+                                            <h5>Ticket Quantity</h5>
+                                            @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
+                                                @if ($ticket_count->ticket_left == null)
+                                                    {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, 100, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                                @elseif ($ticket_count->ticket_left == 0)
+                                                    <span class="text-danger">No more tickets available for this group</span>
+                                                @else
+                                                    {{ Form::selectRange("ticket_quantity[][$ticket_count->ticket_type_id]", 0, $ticket_count->ticket_left, null, ['class' => 'form-select', 'aria-label' => 'Default select example']) }}
+                                                @endif
+                                            @else
+                                                <span class="text-danger">Tickets not currently selling for this group</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <hr>
+                                @endif
+                            @endif
+                        @endforeach
+                    @else
+                        <p class="text-danger">No tickets are currently available</p>
+                        <hr>
+                    @endif
                 </div>
             </div>
 

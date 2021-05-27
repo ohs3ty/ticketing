@@ -25,4 +25,9 @@ class Organizer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function organizations()
+    {
+        return $this->hasManyThrough(Organization::class, OrganizationOrganizer::class, 'organizer_id', 'id', 'id', 'organization_id');
+    }
 }
