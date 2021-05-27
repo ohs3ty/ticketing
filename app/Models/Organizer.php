@@ -15,9 +15,14 @@ class Organizer extends Model
         'user_id',
     ];
 
-    public function formatPhone() {
+    public function getFormatPhoneAttribute() {
         $phone = "(" . substr($this->organizer_phone, 0, 3) . ") " . substr($this->organizer_phone, 3, 3) . "-"
                     . substr($this->organizer_phone, 6, 4);
        return $phone;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

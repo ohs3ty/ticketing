@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrganizationOrganizer extends Model
+class OrganizationOrganizer extends Pivot
 {
     use HasFactory;
 

@@ -23,7 +23,7 @@ class EventController extends Controller
     //
     public function index() {
 
-        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_name',
+        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date','updated_by', 'venue_id',
                                     'event_type_id', 'organization_id', DB::raw('COUNT(ticket_types.id) AS ticket_type_count'))
                     ->leftJoin('ticket_types', 'ticket_types.event_id', '=', 'events.id')
                     ->leftJoin('venues', 'venues.id', '=', 'events.venue_id')
@@ -46,11 +46,12 @@ class EventController extends Controller
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
-
+        $months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 
         return view('event.event_index', [
             'events' => $events,
+            'months' => $months,
             'ticket_types' => $ticket_types,
             'ticket_counts' => $ticket_counts,
         ]);

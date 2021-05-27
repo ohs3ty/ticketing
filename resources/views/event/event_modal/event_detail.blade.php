@@ -25,7 +25,8 @@
                         @endif
                     </p>
                 <h4>Venue</h4>
-                    <p> {{$event->venue_name}}</p>
+                    {{-- <p> {{ $event->venue_name }}</p> --}}
+                    <p> {{ $event }}</p>
                 <h4>Tickets</h4>
                 <hr>
                 @if($event->ticket_type_count > 0)
@@ -66,8 +67,9 @@
                 @endif
                 <div>
                     <h4>Contact Info</h4>
-                    Organizer Name:<br>
-                    Organizer Phone:
+                    {{-- use methods found in the models (organizer_name in event model, and the one to one etc. relationships in user to organizer) --}}
+                    Organizer Name: {{ $event->organization->organizers }}<br>
+                    {{-- Organizer Phone: {{ $event->organizer_name->format_phone }} --}}
                 </div>
             </div>
 

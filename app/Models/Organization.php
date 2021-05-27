@@ -14,4 +14,14 @@ class Organization extends Model
         'cashnet_code',
         'organization_website',
     ];
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function organizers()
+    {
+        return $this->belongsToMany(Organizer::class)->using(OrganizationOrganizer::class);
+    }
 }

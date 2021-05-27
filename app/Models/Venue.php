@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Venue extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
-        'venue_name', 
+        'venue_name',
         'venue_addr',
         'venue_zipcode',
     ];
