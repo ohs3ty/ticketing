@@ -42,4 +42,9 @@ class Event extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function ticket_types()
+    {
+        return $this->hasMany(TicketType::class);
+    }
+
 }

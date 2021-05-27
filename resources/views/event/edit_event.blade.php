@@ -13,8 +13,14 @@ Edit Event
     <div class="container">
 
         @if($errors->any())
-        <div class="error text-danger"> Please correct the errors below </div>
+        <div class="alert alert-danger">
+            Please correct the errors below<br>
+        </div>
         @endif
+
+        @error('delete_err')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
 
         {{-- {{Auth::user()->id}} --}}
@@ -125,14 +131,14 @@ Edit Event
         {{ Form::hidden('user_id', $user_id) }}
         {{ Form::hidden('event_id', $event_id) }}
         <a class="btn btn-secondary" href="{{ route('event.myevents', ['id' => Auth::user()->id]) }}">Cancel</a>
-        {{ Form::submit('Update Event', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Update Event', ['class' => 'btn btn-primary']) }}
         {{ Form::close() }}
         <br>
         {{ Form::open(array('url' => 'event/delete', 'method' => 'post')) }}
         {{ Form::hidden('event_id', $event_id) }}
         {{ Form::hidden('user_id', $user_id) }}
 
-        {{ Form::submit('Delete Event', array('class' => 'btn btn-danger')) }}
+        {{ Form::submit('Delete Event', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure you want to delete this activity?')"]) }}
         {{ Form::close() }}
         <br><br>
     </div>

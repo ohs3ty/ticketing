@@ -280,10 +280,24 @@ class EventController extends Controller
     public function delete_event(Request $request) {
         // if ticket types already have customers who bought them, then we have to know which customers bought
         // so we can refund them
-        // also we can't delete an event after people have purchased after the event is over
+        // also we can't hard delete an event after people have purchased after the event is over
         // because we need to leave it for transaction history
+        $delete_msg = ""; //keep count of whether to redirect with errors
+
         $event = Event::find($request->event_id);
+        $start_date = new DateTime($event->start_date);
+
         // Should NOT be able to delete an event 24 hours (or even more) before
+        if ($start_date->modify('+1 day') >= now()) {
+            $delete_msg = 'You cannot delete an event within 24 hours of its starting date.';
+        } else {
+            dd("can delete");
+        }
+
+        //check for errors
+        if ($delete_msg != null) {
+            return Redirect::back()->withErrors(['delete_err' => $delete_msg]);
+        }
 
         // first drop ticket type because it is foreign keyed into event
         TicketType::where('event_id', $request->event_id)->delete();

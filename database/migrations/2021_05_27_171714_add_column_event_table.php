@@ -15,6 +15,7 @@ class AddColumnEventTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             //
+            $table->boolean('archived');
         });
     }
 
@@ -27,6 +28,7 @@ class AddColumnEventTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             //
+            $table->dropColumn('archived');
         });
     }
 }
