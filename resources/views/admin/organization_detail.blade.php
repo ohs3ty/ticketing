@@ -5,86 +5,74 @@
 @endsection
 
 @section('content')
-<h2> {{ $organization->organization_name }}
-<button type="button" class="btn" data-toggle="modal" data-target="#editOrganization"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button>
-</h2>
-<br>
 
-<div class="row" style="font-size: medium;">
-    <div class="col-2" style="font-weight: bold;">
-        Cashnet Code:
-    </div>
-    <div class="col-2">
-        {{ $organization->cashnet_code }}
-    </div>
-</div>
+<h4 class="text-center organization_title">UPCOMING EVENTS</h4>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th style="width: 40%;">Description</th>
+                <th>Organizer in charge</th>
+            </tr>
+            @foreach($organization->events as $event)
+                @if($event->archived == false)
+                {{-- {{ Form::open() }} --}}
+                    <tr>
+                        <td>
+                            <button class="btn" onclick="admin_edit_event({{$event->id}})"><i class="bi bi-pencil-fill"></i></button>
+                            <span name="event{{$event->id}}">{{ $event->event_name }}</span>
+                            {{ Form::text('event_name', $event->event_name, ['class' => 'form-control', 'hidden', 'id' => "name_input$event->id"]) }}
 
-<div class="row" style="font-size: medium;">
-    <div class="col-2" style="font-weight: bold;">
-        Website:
-    </div>
-    <div class="col-2">
-        {{ $organization->organization_website }}
-    </div>
-</div>
-<br><br>
-<h3>Organizers</h3>
-
-    {{-- errors --}}
-    @if ($errors->any())
-        <div class="text-center alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-@if (count($organizers) == 0)
-    <div class="container">
-        No organizers assigned
-    </div>
-    <br>
-
-@else
-    <table class="table">
-        <thead>
-            <th></th>
-            <th scope="col">Name</th>
-            <th scope="col">Organizer Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Personal Email</th>
-            <th></th>
-        </thead>
-        <tbody>
-            @foreach ($organizers as $organizer)
-                <tr>
-                    <th><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOrganizer{{ $organizer->id }}"><i class="bi-trash-fill"></i></button></th>
-                    @include("admin.modal.delete_confirm")
-
-                    <th>{{ $organizer->name }}</th>
-                    <th>{{ $organizer->organizer_email }}</th>
-                    <th>{{ $organizer->formatPhone() }}</th>
-                    <th>{{ $organizer->email }}</th>
-                    <th><button type="button" class="btn" data-toggle="modal" data-target="#editOrganizer{{$organizer->id}}"><i class="bi-pencil-fill" style="font-size: 1rem;"></i></button></th>
-
-                    @include("admin.modal.edit_organizer")
-                </tr>
+                        </td>
+                        <td>
+                            <span name="event{{$event->id}}">{{ $event->formatDate($event->start_date, 'date_time') }}<br>
+                            to<br>
+                            {{ $event->formatDate($event->end_date, 'date_time') }}</td></span>
+                        <td>
+                            @if($event->event_description)
+                                {{ $event->event_description}}
+                            @else
+                                <span style="font-style: italic">No Description</span>
+                            @endif
+                        </td>
+                        <td>
+                            {{ $event->organizer->user->name }}&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                {{-- {{ Form::close() }} --}}
+                @endif
             @endforeach
-        </tbody>
-    </table>
-    @endif
+        </table>
+    </div>
 
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn" style="border-color: lightgrey;" data-toggle="modal" data-target="#addOrganizer">Add Organizer</button>
-
-    @include("admin.modal.add_organizer")
-    @include("admin.modal.edit_organization")
-
-    <br><br>
-    <a href="{{ url('admin')}}">Back to the Admin Page</a>
-
-  </div>
+<h4 class="text-center organization_title">ORGANIZATION DETAILS</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <h5>WEBSITE</h5>
+            {{ $organization->organization_website }}
+        </div>
+        <div class="col-3">
+            <h5>CASHNET CODE</h5>
+            {{ $organization->cashnet_code }}
+        </div>
+        </div>
 </div>
+
+<h4 class="text-center organization_title">CONTACT INFORMATION</h4>
+    <div class="container">
+        <h5>ORGANIZERS</h5>
+        <div class="row">
+            @foreach ($organizers as $organizer)
+                <div class="col-3">
+                    <strong>{{ $organizer->user->name }}</strong><br>
+                    {{ $organizer->organizer_email }}<br>
+                    {{ $organizer->format_phone }}
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <script src="/js/script.js"></script>
+
 @endsection

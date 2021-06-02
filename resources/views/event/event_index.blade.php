@@ -13,7 +13,7 @@ View All Events
             @endforeach
         </div>
     @endif
-    <h3>This Year's Events</h3>
+    <h3>Upcoming Events</h3>
     <br>
     {{-- Loops through each month and all events in that month --}}
     {{-- if we want to add a header month for each month or something --}}
@@ -28,19 +28,22 @@ View All Events
                         <div class="col-sm-2">
                             <div class="card-body text-right">
                                 <h3 style="margin-bottom: 0px;">{{ $months[$i]}}</h3>
-                                <h2 style="margin: none">{{ \Carbon\Carbon::parse($event->start_date)->format('j') }}</h2>
+                                <h2 style="margin: none">{{ $event->formatDate($event->start_date, 'day_num') }}</h2>
                             </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-7">
                             <div class="card-body">
                                 <h3 class="card-title">{{ $event->event_name }}</h3>
-                                <h5 class="card-subtitle text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y') }}
-                                    at {{ \Carbon\Carbon::parse($event->start_date)->format('g:i a') }}</h5>
+                                <h5 class="card-subtitle text-muted">{{ $event->formatDate($event->start_date, 'date') }}
+                                    at {{ $event->formatDate($event->start_date, 'time') }}</h5>
                                 <p style="margin-top: 10px;" class="card-text">{{ $event->event_description }}</p>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="text-left" style="padding-top: 25%;">
+                        <div class="col-sm-3">
+                            <div style="height: 35%;">
+
+                            </div>
+                            <div class="text-center index-card">
                                 {{-- modal button --}}
                                 <button class="btn border-secondary" data-toggle="modal" data-target="#event{{$event->id}}">View Details/Buy Tickets</button>
                             </div>

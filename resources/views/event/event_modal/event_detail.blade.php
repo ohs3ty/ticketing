@@ -7,7 +7,7 @@
             <div class="modal-header">
                 <div class="text-left" style="padding: 10px; padding-bottom: 0px;">
                     <h2>{{ $event->event_name }}</h2>
-                    <h4 class="modal-subtitle">Starts on {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}</h4>
+                    <h4 class="modal-subtitle">starts on {{ $event->formatDate($event->start_date, 'date_time') }}</h4>
                     <h5 class="modal-subtitle">by {{ $event->organization->organization_name }}</h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-7">
-                            <h4>About This Event:</h4>
+                            <div class="text-center event_title">ABOUT THIS EVENT</div>
                             <p>
                                 @if ($event->event_description == null)
                                     <span style="font-style: italic;">No Description</span>
@@ -26,15 +26,15 @@
                             </p>
                             <br>
                         </div>
-                        <div class="col-4">
-                            <h4>Event Time:</h4>
+                        <div class="col-5">
+                            <div class="text-center event_title">EVENT TIME</div>
                                 <p>
-                                    {{ \Carbon\Carbon::parse($event->start_date)->format('l, F j, Y, g:i a') }}<br>
+                                    {{ $event->formatDate($event->start_date, 'date_time') }}<br>
                                     to<br>
-                                    {{ \Carbon\Carbon::parse($event->end_date)->format('l, F j, Y, g:i a') }}
+                                    {{ $event->formatDate($event->start_date, 'date_time') }}
                                 </p>
                             <br>
-                            <h4>Venue</h4>
+                            <div class="text-center event_title">VENUE</div>
                             <p>
                                 {{ $event->venue->venue_name }}<br>
                                 <span>{{ $event->venue->venue_addr }}</span><br>
@@ -42,22 +42,22 @@
                             </p>
                         </div>
                     </div>
-                    <h4>Tickets</h4>
                     <hr>
+                    <div class="text-center event_title">TICKETS</div>
                     @if($event->ticket_type_count > 0)
                         @foreach ($ticket_counts as $ticket_count)
                             @if(($ticket_count->id == $event->id))
                             {{-- if past or before sale date range --}}
                                 @if (($ticket_count->profile_name == 'General') || (Auth::user() && (Auth::user()->patron_profile == $ticket_count->profile_name)))
                                     <div class="row container" style="padding: 10px">
-                                        <div class="col-8">
+                                        <div class="col-7">
                                             <h5>{{ $ticket_count->ticket_name }}</h5>
                                             <h5>${{ number_format($ticket_count->ticket_cost, 2, '.', ',') }}</h5>
                                             {{ $ticket_count->profile_name }}
                                             {{-- {{ Auth::user()->patron_profile}} --}}
                                         </div>
 
-                                        <div class="col-4">
+                                        <div class="col-4" style="margin-left: 15px;">
                                             <h5>Ticket Quantity</h5>
                                             @if((now() >= $ticket_count->ticket_open_date) && (now() <= $ticket_count->ticket_close_date))
                                                 @if ($ticket_count->ticket_left == null)
@@ -80,6 +80,10 @@
                         <p class="text-danger">No tickets are currently available</p>
                         <hr>
                     @endif
+                    <div class="text-center event_title">ORGANIZATION CONTACT</div>
+                    {{ $event->organizer->user->name }}<br>
+                    {{ $event->organizer->organizer_email }}<br>
+                    {{ $event->organizer->format_phone }}
                 </div>
             </div>
 

@@ -30,6 +30,7 @@ class EventController extends Controller
                     ->groupBy('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'created_by', 'updated_by', 'venue_id',
                     'event_type_id', 'organization_id')
                     ->orderBy('start_date')
+                    ->where('archived', false)
                     ->get();
         $ticket_types = TicketType::all();
 
@@ -44,6 +45,7 @@ class EventController extends Controller
                                                 GROUP BY ticket_types.id)
                                                 AS tc"), 'ticket_types.id', '=', 'tc.id')
                             ->join('patron_profiles', 'patron_profiles.id', '=', 'ticket_types.patron_profile_id')
+                            ->where('archived', false)
                             ->orderBy('ticket_types.ticket_name')
                             ->get();
         $months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -60,14 +62,8 @@ class EventController extends Controller
 
     public function view_user_events(Request $request) {
         $user_id = intval($request->id);
-        // I want all events created by the user's organization (regardless if it was created by the organizer)
-        // I have to find the user's organizations (because one user could possibly be in more than one organization)
-        // then get those events by organization
-
-        // also if the event has already passed, it should go somewhere else ---- maybe create an archived event table?
-
-
-        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name')
+        $filters = [];
+        $events = Event::select('events.id', 'event_name', 'event_description', 'start_date', 'end_date', 'organizations.organization_name', 'archived')
                 ->whereIn('organization_id', function($query) use ($user_id) {
                     $query->select('organizations.id')
                             ->from('organizations')
@@ -76,15 +72,22 @@ class EventController extends Controller
                             ->where('organizers.user_id', $user_id);
 
                 })
-                ->join('organizations', 'organizations.id', '=', 'events.organization_id')
-                ->orderByDesc('start_date')->paginate(8);
+                ->join('organizations', 'organizations.id', '=', 'events.organization_id');
 
+        $organizations = clone $events;
+        $organizations = $organizations->select('organizations.organization_name')
+                            ->distinct()
+                            ->pluck('organizations.organization_name', 'organizations.organization_name')
+                            ->toArray();
+        $filters = Event::filters($request, $events);
 
-        $events->withPath("event/myevents?id=$user_id");
+        $events = $events->orderByDesc('start_date')->get();
 
         return view('event.user_events', [
             'user_id' => $user_id,
             'events' => $events,
+            'filters' => $filters,
+            'organizations' => $organizations,
         ]);
     }
 
@@ -299,9 +302,9 @@ class EventController extends Controller
 
         // first drop ticket type because it is foreign keyed into event
         TicketType::where('event_id', $request->event_id)->delete();
-        // $event->archived = true;
-        $event->delete();
-        // $event->save();
+        // $event->delete();
+        $event->archived = true;
+        $event->save();
 
         return redirect()->route("event.myevents", ['id' => $request->user_id]);
     }

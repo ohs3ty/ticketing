@@ -39,7 +39,7 @@
             <div class="dropdown">
                 <button class="dropdown-btn">Events</button>
                 <div class="dropdown-child @yield('event-header')">
-                    <a href="{{ url('event') }}">View All Events</a>
+                    <a href="{{ url('event') }}">Upcoming Events</a>
                     @if(Auth::check())
                         <a href="{{ route('event.add', ['id' => Auth::user()->id]) }}">Add New Event</a>
                         @if((Auth::user()->role == 'organizer') or (Auth::user()->role == 'admin'))
@@ -50,7 +50,15 @@
             </div>
             @if (Auth::check())
                 @if((Auth::user()->role == 'admin'))
-                    <a href="{{ url('admin') }}" @yield('admin-header')>Admin</a>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">Admin</button>
+                        <div class="dropdown-child @yield('event-header')">
+                            <a href="{{ url('admin/organizations') }}">Organizations</a>
+                            <a href="">Organizers</a>
+                            <a href="">All Events</a>
+                            <a href="">All Transactions</a>
+                        </div>
+                    </div>
                 @endif
             @endif
 
@@ -76,10 +84,9 @@
     <div id="app">
         <div class="container">
             <main class="py-4">
-                {{-- {{ $_SESSION['phpCAS'] }} --}}
                 @yield('content')
             </main>
-    </div>
+        </div>
     </div>
 
 </body>

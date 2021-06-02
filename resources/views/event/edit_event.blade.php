@@ -46,10 +46,10 @@ Edit Event
             {{ Form::label('start_date', 'Event Start Date')}}<br>
             <div class="row">
                 <div class="col-8">
-                    {{ Form::date('start_date', \Carbon\Carbon::parse($event->start_date), ['class' => 'form-control']) }}
+                    {{ Form::date('start_date', $event->formatDate($event->start_date, 'date_notext'), ['class' => 'form-control']) }}
                 </div>
                 <div class="col-4">
-                    {{ Form::time('start_time', \Carbon\Carbon::parse($event->start_date), ['class' => 'form-control']) }}
+                    {{ Form::time('start_time', $event->formatDate($event->start_date, 'date_notext'), ['class' => 'form-control']) }}
                 </div>
             </div>
         </div>
@@ -57,10 +57,10 @@ Edit Event
             {{ Form::label('end_date', 'Event End Date')}}<br>
             <div class="row">
                 <div class="col-8">
-                    {{ Form::date('end_date', \Carbon\Carbon::parse($event->end_date), ['class' => 'form-control']) }}
+                    {{ Form::date('end_date', $event->formatDate($event->end_date, 'date_notext'), ['class' => 'form-control']) }}
                 </div>
                 <div class="col-4">
-                    {{ Form::time('end_time', \Carbon\Carbon::parse($event->end_date), ['class' => 'form-control']) }}
+                    {{ Form::time('end_time', $event->formatDate($event->end_date, 'date_notext'), ['class' => 'form-control']) }}
                 </div>
             </div>
         </div>

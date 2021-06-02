@@ -42,14 +42,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('', [AdminController::class, 'index'])->name('/');
-    Route::get('addorganization', [AdminController::class, 'add_organization']);
-    Route::post('addorganizationaction', [AdminController::class, 'add_organization_action']);
-    Route::post('editorganization', [AdminController::class, 'edit_organization_action']);
-    Route::get('organization', [AdminController::class, 'organization_detail'])->name('organization');
-    Route::post('deleteorganizer', [AdminController::class, 'delete_organizer']);
-    Route::post('addorganizer', [AdminController::class, 'add_organizer_action']);
-    Route::post('editorganizer', [AdminController::class, 'edit_organizer_action']);
+    Route::get('organizations', [AdminController::class, 'organization_index']);
+    Route::get('organization/{organization_id}', [AdminController::class, 'organization_detail'])->name('organization-detail');
 });
 
 // events
@@ -64,6 +58,7 @@ Route::group(['prefix' => 'event', 'as' => 'event.'], function() {
     Route::get('edit', [EventController::class, 'edit_event'])->name('edit');
     Route::post('updateevent', [EventController::class, 'edit_event_action']);
     Route::post('delete', [EventController::class, 'delete_event']);
+    Route::get('filter_userevent', [EventController::class, 'filter_user_event'])->name('filter');
 });
 
 // ticketing

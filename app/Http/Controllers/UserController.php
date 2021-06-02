@@ -37,13 +37,9 @@ class UserController extends Controller
         $error = 0;
 
         $transaction = Transaction::find($request->transaction_id);
-        print($transaction);
 
         //what this code is if the event or ticket type is suddenly deleted the order page will still have
         //information from this order, since the html page is saved into the database
-        $transaction_html = view("user.transaction_details", [
-            'transaction' => $transaction
-        ])->render();
 
         foreach($transaction->transaction_tickets as $detail) {
             //if event or ticket name is not found
@@ -54,9 +50,13 @@ class UserController extends Controller
                 $error = $error + 1;
             }
         }
-        print($error);
+
         if (!$error) {
             //if there is no error, then we want to update the page if there are any changes
+            $transaction_html = view("user.transaction_details", [
+                'transaction' => $transaction
+            ])->render();
+
             if ($transaction->html != $transaction_html) {
                 $transaction->html = $transaction_html;
                 $transaction->save();

@@ -90,3 +90,51 @@ body {
     border: 1px solid lightgrey;
     background-color: white;
 }
+
+.filter-box {
+    padding-bottom: 0.75rem;
+}
+
+.user-card {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.index-card {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.organization_card {
+    cursor: pointer;
+
+}
+
+.organization_card:hover {
+    background: rgb(228, 228, 228);
+    transition: 1.5s;
+}
+
+.organization_title {
+    color: #435475;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: #7c90b8 solid 1px;
+    border-bottom: #7c90b8 solid 1px;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.event_title {
+    color: #435475;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    border-bottom: #e4e4e4 solid 1px;
+    margin-bottom: 1rem;
+}

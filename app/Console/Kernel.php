@@ -28,6 +28,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function() {
+            $archived_events = Event::where('end_date', '<', now())->get();
+            foreach($archived_events as $event) {
+                $event->archived = true;
+                $event->save();
+            }
+        })->daily();
     }
 
     /**

@@ -70,6 +70,7 @@ View Cart
         @endif
     </div>
 </div>
+<a href="">View Past Transactions</a>
 
 <br><br>
     {{-- for testing --}}
