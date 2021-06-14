@@ -83,6 +83,10 @@ class Event extends Model
             $date = \Carbon\Carbon::parse($date)->format('l');
         } elseif ($time == 'day_num') {
             $date = \Carbon\Carbon::parse($date)->format('j');
+        } elseif ($time == 'trad_date') {
+            $date = \Carbon\Carbon::parse($date)->format('Y-m-d');
+        } elseif ($time == '24_time') {
+            $date = \Carbon\Carbon::parse($date)->format('H:i:s');
         }
 
         return $date;

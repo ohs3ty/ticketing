@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function organization_index() {
         $organizations = Organization::all()->sortBy('organization_name');
 
-        return view("admin.organization", [
+        return view("organization.organization", [
             'organizations' => $organizations,
         ]);
     }
@@ -34,7 +34,7 @@ class AdminController extends Controller
                         ->orderBy('preferredSurname')
                         ->get();
 
-        return view('admin.organization_detail', [
+        return view('organization.organization_detail', [
             'organization' => $organization,
             'organizers' => $organizers
         ]);

@@ -36,29 +36,33 @@
         <span slot="site-title">Event Ticketing</span>
         <byu-menu slot="nav" active-selector=".is-active">
             <a href="{{ url('home') }}" @yield('home-header')>Home</a>
-            <div class="dropdown">
-                <button class="dropdown-btn">Events</button>
-                <div class="dropdown-child @yield('event-header')">
-                    <a href="{{ url('event') }}">Upcoming Events</a>
+            <span class="nav-dropdown">
+                <a class="dropdown-toggle @yield('event-header')" href="#" id="eventDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Events
+                </a>
+                <div class="dropdown-menu" aria-labelledby="eventDropdown">
+                    <a class="dropdown-item" href="{{ url('event') }}">Upcoming Events</a>
                     @if(Auth::check())
-                        <a href="{{ route('event.add', ['id' => Auth::user()->id]) }}">Add New Event</a>
+                        <a class="dropdown-item" href="{{ route('event.add', ['id' => Auth::user()->id]) }}">Add New Event</a>
                         @if((Auth::user()->role == 'organizer') or (Auth::user()->role == 'admin'))
-                            <a href="{{ route('event.myevents', ['id' => Auth::user()->id])}}">My Events</a>
+                            <a class="dropdown-item" href="{{ route('event.myevents', ['id' => Auth::user()->id])}}">My Events</a>
                         @endif
                     @endif
                 </div>
-            </div>
+            </span>
+            <a href="{{ url('organization') }}" @yield('organization-header')>Organizations</a>
             @if (Auth::check())
                 @if((Auth::user()->role == 'admin'))
-                    <div class="dropdown">
-                        <button class="dropdown-btn">Admin</button>
-                        <div class="dropdown-child @yield('event-header')">
-                            <a href="{{ url('admin/organizations') }}">Organizations</a>
-                            <a href="">Organizers</a>
-                            <a href="">All Events</a>
-                            <a href="">All Transactions</a>
+                    <span class='nav-dropdown'>
+                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="">Organizers</a>
+                            <a class="dropdown-item" href="">All Events</a>
+                            <a class="dropdown-item" href="">All Transactions</a>
                         </div>
-                    </div>
+                    </span>
                 @endif
             @endif
 

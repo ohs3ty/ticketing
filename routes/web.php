@@ -42,8 +42,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('organizations', [AdminController::class, 'organization_index']);
-    Route::get('organization/{organization_id}', [AdminController::class, 'organization_detail'])->name('organization-detail');
+
+});
+
+//organization
+Route::group(['prefix' => 'organization', 'as' => 'organization.'], function() {
+    Route::get('/', [AdminController::class, 'organization_index']);
+    Route::get('{organization_id}', [AdminController::class, 'organization_detail'])->name('organization-detail');
 });
 
 // events

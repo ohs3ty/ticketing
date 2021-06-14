@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('organization-header')
+class='active'
+@endsection
+
 @section('title')
 {{ $organization->organization_name }}
 @endsection
@@ -12,35 +16,31 @@
             <tr>
                 <th>Event Name</th>
                 <th>Date</th>
-                <th style="width: 40%;">Description</th>
+                <th style="width: 30%;">Description</th>
+                <th style="width: 15%;">Location</th>
                 <th>Organizer in charge</th>
             </tr>
             @foreach($organization->events as $event)
                 @if($event->archived == false)
-                {{-- {{ Form::open() }} --}}
                     <tr>
                         <td>
-                            <button class="btn" onclick="admin_edit_event({{$event->id}})"><i class="bi bi-pencil-fill"></i></button>
-                            <span name="event{{$event->id}}">{{ $event->event_name }}</span>
-                            {{ Form::text('event_name', $event->event_name, ['class' => 'form-control', 'hidden', 'id' => "name_input$event->id"]) }}
-
+                            {{ $event->event_name }}
                         </td>
                         <td>
-                            <span name="event{{$event->id}}">{{ $event->formatDate($event->start_date, 'date_time') }}<br>
-                            to<br>
-                            {{ $event->formatDate($event->end_date, 'date_time') }}</td></span>
-                        <td>
-                            @if($event->event_description)
-                                {{ $event->event_description}}
-                            @else
-                                <span style="font-style: italic">No Description</span>
-                            @endif
+                            {{ $event->formatDate($event->start_date, 'date_time') }}
+                            <br>to<br>
+                            {{ $event->formatDate($event->end_date, 'date_time') }}
                         </td>
                         <td>
-                            {{ $event->organizer->user->name }}&nbsp;&nbsp;
+                            {{ $event->event_description ?? 'No Description' }}
+                        </td>
+                        <td>
+                            {{ $event->venue->venue_name }}
+                        </td>
+                        <td>
+                            {{ $event->organizer->user->name }}
                         </td>
                     </tr>
-                {{-- {{ Form::close() }} --}}
                 @endif
             @endforeach
         </table>

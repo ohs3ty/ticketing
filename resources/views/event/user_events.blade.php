@@ -4,6 +4,10 @@
 My Events
 @endsection
 
+@section('event-header')
+    active
+@endsection
+
 @section('content')
 
 @if($user_id != Auth::user()->id)

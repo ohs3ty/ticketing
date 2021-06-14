@@ -14,6 +14,9 @@ Home
 <div class="container">
     <h3>This Week's Events</h3>
     <br>
+    @if (count($events) == 0)
+        <h5>No events this week. Check back next week!</h5>
+    @endif
     @foreach ($events as $event)
         <div class="card" style="border-color: lightgrey">
             <div class="row no-gutters">
@@ -45,17 +48,6 @@ Home
         <br>
     @endforeach
 
-    {{-- test role-based authentication here (probably could be commented out)--}}
-    @guest
-
-    @else
-
-        @if (Auth::user()->role == 'admin')
-        {{-- if we want admin powers here --}}
-        @else
-        {{-- if we want not admin powers but sans guest powers --}}
-        @endif
-    @endguest
 </div>
 
 

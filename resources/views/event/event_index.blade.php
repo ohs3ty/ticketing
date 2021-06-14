@@ -4,6 +4,10 @@
 View All Events
 @endsection
 
+@section('event-header')
+    active
+@endsection
+
 @section('content')
 @include('layouts.partial.cart')
     @if ($errors->any())

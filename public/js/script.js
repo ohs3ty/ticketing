@@ -50,29 +50,3 @@ function greyQuantity() {
 }
 
 //Admin
-//when click pencil, be able to edit things
-function admin_edit_event(event_id) {
-    names = document.getElementsByName(`event${event_id}`);
-    for (var i=0; i<names.length; i++) {
-        names[i].hidden = true;
-    }
-    document.getElementById(`name_input${event_id}`).hidden = false;
-    document.getElementById(`name_input${event_id}`).focus();
-}
-// no need currently
-// document.getElementsByName('user_organizer')[1].addEventListener("click", function() {
-//     document.getElementById('not_user').hidden = false;
-// })
-
-// document.getElementsByName('user_organizer')[0].addEventListener("click", function() {
-//     document.getElementById('not_user').hidden = true;
-// })
-
-
-// autocomplete (finish this later)
-// document.getElementById("organization_name").addEventListener("keyup", function() {
-//     var org_input = document.getElementById("organization_name");
-//     var org_search = document.getElementById("org_search");
-
-//     document.getElementById("org_search").innerHTML = org_input.value;
-// })
