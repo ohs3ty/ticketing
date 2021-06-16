@@ -131,4 +131,13 @@ class User extends Authenticatable
         return $this->preferredFirstName . " " . $this->preferredSurname;
     }
 
+    public function hasRole($role)
+    {
+        if ($this->role == $role) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
 }

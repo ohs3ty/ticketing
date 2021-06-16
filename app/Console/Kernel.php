@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
                 $event->archived = true;
                 $event->save();
             }
-        })->daily();
+        })->everyMinute();
     }
 
     /**

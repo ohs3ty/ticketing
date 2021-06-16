@@ -82,12 +82,25 @@ body {
     /* padding-bottom: 36px; */
 }
 
+.nav-dropdown {
+
+}
+
 .nav-dropdown a {
     color: #002e5d;
     font-size: 16px;
     padding: 12px;
     text-decoration: none;
     /* display: block; */
+}
+
+.dropdown-item:hover {
+    background-color: rgb(236, 236, 236);
+    transition: .2s;
+}
+
+.dropdown-item:active {
+    background-color: rgb(236, 236, 236);
 }
 
 /* modals */
@@ -162,4 +175,10 @@ body {
     padding-bottom: 15px;
     border-bottom: #e4e4e4 solid 1px;
     margin-bottom: 1rem;
+}
+
+.add-icon {
+    font-size: 30px;
+    color: #7c8dad;
+    cursor: pointer;
 }

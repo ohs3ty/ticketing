@@ -13,7 +13,7 @@ Add Event
     @if($user_id != Auth::user()->id)
         <h3>Something went wrong. Please try again.</h3>
     @else
-        @if ((Auth::user()->role == 'admin') or (Auth::user()->role == 'organizer'))
+        @if (Auth::user()->hasRole('admin') or Auth::user()->hasRole('organizer'))
             <div class="container">
 
                 @if($errors->any())

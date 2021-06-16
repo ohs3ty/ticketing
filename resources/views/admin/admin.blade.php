@@ -10,7 +10,7 @@
 
 @section('content')
 
-@if((Auth::user()) and (Auth::user()->role == 'admin'))
+@if((Auth::user()) and (Auth::user()->hasRole('admin'))
     <h3>Organizations</h3>
     <div class="container">
         <a class="btn btn-primary" href="{{ url('admin/addorganization') }}" style="border-color: lightgrey">Add Organization</a>

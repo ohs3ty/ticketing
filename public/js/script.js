@@ -49,4 +49,38 @@ function greyQuantity() {
 
 }
 
-//Admin
+//Organization
+function editDetails(detail) {
+    organization_edit = document.getElementsByName('organization_edit');
+    organization_input = document.getElementsByName('organization_input');
+    if (detail == 'detail') {
+        for (var i = 0; i < organization_edit.length; i++) {
+            organization_edit[i].hidden = true;
+        }
+        document.getElementById("detail_pencil").hidden = true;
+        document.getElementById("detail_button").hidden = false;
+        document.getElementById("detail_cancel").hidden = false;
+        document.getElementById("cashnet_input").hidden = false;
+        document.getElementById("website_input").hidden = false;
+    } else if (detail == 'cancel_detail') {
+        for (var i = 0; i < organization_edit.length; i++) {
+            organization_edit[i].hidden = false;
+        }
+        document.getElementById("detail_pencil").hidden = false;
+        document.getElementById("detail_button").hidden = true;
+        document.getElementById("detail_cancel").hidden = true;
+        document.getElementById("cashnet_input").hidden = true;
+        document.getElementById("website_input").hidden = true;
+    }
+}
+
+function addOrganizer(add) {
+    if (add == 'add') {
+        document.getElementById('add_organizer_div').hidden = false;
+        document.getElementById('add_organizer_button').hidden = true;
+    } else if (add == 'cancel') {
+        document.getElementById('add_organizer_div').hidden = true;
+        document.getElementById('add_organizer_button').hidden = false;
+    }
+
+}

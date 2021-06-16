@@ -8,7 +8,8 @@
                 <div class="text-left" style="padding: 10px; padding-bottom: 0px;">
                     <h2>{{ $event->event_name }}</h2>
                     <h4 class="modal-subtitle">starts on {{ $event->formatDate($event->start_date, 'date_time') }}</h4>
-                    <h5 class="modal-subtitle">by {{ $event->organization->organization_name }}</h5>
+                    <h5 class="modal-subtitle">by
+                    <a class="modal-subtitle" href="{{ route('organization.organization-detail', ['organization_id' => $event->organization->id]) }}">{{ $event->organization->organization_name }}</a></h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>

@@ -44,7 +44,7 @@
                     <a class="dropdown-item" href="{{ url('event') }}">Upcoming Events</a>
                     @if(Auth::check())
                         <a class="dropdown-item" href="{{ route('event.add', ['id' => Auth::user()->id]) }}">Add New Event</a>
-                        @if((Auth::user()->role == 'organizer') or (Auth::user()->role == 'admin'))
+                        @if((Auth::user()->hasRole('organizer')) or (Auth::user()->hasRole('admin')))
                             <a class="dropdown-item" href="{{ route('event.myevents', ['id' => Auth::user()->id])}}">My Events</a>
                         @endif
                     @endif
@@ -52,7 +52,7 @@
             </span>
             <a href="{{ url('organization') }}" @yield('organization-header')>Organizations</a>
             @if (Auth::check())
-                @if((Auth::user()->role == 'admin'))
+                @if((Auth::user()->hasRole('admin')))
                     <span class='nav-dropdown'>
                         <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin

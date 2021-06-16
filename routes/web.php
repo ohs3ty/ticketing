@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 Route::group(['prefix' => 'organization', 'as' => 'organization.'], function() {
     Route::get('/', [AdminController::class, 'organization_index']);
     Route::get('{organization_id}', [AdminController::class, 'organization_detail'])->name('organization-detail');
+    Route::post('save-details', [AdminController::class, 'edit_organization'])->name('edit-organization');
+    Route::get('delete-organizer/{organization_id}/{organizer_id}', [AdminController::class, 'delete_organizer'])->name('delete-organizer');
 });
 
 // events
