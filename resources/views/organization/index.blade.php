@@ -9,6 +9,10 @@ Organizations
 @endsection
 
 @section('content')
+@include('layouts.partial.cart')
+    @error('organization_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <h4>Organizations</h4>
     <br>
     <div class="row">

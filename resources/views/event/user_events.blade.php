@@ -9,12 +9,13 @@ My Events
 @endsection
 
 @section('content')
+@include('layouts.partial.cart')
 
 @if($user_id != Auth::user()->id)
     <h3>Something went wrong. Please try again.</h3>
 @else
 <div class="row">
-    <div class="col-2">
+    <div class="col-lg-2 col-sm-12">
         <h5>Event Filters:</h5>
             {{ Form::open(array('route' => 'event.myevents', 'method' => 'get')) }}
                 {{ Form::hidden('id', Auth()->user()->id) }}
@@ -28,7 +29,7 @@ My Events
                 </div>
             {{ Form::close() }}
     </div>
-    <div class="col-10">
+    <div class="col-lg-10 col-sm-12">
         <div class="row">
             @foreach ($events as $event)
                 <div class="col-sm-4" style="padding-bottom: 1.5rem;">
@@ -40,11 +41,11 @@ My Events
                                 at {{ \Carbon\Carbon::parse($event->start_date)->format('g:i a') }}</h6>
                             <p class="card-text user-card">{{ $event->event_description }}</p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer text-center">
                             <div class="row text-center no-gutters">
-                                <a href="{{ route('event.edit', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-small col-5" style="border-color: lightgrey">View/Edit</a>
-                                <span class="col-sm-1"></span>
-                                <a href="{{ route('ticket.index', ['event_id' => $event->id]) }}" class="btn btn-small col-5" style="border-color: lightgrey">Tickets</a>
+                                <a href="{{ route('event.edit', ['event_id' => $event->id, 'user_id' => Auth::user()->id])}}" class="btn btn-small col-lg-5 col-sm-12" style="border-color: lightgrey">View/Edit</a>
+                                <span class="col-lg-1"></span>
+                                <a href="{{ route('ticket.index', ['event_id' => $event->id]) }}" class="btn btn-small col-lg-5 col-sm-12" style="border-color: lightgrey">Tickets</a>
                             </div>
                         </div>
                     </div>

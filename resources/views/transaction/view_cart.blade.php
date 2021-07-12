@@ -5,7 +5,6 @@ View Cart
 @endsection
 
 @section('content')
-@include('layouts.partial.cart')
 <br>
 <div class="row">
     <div class="col-8">
@@ -70,7 +69,9 @@ View Cart
         @endif
     </div>
 </div>
-<a href="">View Past Transactions</a>
+@auth
+    <a href="">View Past Transactions</a>
+@endauth
 
 <br><br>
     {{-- for testing --}}

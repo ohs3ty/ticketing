@@ -42,15 +42,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('/all-events', [AdminController::class, 'all_events'])->name('all-events');
+});
 
+//organizer
+Route::group(['prefix' => 'organizer', 'as' => 'organizer.'], function() {
+    Route::get('/', [AdminController::class, 'organizer_index']);
 });
 
 //organization
 Route::group(['prefix' => 'organization', 'as' => 'organization.'], function() {
     Route::get('/', [AdminController::class, 'organization_index']);
     Route::get('{organization_id}', [AdminController::class, 'organization_detail'])->name('organization-detail');
+    Route::post('add-organization', [AdminController::class, 'add_organization'])->name('add-organization');
     Route::post('save-details', [AdminController::class, 'edit_organization'])->name('edit-organization');
-    Route::get('delete-organizer/{organization_id}/{organizer_id}', [AdminController::class, 'delete_organizer'])->name('delete-organizer');
+    Route::get('delete-organizer/{organization_id}/{organizer_id}', [AdminController::class, 'delete_orgaanization_organizer'])->name('delete-organizer');
 });
 
 // events

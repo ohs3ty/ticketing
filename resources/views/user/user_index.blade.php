@@ -5,7 +5,7 @@ My Tickets and Orders
 @endsection
 
 @section('content')
-
+@include('layouts.partial.cart')
 @auth
     @if(Auth::user()->id == $user_id)
         <h3>Past Orders</h3>

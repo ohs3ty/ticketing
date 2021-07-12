@@ -5,7 +5,7 @@ Transaction Details
 @endsection
 
 @section('content')
-
+@include('layouts.partial.cart')
 @auth
     <div class="row">
         <div class="col-8">

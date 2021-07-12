@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     //
+    public function all_events() {
+        return view('admin.all_events');
+    }
     public function organization_index() {
         $organizations = Organization::all()->sortBy('organization_name');
 
-        return view("organization.organization", [
-            'organizations' => $organizations,
-        ]);
+        return view("organization.index", compact('organizations'));
     }
 
     public function organization_detail(Request $request) {
@@ -59,14 +60,31 @@ class AdminController extends Controller
             $organization->cashnet_code = $request->cashnet_input;
             $organization->save();
         }
+
         return redirect()->route('organization.organization-detail', [$request->organization_id]);
     }
 
-    public function delete_organizer(Request $request) {
+    public function delete_orgaanization_organizer(Request $request) {
         OrganizationOrganizer::where('organization_id', $request->organization_id)
                         ->where('organizer_id', $request->organizer_id)
                         ->delete();
         return redirect()->route('organization.organization-detail', [$request->organization_id]);
+    }
+
+    public function add_organization(Request $request) {
+        $validated = $request->validate([
+            'organization_name' => 'required|unique:organizations',
+        ]);
+        $organization = new Organization;
+        $organization->organization_name = $request->organization_name;
+        $organization->organization_website = $request->organization_website;
+        $organization->cashnet_code = $request->cashnet_code;
+        $organization->save();
+        return redirect()->route('organization.organization-detail', [$organization->organization_id]);
+    }
+
+    public function organizer_index() {
+        return view('admin.organizer.index');
     }
 
 }

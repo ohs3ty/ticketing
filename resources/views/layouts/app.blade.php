@@ -58,8 +58,8 @@
                             Admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="">Organizers</a>
-                            <a class="dropdown-item" href="">All Events</a>
+                            <a class="dropdown-item" href="{{ url('organizer') }}">Organizers</a>
+                            <a class="dropdown-item" href="{{ url('admin/all-events') }}">All Events</a>
                             <a class="dropdown-item" href="">All Transactions</a>
                         </div>
                     </span>

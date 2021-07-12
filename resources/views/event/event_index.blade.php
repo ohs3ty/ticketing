@@ -31,7 +31,7 @@ View All Events
                     <div class="row no-gutters">
                         <div class="col-sm-2">
                             <div class="card-body text-right">
-                                <h3 style="margin-bottom: 0px;">{{ $months[$i]}}</h3>
+                                <h3 style="margin-bottom: 0px;">{{ $months[$i-1]}}</h3>
                                 <h2 style="margin: none">{{ $event->formatDate($event->start_date, 'day_num') }}</h2>
                             </div>
                         </div>
